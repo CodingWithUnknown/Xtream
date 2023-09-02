@@ -1,0 +1,273 @@
+const { ApplicationCommandType, ApplicationCommandOptionType, EmbedBuilder } = require('discord.js');
+const Data = require('../../Models/Schema/badges');
+
+module.exports = {
+  name: 'badges',
+  description: "Manage badges of the bot",
+  type: ApplicationCommandType.ChatInput,
+  options: [{
+    name: 'create',
+    description: "Create a new badge",
+    type: 1,
+    options: [{
+      name: 'name',
+      description: "Name of this badge",
+      type: 3,
+      required: true
+    }, {
+      name: 'emoji',
+      description: "Emoji of this badge",
+      type: 3,
+      required: true
+    }]
+  }, {
+    name: 'edit',
+    description: "Edit a new badge",
+    type: 1,
+    options: [{
+      name: 'id',
+      description: "ID of the badge you want to edit",
+      type: 3,
+      required: true
+    }, {
+      name: 'name',
+      description: "New name of this badge",
+      type: 3,
+      required: false
+    }]
+  }, {
+    name: 'delete',
+    description: "Delete a new badge",
+    type: 1,
+    options: [{
+      name: 'id',
+      description: "ID of the badge you want to delete",
+      type: 3,
+      required: true
+    }]
+  }, {
+    name: 'give',
+    description: "Give a badge to someone",
+    type: 1,
+    options: [{
+      name: 'id',
+      description: "ID of the badge you want to give",
+      type: 3,
+      required: true
+    }, {
+      name: 'user-id',
+      description: "ID of the user to whom you want to give the badge",
+      type: 3,
+      required: true
+    }]
+  }, {
+    name: 'take',
+    description: "Take a badge from someone",
+    type: 1,
+    options: [{
+      name: 'id',
+      description: "ID of the badge you want to take",
+      type: 3,
+      required: true
+    }, {
+      name: 'user-id',
+      description: "ID of the user from whom you want to take the badge",
+      type: 3,
+      required: true
+    }]
+  }, {
+    name: 'list',
+    type: 1,
+    description: "Get the list of badges"
+  }],
+  execute: async (client, interaction) => {
+    let id = interaction.options.getString("id"),
+      name = interaction.options.getString("name"),
+      user_id = interaction.options.getString("user-id"),
+      user = client.users.cache.get(user_id),
+      userData = user ? await users.findOne({ user: user?.id }) || await users.create({ user: user?.id }) : null,
+      badge = await badges.findOne({ id });
+
+
+    if ('add'.includes(interaction.options.getSubcommand())) {
+      
+      badge = await badges.create({
+        id: randomId(8),
+        name,
+        emoji,
+        createdAt: Date.now()
+      });
+
+      interaction.editReply({
+        embeds: [{
+          title: "✅ Successfully created the badge!",
+          fields: [{
+            name: "Badge ID",
+            value: badge.id,
+            inline: true
+          }, {
+            name: "Badge Name",
+            value: badge.name,
+            inline: true
+          }, {
+            name: "Badge Emoji",
+            value: client.emojis.cache.get(badge.emoji) || badge.emoji || "Unknown",
+            inline: true
+          }, {
+            name: "Created At",
+            value: `<t:${badge.createdAt}>`,
+            inline: true
+          }]
+        }]
+      })
+    } else if (option === "edit") {
+      if (!badge) return interaction.editReply({
+        embeds: [{
+          title: "❌ Invalid badge",
+          description: "Please provide a valid badge ID"
+        }]
+      });
+
+      name = name || badge.name;
+      emoji = emoji || badge.emoji;
+
+      if (!isEmoji(client, emoji)) return interaction.editReply({
+        embeds: [{
+          title: "❌ Invalid Emoji",
+          description: "Please provide a valid emoji"
+        }]
+      });
+
+      badge = await badges.findOneAndUpdate({ id }, {
+        name,
+        emoji,
+        createdAt: Date.now()
+      }, { new: true });
+
+      interaction.editReply({
+        embeds: [{
+          title: "✅ Successfully edited the badge!",
+          fields: [{
+            name: "Badge ID",
+            value: badge.id,
+            inline: true
+          }, {
+            name: "Badge Name",
+            value: badge.name,
+            inline: true
+          }, {
+            name: "Badge Emoji",
+            value: client.emojis.cache.get(badge.emoji) || badge.emoji || "Unknown",
+            inline: true
+          }, {
+            name: "Created At",
+            value: `<t:${badge.createdAt}>` || "Unknown Date",
+            inline: true
+          }]
+        }]
+      })
+    } else if (option === "delete") {
+      if (!badge) return interaction.editReply({
+        embeds: [{
+          title: "❌ Invalid badge",
+          description: "Please provide a valid badge ID"
+        }]
+      });
+
+      await badges.findOneAndDelete({ id });
+
+      interaction.editReply({
+        embeds: [{
+          title: "✅ Badge Deleted",
+        }]
+      });
+    } else if (option === "give") {
+      if (!badge) return interaction.editReply({
+        embeds: [{
+          title: "❌ Invalid badge",
+          description: "Please provide a valid badge ID"
+        }]
+      });
+
+      if (!user) return interaction.editReply({
+        embeds: [{
+          title: "❌ Invalid User",
+          description: "Please provide a valid user ID"
+        }]
+      });
+
+      if (userData?.badges?.includes(badge.id)) return interaction.editReply({
+        embeds: [{
+          title: "❌ Cannot Add Badge",
+          description: "The provided user already have this badge!"
+        }]
+      });
+
+      await users.findOneAndUpdate({ user: user.id }, { $push: { badges: badge.id } });
+
+      interaction.editReply({
+        embeds: [{
+          title: "✅ Badge Added",
+          description: `Successfully gave **${badge.name}** to **${user.username}**`
+        }]
+      });
+    } else if (option === "take") {
+      if (!badge) return interaction.editReply({
+        embeds: [{
+          title: "❌ Invalid badge",
+          description: "Please provide a valid badge ID"
+        }]
+      });
+
+      if (!user) return interaction.editReply({
+        embeds: [{
+          title: "❌ Invalid User",
+          description: "Please provide a valid user ID"
+        }]
+      });
+
+      if (!userData?.badges?.includes(badge.id)) return interaction.editReply({
+        embeds: [{
+          title: "❌ Cannot Take Badge",
+          description: "The provided user do not have this badge!"
+        }]
+      });
+
+      await users.findOneAndDelete({ user: user.id }, { $pull: { badges: badge.id } });
+
+      interaction.editReply({
+        embeds: [{
+          title: "✅ Badge Remove",
+          description: `Successfully took **${badge.name}** from **${user.username}**`
+        }]
+      });
+    } else if (option === "list") {
+      const badg = await badges.find();
+
+      if (badg.length === 0) return interaction.editReply({
+        embeds: [{
+          title: "This Bot Do Not Have Badges",
+          color: "RED"
+        }]
+      })
+
+      let str = "";
+
+      for (let i = 0; i < badg.length; i++) {
+        const bg = badg[i];
+
+        str += `${client.emojis.cache.get(bg?.emoji)?.toString() || bg?.emoji} **${bg?.name}** | Created At: <t:${bg.createdAt}>\n`
+      }
+
+      interaction.editReply({
+        embeds: [{
+          title: "Badges Of The Bot",
+          description: str
+        }]
+      })
+    }
+  }
+}
+function isEmoji(client, emoji) {
+  return hasEmoji(emoji) || client.emojis.cache.get(/\d+/.exec(emoji) + "");
+}

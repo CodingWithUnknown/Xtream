@@ -1,0 +1,52 @@
+const { ApplicationCommandType, ApplicationCommandOptionType, EmbedBuilder } = require('discord.js');
+
+module.exports = {
+  name: 'role',
+  description: 'Shows information for the mentioned role',
+  type: ApplicationCommandType.ChatInput,
+  options: [{
+    name: 'info',
+    description: 'Mention a role from information for',
+    type: ApplicationCommandOptionType.Role,
+    required: true,
+  }],
+  execute: async (client, interaction) => {
+    let role = interaction.guild.roles.cache.get(interaction.options.getRole('info').id);
+
+    console.log(role)
+
+    const embeds = new EmbedBuilder()
+      .setAuthor(
+        { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+      )
+      .addFields(
+        {
+          name: 'General Information', value: [
+            `**Name:** ${role.name}`,
+            `**ID:** \`${role.id}\``,
+            `**Position:** ${role.rawPosition}`,
+            `**Hex Code:** ${role.hexColor}`,
+            `**Role Created:** <t:${role.createdTimestamp / 1000}:F> (<t:${role.createdAt / 1000}:R>)`
+          ].join('\n')
+        }
+      )
+      .addFields(
+        {
+          name: 'Role Configuration', value: [
+            `**Hoist:** ${role.hoist}`,
+            `**Mentionable:** ${role.mentionable}`,
+            `**Manageable:** ${role.managed}`,
+          ].join('\n')
+        }
+      )
+      /*.addFields(
+        { name: 'Allowed Permissions', value: `${role.permissions.toArray().map((x) => `\`${x}\``).join(' | ') ?? 'None'}` }
+      )*/
+      .setFooter(
+        { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+      )
+      .setColor(0x2f3136)
+      .setTimestamp();
+    return await interaction.reply({ embeds: [embeds] });
+  }
+};
