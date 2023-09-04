@@ -1,7 +1,7 @@
 require('dotenv').config({ path: '.env' });
 const { ShardingManager } = require('discord.js');
 
-let manager = new ShardingManager('./Src/Xara.js', { token: process.env.DISCORD_TOKEN, respawn: true });
+let manager = new ShardingManager('./Src/Xtream.js', { token: process.env.DISCORD_TOKEN, respawn: true });
 
 manager.once('shardCreate', async (shard) => {
   shard.logger = require('./Src/Models/Logger');

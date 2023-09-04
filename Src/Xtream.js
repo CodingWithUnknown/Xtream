@@ -4,7 +4,7 @@ const { readdirSync } = require('fs');
 const { join } = require('path');
 const { Shoukaku, Connectors } = require('shoukaku');
 
-class Xara extends Client {
+class Xtream extends Client {
   constructor() {
     super({
       fetchAllMembers: false,
@@ -200,5 +200,5 @@ class Xara extends Client {
   }*/
 };
 
-let Defender = new Xara();
+let Defender = new Xtream();
 Defender.login(process.env.DISCORD_TOKEN);
