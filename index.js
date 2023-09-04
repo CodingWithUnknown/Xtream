@@ -1,3 +1,4 @@
+require('dotenv').config({ path: '.env' });
 const { ShardingManager } = require('discord.js');
 
 let manager = new ShardingManager('./Src/Xara.js', { token: process.env.DISCORD_TOKEN, respawn: true });

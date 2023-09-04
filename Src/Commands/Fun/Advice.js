@@ -1,12 +1,11 @@
-const { EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const superagent = require('superagent');
 
 module.exports = {
-  name: 'Advice',
-  aliases: ['advice'],
-  category: 'Fun',
-  description: 'Gives a random advice.',
-  execute: async (client, message) => {
+  data: new SlashCommandBuilder()
+    .setName('advice')
+    .setDescription('Gives you some advice'),
+  execute: async (client, interaction) => {
     superagent.get('http://api.adviceslip.com/advice').end((err, res) => {
       if (!err && res.status === 200) {
         try {

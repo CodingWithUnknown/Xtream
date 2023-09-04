@@ -1,11 +1,10 @@
-const { EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
-  name: '8Ball',
-  aliases: ['8ball'],
-  category: 'Games',
-  description: 'Provides you a random answer based on your questions.',
-  execute: async (client, message, args) => {
+  data: new SlashCommandBuilder()
+    .setName('8ball')
+    .setDescription('testing command'),
+  execute: async (client, interaction) => {
     const ball = [
       'As I See It Yes',
       'Ask Again Later',
@@ -68,12 +67,7 @@ module.exports = {
     const answer = ball[Math.floor(Math.random() * ball.length)];
 
     const embeds = new EmbedBuilder()
-      .setTitle('8Ball')
-      .setDescription(`🎱 ${answer}`)
-      .setFooter({
-        text: 'Xara Developers',
-        iconURL: client.user.displayAvatarURL({ dynamic: true }),
-      })
+      .setDescription(`${answer}`)
       .setColor('0x2f3136')
       .setTimestamp();
     return await message.reply({ embeds: [embeds] });
