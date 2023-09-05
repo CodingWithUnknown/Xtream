@@ -1,34 +1,26 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const superagent = require('superagent');
+const { get } = require('superagent');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('advice')
     .setDescription('Gives you some advice'),
   execute: async (client, interaction) => {
-    superagent.get('http://api.adviceslip.com/advice').end((err, res) => {
+    get('http://api.adviceslip.com/advice').end(async (err, res) => {
       if (!err && res.status === 200) {
         try {
-          JSON.parse(res.text);
+          await JSON.parse(res.text);
         } catch {
-          return message.reply({ content: 'An api error occurred.' });
+          return await interaction.reply({ content: 'An api error occurred.' });
         }
-        const advice = JSON.parse(res.text);
-        const embed = new EmbedBuilder()
-          .setTitle('Advice')
-          .setDescription(`👉  **${advice.slip.advice}**`)
-          .setFooter({
-            text: 'Xara Developers',
-            iconURL: client.user.displayAvatarURL({ dynamic: true }),
-          })
-          .setColor('Random')
-          .setTimestamp();
-        return message.reply({ embeds: [embed] });
+        const embeds = new EmbedBuilder()
+          .setDescription(`**${await JSON.parse(res.text).slip.advice}**`)
+          .setColor(0x2c2d31)
+          .setTimestamp()
+        return await interaction.reply({ embeds: [embeds] });
       } else {
-        return message.reply(
-          `REST call failed: ${err}, status code: ${res.status}`
-        );
+        return await interaction.reply({ content: `REST call failed: ${err}, status code: ${res.status}` });
       }
     });
-  },
+  }
 };
