@@ -4,7 +4,8 @@ const { get } = require('superagent');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('joke')
-    .setDescription('testing command'),
+    .setDescription('testing command')
+    .setNSFW(false),
   execute: async (client, interaction) => {
     get('http://icanhazdadjoke.com').set('Accept', 'application/json').end(async (err, res) => {
       if (!err && res.status === 200) {

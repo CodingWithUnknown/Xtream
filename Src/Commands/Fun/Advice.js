@@ -4,7 +4,8 @@ const { get } = require('superagent');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('advice')
-    .setDescription('Gives you some advice'),
+    .setDescription('Gives you some advice')
+    .setNSFW(false),
   execute: async (client, interaction) => {
     get('http://api.adviceslip.com/advice').end(async (err, res) => {
       if (!err && res.status === 200) {
