@@ -6,16 +6,20 @@ module.exports = {
     .setName('joke')
     .setDescription('testing command'),
   execute: async (client, interaction) => {
-    await get('http://icanhazdadjoke.com')
-      .set({ Headers: { 'Accept': 'application/json' } })
-      .end(async (err, res) => {
-        console.log(res);
-        console.log(err);
-        /*const embeds = new EmbedBuilder()
-          .setDescription(`👉  **${(await res.json().joke)}**`)
-          .setColor(0x2c2d31)
-          .setTimestamp();
-        return await interaction.reply({ embeds: [embeds] });*/
-      })
+    get('http://icanhazdadjoke.com').set('Accept', 'application/json').end(async (err, res) => {
+      if (!err && res.status === 200) {
+        try {
+          await res.body.joke;
+        } catch {
+          return await interaction.reply({ content: 'An api error occurred.' });
+        }
+        const embeds = new EmbedBuilder()
+          .setDescription(`**${await res.body.joke}**`)
+          .setColor(0x2c2d31);
+        return await interaction.reply({ embeds: [embeds] });
+      } else {
+        return await interaction.reply({ content: `REST call failed: ${err}, status code: ${res.status}` });
+      }
+    });
   }
 };

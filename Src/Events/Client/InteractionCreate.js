@@ -99,11 +99,11 @@ module.exports = {
       client.logger.log(error, 'error');
       const embeds = new EmbedBuilder()
         .setAuthor(
-          { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setDescription('There was an error executing that command.')
         .setFooter(
-          { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setColor(0x2f3136)
         .setTimestamp();
