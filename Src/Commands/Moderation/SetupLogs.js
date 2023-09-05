@@ -15,7 +15,6 @@ module.exports = {
                 .addChannelTypes(ChannelType.GuildText)
                 .setRequired(true)
             )
-            
         ),
     execute: (client, interaction) => {
 
