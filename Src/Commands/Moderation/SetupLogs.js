@@ -6,17 +6,37 @@ module.exports = {
         .setDescription('Configure the logging system for your guild')
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
         .setDMPermission(false)
-        .addSubcommand((options) => options
+        .addSubcommandGroup((options) => options
             .setName('logs')
             .setDescription('Configure the logging system for your guild')
-            .addChannelOption((options) => options
-                .setName('channel')
-                .setDescription('Select the logging channel for your guild')
-                .addChannelTypes(ChannelType.GuildText)
-                .setRequired(true)
+            .addSubcommand((options) => options
+                .setName('users')
+                .setDescription('Configure the users logging system for your guild')
+                .addChannelOption((options) => options
+                    .setName('channel')
+                    .setDescription('Select the logging channel for your guild.')
+                    .addChannelTypes(ChannelType.GuildText)
+                    .setRequired(true)
+                )
+                .addRoleOption((options) => options
+                    .setName('memberRole')
+                    .setDescription('Set the role to be automatically added to new members.')
+                    .setRequired(true)
+                )
+                .addRoleOption((options) => options
+                    .setName('botRole')
+                    .setDescription('Set the roles to be automatically added to new bots.')
+                    .setRequired(true)
+                )
             )
         ),
     execute: (client, interaction) => {
-
+        switch (interaction.options.getSubcommandGroup()) {
+            case 'logs':
+                switch (interaction.options.getSubcommand()) {
+                    case 'users':
+                        
+                }
+        }
     }
 };
