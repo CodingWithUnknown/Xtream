@@ -5,13 +5,14 @@ module.exports = {
         .setName('setup')
         .setDescription('Configure the logging system for your guild')
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
+        .setNSFW(false)
         .setDMPermission(false)
         .addSubcommandGroup((options) => options
             .setName('logs')
             .setDescription('Configure the logging system for your guild')
             .addSubcommand((options) => options
-                .setName('users')
-                .setDescription('Configure the users logging system for your guild')
+                .setName('members')
+                .setDescription('Configure the members logging system for your guild')
                 .addChannelOption((options) => options
                     .setName('channel')
                     .setDescription('Select the logging channel for your guild.')
@@ -35,7 +36,7 @@ module.exports = {
             case 'logs':
                 switch (interaction.options.getSubcommand()) {
                     case 'users':
-                        
+                        let channel = interaction.options.getchannel('channel');
                 }
         }
     }
