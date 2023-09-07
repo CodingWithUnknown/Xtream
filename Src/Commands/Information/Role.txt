@@ -17,7 +17,7 @@ module.exports = {
 
     const embeds = new EmbedBuilder()
       .setAuthor(
-        { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+        { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
       )
       .addFields(
         {
@@ -43,7 +43,7 @@ module.exports = {
         { name: 'Allowed Permissions', value: `${role.permissions.toArray().map((x) => `\`${x}\``).join(' | ') ?? 'None'}` }
       )*/
       .setFooter(
-        { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+        { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
       )
       .setColor(0x2c2d31)
       .setTimestamp();

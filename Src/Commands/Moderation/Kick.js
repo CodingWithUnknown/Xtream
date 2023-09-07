@@ -23,11 +23,11 @@ module.exports = {
     if (!target) {
       const embeds = new EmbedBuilder()
         .setAuthor(
-          { name: 'Xara Defender', iconURL: client.user.displayAvatarURL() }
+          { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() }
         )
         .setDescription('This user does not exist in the server')
         .setFooter(
-          { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setColor(0x2c2d31)
         .setTimestamp();
@@ -37,11 +37,11 @@ module.exports = {
     if (interaction.member.id.includes(target.id)) {
       const embeds = new EmbedBuilder()
         .setAuthor(
-          { name: 'Xara Defender', iconURL: client.user.displayAvatarURL() }
+          { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() }
         )
         .setDescription('You cannot timeout yourself.')
         .setFooter(
-          { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setColor(0x2c2d31)
         .setTimestamp();
@@ -51,11 +51,11 @@ module.exports = {
     if (client.user.id.includes(target.id)) {
       const embeds = new EmbedBuilder()
         .setAuthor(
-          { name: 'Xara Defender', iconURL: client.user.displayAvatarURL() }
+          { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() }
         )
         .setDescription('You cannot timeout myself!')
         .setFooter(
-          { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setColor(0x2c2d31)
         .setTimestamp();
@@ -65,11 +65,11 @@ module.exports = {
     if (interaction.guild.ownerId.includes(target.id)) {
       const embeds = new EmbedBuilder()
         .setAuthor(
-          { name: 'Xara Defender', iconURL: client.user.displayAvatarURL() }
+          { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() }
         )
         .setDescription('You cannnot timeout the guild owner.')
         .setFooter(
-          { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setColor(0x2c2d31)
         .setTimestamp();
@@ -91,11 +91,11 @@ module.exports = {
 
     const embeds = new EmbedBuilder()
       .setAuthor(
-        { name: 'Xara Defender', iconURL: client.user.displayAvatarURL() }
+        { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() }
       )
       .setDescription(`Are you sure you want to kick ${target} for reason: **${reason}**?`)
       .setFooter(
-        { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+        { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
       )
       .setColor(0x2c2d31)
       .setTimestamp();
@@ -110,14 +110,14 @@ module.exports = {
           await target.kick({ reason: reason }).then(async () => {
             const embeds = new EmbedBuilder()
               .setAuthor(
-                { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+                { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
               )
               .setDescription([
                 `${target.globalName} have been **Kicked** from this server`,
                 `\nReason: ${reason}`,
               ].join('\n'))
               .setFooter(
-                { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+                { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
               )
               .setColor(0x2c2d31)
               .setTimestamp()

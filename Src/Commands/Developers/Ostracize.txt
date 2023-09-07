@@ -3,12 +3,12 @@ const Data = require('../../Models/Schema/Ostracize');
 
 module.exports = {
   name: 'ostracize',
-  description: 'Ostracize a user from the Xara developers',
+  description: 'Ostracize a user from the Xtream developers',
   type: ApplicationCommandType.ChatInput,
   developer: true,
   options: [{
     name: 'add',
-    description: 'Ostracize to a user from the Xara developers',
+    description: 'Ostracize to a user from the Xtream developers',
     type: ApplicationCommandOptionType.Subcommand,
     options: [{
       name: 'user',
@@ -23,7 +23,7 @@ module.exports = {
     }]
   }, {
     name: 'remove',
-    description: 'Include a user from the Xara developers',
+    description: 'Include a user from the Xtream developers',
     type: ApplicationCommandOptionType.Subcommand,
     options: [{
       name: 'user',
@@ -44,11 +44,11 @@ module.exports = {
       if (!mention) {
         const embeds = new EmbedBuilder()
           .setAuthor(
-            { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+            { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
           )
           .setDescription('This user does not exist in the server')
           .setFooter(
-            { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }), }
+            { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }), }
           )
           .setColor(0x2c2d31)
           .setTimestamp();
@@ -62,11 +62,11 @@ module.exports = {
         if (data) {
           const embeds = new EmbedBuilder()
             .setAuthor(
-              { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+              { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
             )
             .setDescription(`${mention.user.tag} was been already ostracized!`)
             .setFooter(
-              { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+              { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
             )
             .setColor(0x2c2d31)
             .setTimestamp();
@@ -78,12 +78,12 @@ module.exports = {
           await data.save().then(async () => {
             const embeds = new EmbedBuilder()
               .setAuthor(
-                { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+                { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
               )
               .setThumbnail(mention.user.displayAvatarURL({ dynamic: true }))
               .setDescription(`**${mention.user.tag}** user has been ostracized.\n\n*(Now this user has no longer to execute all ( / ) commands.)*`)
               .setFooter(
-                { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+                { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
               )
               .setColor(0x2c2d31)
               .setTimestamp();
@@ -99,11 +99,11 @@ module.exports = {
       if (!mention) {
         const embeds = new EmbedBuilder()
           .setAuthor(
-            { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+            { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
           )
           .setDescription('This user does not exist in the server')
           .setFooter(
-            { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }), }
+            { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }), }
           )
           .setColor(0x2c2d31)
           .setTimestamp();
@@ -120,12 +120,12 @@ module.exports = {
           }).then(async () => {
             const embeds = new EmbedBuilder()
               .setAuthor(
-                { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+                { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
               )
               .setThumbnail(mention.user.displayAvatarURL({ dynamic: true }))
               .setDescription(`**${mention.user.tag}** user has been included.\n\n(Now this user can execute to all ( / ) commands.)`)
               .setFooter(
-                { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
+                { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
               .setColor(0x2c2d31)
               .setTimestamp();
             return await interaction.reply({ embeds: [embeds] });
@@ -133,11 +133,11 @@ module.exports = {
         } else {
           const embeds = new EmbedBuilder()
             .setAuthor(
-              { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+              { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
             )
             .setDescription(`${mention.user.tag} was not ostracized!`)
             .setFooter(
-              { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+              { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
             )
             .setColor(0x2c2d31)
             .setTimestamp();

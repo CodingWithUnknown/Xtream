@@ -66,7 +66,7 @@ module.exports = {
               { name: 'Output', value: `https://hastebin.com/share/${res.key}.js` },
             )
             .setFooter(
-              { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+              { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
             )
             .setColor(0x2c2d31)
             .setTimestamp();
@@ -81,7 +81,7 @@ module.exports = {
               { name: 'Output', value: '```js\n' + Supplementary(evaled) + '```' }
             )
             .setFooter(
-              { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+              { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
             )
             .setColor(0x2c2d31)
             .setTimestamp();
@@ -99,7 +99,7 @@ module.exports = {
                 { name: 'Error', value: `https://hastebin.com/${body.key}.js` },
               )
               .setFooter(
-                { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+                { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
               )
               .setColor('0x2c2d31')
               .setTimestamp();
@@ -114,7 +114,7 @@ module.exports = {
                 { name: 'Error', value: '```js\n' + Supplementary(error) + '```' },
               )
               .setFooter(
-                { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+                { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
               )
               .setColor('0x2c2d31')
               .setTimestamp();

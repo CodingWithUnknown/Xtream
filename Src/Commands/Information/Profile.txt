@@ -18,11 +18,11 @@ module.exports = {
     if (!mention) {
       const embeds = new EmbedBuilder()
         .setAuthor(
-          { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true }) }
+          { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true }) }
         )
         .setDescription('This user does not exist in the server')
         .setFooter(
-          { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true }), }
+          { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true }), }
         )
         .setColor(0x2c2d31)
         .setTimestamp();
@@ -94,7 +94,7 @@ module.exports = {
         { name: 'Acknowledgements', value: `${interaction.guild.ownerId.includes(mention.user.id) ? 'Our Respectful Server Owner' : 'Our Respectful Server Member'}` }
       )
       .setFooter(
-        { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true }) }
+        { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true }) }
       )
       .setColor(0x2c2d31)
       .setTimestamp()

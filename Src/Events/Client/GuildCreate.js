@@ -25,7 +25,7 @@ module.exports = {
         { name: `${client.user.username}'s Server Count`, value: `\`${client.guilds.cache.size}\` Severs` }
       ])
       .setFooter(
-        { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+        { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
       )
       .setColor(0x2c2d31)
       .setTimestamp();
@@ -35,14 +35,14 @@ module.exports = {
     });
     const embeds = new EmbedBuilder()
       .setAuthor(
-        { name: 'Xara defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+        { name: 'Xtream defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
       )
       .setThumbnail(client.user.displayAvatarURL({ dynamic: true }))
       .addFields([
-        { name: 'Heyo, My name is Xara.', value: 'I have many features that your server wants like Moderation, Games, Music and much more!' },
+        { name: 'Heyo, My name is Xtream.', value: 'I have many features that your server wants like Moderation, Games, Music and much more!' },
       ])
       .setFooter(
-        { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+        { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
       )
       .setColor(0x2c2d31)
       .setTimestamp();

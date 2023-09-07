@@ -96,7 +96,7 @@ module.exports = {
               }
             ])
             .setFooter(
-              { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
+              { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
             )
             .setColor(0x2c2d31)
             .setTimestamp();
@@ -170,7 +170,7 @@ module.exports = {
               }
             ])
             .setFooter(
-              { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
+              { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
             )
             .setColor(0x2c2d31)
             .setTimestamp();
@@ -180,11 +180,11 @@ module.exports = {
         console.log(err);
         const embeds = new EmbedBuilder()
           .setAuthor(
-            { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
+            { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
           )
           .setDescription(`${err.response.body.message ? err.response.body.message : err.response.body.error.error_message}`)
           .setFooter(
-            { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
+            { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
           )
           .setColor(0x2c2d31)
           .setTimestamp()

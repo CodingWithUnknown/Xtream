@@ -69,7 +69,7 @@ module.exports = {
 
       const embeds = new EmbedBuilder()
         .setAuthor(
-          { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setTitle(`${interaction.guild.name} Information`)
         .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
@@ -152,7 +152,7 @@ module.exports = {
           { name: '__Server Features__', value: `${'<:Verified:1056288905030283265>: ' + Capitalize(interaction.guild.features.join('\n<:Verified:1056288905030283265>: ').replace(/_/g, ' '))}` }
         )
         .setFooter(
-          { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setColor(0x2c2d31)
         .setTimestamp()

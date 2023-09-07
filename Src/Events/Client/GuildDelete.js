@@ -22,7 +22,7 @@ module.exports = {
         { name: `${client.user.username}'s Server Count`, value: `\`${client.guilds.cache.size}\` Severs` }
       ])
       .setFooter(
-        { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+        { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
       )
       .setColor(0x2c2d31)
       .setTimestamp();
