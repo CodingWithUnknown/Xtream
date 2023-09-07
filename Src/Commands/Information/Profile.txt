@@ -24,7 +24,7 @@ module.exports = {
         .setFooter(
           { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true }), }
         )
-        .setColor(0x2f3136)
+        .setColor(0x2c2d31)
         .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }
@@ -96,7 +96,7 @@ module.exports = {
       .setFooter(
         { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true }) }
       )
-      .setColor(0x2f3136)
+      .setColor(0x2c2d31)
       .setTimestamp()
     return await interaction.reply({ embeds: [embeds] });
   }

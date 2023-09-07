@@ -98,7 +98,7 @@ module.exports = {
             .setFooter(
               { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
             )
-            .setColor(0x2f3136)
+            .setColor(0x2c2d31)
             .setTimestamp();
           return await interaction.reply({ embeds: [embeds] });
         } catch {
@@ -172,7 +172,7 @@ module.exports = {
             .setFooter(
               { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
             )
-            .setColor(0x2f3136)
+            .setColor(0x2c2d31)
             .setTimestamp();
           return await interaction.reply({ embeds: [embeds] });
         }
@@ -186,7 +186,7 @@ module.exports = {
           .setFooter(
             { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
           )
-          .setColor(0x2f3136)
+          .setColor(0x2c2d31)
           .setTimestamp()
         return await interaction.reply({ embeds: [embeds] });
       });

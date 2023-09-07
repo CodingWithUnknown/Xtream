@@ -50,7 +50,7 @@ module.exports = {
           .setFooter(
             { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }), }
           )
-          .setColor(0x2f3136)
+          .setColor(0x2c2d31)
           .setTimestamp();
         return await interaction.reply({ embeds: [embeds], ephemeral: true });
       }
@@ -68,7 +68,7 @@ module.exports = {
             .setFooter(
               { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
             )
-            .setColor(0x2f3136)
+            .setColor(0x2c2d31)
             .setTimestamp();
           return await interaction.reply({ embeds: [embeds] });
         } else {
@@ -85,7 +85,7 @@ module.exports = {
               .setFooter(
                 { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
               )
-              .setColor(0x2f3136)
+              .setColor(0x2c2d31)
               .setTimestamp();
             return await interaction.reply({ embeds: [embeds] });
           });
@@ -105,7 +105,7 @@ module.exports = {
           .setFooter(
             { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }), }
           )
-          .setColor(0x2f3136)
+          .setColor(0x2c2d31)
           .setTimestamp();
         return await interaction.reply({ embeds: [embeds], ephemeral: true });
       }
@@ -126,7 +126,7 @@ module.exports = {
               .setDescription(`**${mention.user.tag}** user has been included.\n\n(Now this user can execute to all ( / ) commands.)`)
               .setFooter(
                 { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-              .setColor(0x2f3136)
+              .setColor(0x2c2d31)
               .setTimestamp();
             return await interaction.reply({ embeds: [embeds] });
           }).then((err) => console.error(err));
@@ -139,7 +139,7 @@ module.exports = {
             .setFooter(
               { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
             )
-            .setColor(0x2f3136)
+            .setColor(0x2c2d31)
             .setTimestamp();
           return await interaction.reply({ embeds: [embeds] });
         }

@@ -15,7 +15,7 @@ module.exports = {
         .setFooter(
           { text: 'Xara developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
-        .setColor(0x2f3136)
+        .setColor(0x2d2c31)
         .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }
@@ -37,7 +37,7 @@ module.exports = {
           .setFooter(
             { text: 'Xara developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
           )
-          .setColor(0x2f3136)
+          .setColor(0x2d2c31)
           .setTimestamp();
         return await interaction.reply({ embeds: [embeds], ephemeral: true });
       }
@@ -58,7 +58,7 @@ module.exports = {
         .setFooter(
           { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
-        .setColor(0x2f3136)
+        .setColor(0x2d2c31)
         .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }
@@ -74,7 +74,7 @@ module.exports = {
         .setFooter(
           { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
-        .setColor(0x2f3136)
+        .setColor(0x2d2c31)
         .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }*/
@@ -88,7 +88,7 @@ module.exports = {
         .setFooter(
           { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
-        .setColor(0x2f3136)
+        .setColor(0x2d2c31)
         .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }
@@ -105,7 +105,7 @@ module.exports = {
         .setFooter(
           { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
-        .setColor(0x2f3136)
+        .setColor(0x2d2c31)
         .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }

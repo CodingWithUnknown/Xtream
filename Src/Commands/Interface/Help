@@ -15,7 +15,7 @@ module.exports = {
     let em1 = new EmbedBuilder()
       .setAuthor({ name: `${client.user.username}\'s Help Menu`, iconURL: client.user.displayAvatarURL({ format: "png" }) })
       .setImage(`https://i.stack.imgur.com/Fzh0w.png`)
-      .setColor(0x2f3136)
+      .setColor(0x2c2d31)
       .addFields([
         {
           name: "Categories [1-9]",
@@ -313,7 +313,7 @@ module.exports = {
     collector.on('error', (e) => console.log(e));
 
     embeds.map((embed, index) => {
-      embed.setColor(0x2f3136)
+      embed.setColor(0x2c2d31)
         .setImage(`https://i.stack.imgur.com/Fzh0w.png`)
         .setFooter({ text: `Page ${index + 1} / ${embeds.length}`, iconURL: client.user.displayAvatarURL() });
     })

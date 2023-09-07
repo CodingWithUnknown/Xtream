@@ -29,7 +29,7 @@ module.exports = {
         .setFooter(
           { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
-        .setColor(0x2f3136)
+        .setColor(0x2c2d31)
         .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }
@@ -43,7 +43,7 @@ module.exports = {
         .setFooter(
           { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
-        .setColor(0x2f3136)
+        .setColor(0x2c2d31)
         .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }
@@ -57,7 +57,7 @@ module.exports = {
         .setFooter(
           { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
-        .setColor(0x2f3136)
+        .setColor(0x2c2d31)
         .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }
@@ -71,7 +71,7 @@ module.exports = {
         .setFooter(
           { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
-        .setColor(0x2f3136)
+        .setColor(0x2c2d31)
         .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }
@@ -97,7 +97,7 @@ module.exports = {
       .setFooter(
         { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
       )
-      .setColor(0x2f3136)
+      .setColor(0x2c2d31)
       .setTimestamp();
 
     let response = await interaction.reply({ embeds: [embeds], components: [row] });
@@ -119,7 +119,7 @@ module.exports = {
               .setFooter(
                 { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
               )
-              .setColor(0x2f3136)
+              .setColor(0x2c2d31)
               .setTimestamp()
             return await confirmation.update({ embeds: [embeds], components: [] });
           }).catch((err) => {

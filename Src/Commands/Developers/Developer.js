@@ -68,7 +68,7 @@ module.exports = {
             .setFooter(
               { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
             )
-            .setColor(0x2f3136)
+            .setColor(0x2c2d31)
             .setTimestamp();
           await interaction.reply({ embeds: [embeds] });
         } else {
@@ -83,7 +83,7 @@ module.exports = {
             .setFooter(
               { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
             )
-            .setColor(0x2f3136)
+            .setColor(0x2c2d31)
             .setTimestamp();
           await interaction.reply({ embeds: [embeds] });
         }
@@ -101,7 +101,7 @@ module.exports = {
               .setFooter(
                 { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
               )
-              .setColor('0x2f3136')
+              .setColor('0x2c2d31')
               .setTimestamp();
             await interaction.reply({ embeds: [embeds] });
           } else {
@@ -116,7 +116,7 @@ module.exports = {
               .setFooter(
                 { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
               )
-              .setColor('0x2f3136')
+              .setColor('0x2c2d31')
               .setTimestamp();
             await interaction.reply({ embeds: [embeds] });
           }
