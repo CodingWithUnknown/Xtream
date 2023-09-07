@@ -9,11 +9,11 @@ module.exports = {
     if (!Command) {
       const embeds = new EmbedBuilder()
         .setAuthor(
-          { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setDescription('This (/) command is outdated.')
         .setFooter(
-          { text: 'Xara developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { text: 'Xtream developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setColor(0x2d2c31)
         .setTimestamp();
@@ -31,11 +31,11 @@ module.exports = {
       if (data) {
         const embeds = new EmbedBuilder()
           .setAuthor(
-            { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+            { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
           )
-          .setDescription('You have been restricted from the Xara Developers')
+          .setDescription('You have been restricted from the Xtream Developers')
           .setFooter(
-            { text: 'Xara developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+            { text: 'Xtream developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
           )
           .setColor(0x2d2c31)
           .setTimestamp();
@@ -52,11 +52,11 @@ module.exports = {
     /*if (Command.clientPerms && !interaction.channel.permissionsFor(interaction.guild.members.me).has(PermissionsBitField.resolve(Command.clientPerms))) {
       const embeds = new EmbedBuilder()
         .setAuthor(
-          { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setDescription(`I need to this \`${Command.clientPerms.join(', ')}\` permissions to use this command.`)
         .setFooter(
-          { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setColor(0x2d2c31)
         .setTimestamp();
@@ -67,12 +67,12 @@ module.exports = {
     ) {
       const embeds = new EmbedBuilder()
         .setAuthor(
-          { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setDescription(`You need to this \`${Command.userPerms.join(', ')}\` permissions to use this command.`
         )
         .setFooter(
-          { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setColor(0x2d2c31)
         .setTimestamp();
@@ -82,11 +82,11 @@ module.exports = {
     if (Command.developer && !client.developer.includes(interaction.user.id)) {
       const embeds = new EmbedBuilder()
         .setAuthor(
-          { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setDescription('This command can only be Managed or Executed by the (Developer)[https://discord.com/users/770887288464867338].')
         .setFooter(
-          { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setColor(0x2d2c31)
         .setTimestamp();

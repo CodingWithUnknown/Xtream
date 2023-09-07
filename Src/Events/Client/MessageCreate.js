@@ -19,11 +19,11 @@ module.exports = {
         );
       const embeds = new EmbedBuilder()
         .setAuthor(
-          { name: 'Hey, I\'m Xara. Need help?', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { name: 'Hey, I\'m Xtream. Need help?', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setDescription(`>>> *You can see everything I can do by using the (/) command.*\n\n*In this case if you have any questions, suggestions or found a bug, please visit our [Headquarters (HQ)](https://discord.gg/VgT9u4PM2w)*`)
         .setFooter(
-          { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+          { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
         )
         .setColor(0x2c2d31)
         .setTimestamp();
