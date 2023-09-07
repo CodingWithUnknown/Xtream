@@ -36,7 +36,11 @@ module.exports = {
             case 'logs':
                 switch (interaction.options.getSubcommand()) {
                     case 'users':
-                        let channel = interaction.options.getchannel('channel');
+                        let channel = interaction.options.getChannel('channel');
+                        let memberRole = interaction.options.getRole('memberRole');
+                        let botRole = interaction.options.getRole('botRole');
+
+                        
                 }
         }
     }
