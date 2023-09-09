@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilde, Client, ChatInputCommandInteraction } = require('discord.js');
 const { request } = require('axios');
 const { Supplementary } = require('../../Models/Module');
 
@@ -22,11 +22,13 @@ module.exports = {
         .setName('folder')
         .setDescription('Provide a folder name')
         .setRequired(true)
+        .setAutocomplete(true)
       )
       .addStringOption((options) => options
         .setName('file')
         .setDescription('Provide a file name')
         .setRequired(true)
+        .setAutocomplete(true)
       )
     )
     .addSubcommand((options) => options
@@ -34,15 +36,21 @@ module.exports = {
       .setDescription('Takes a Screenshot of any domains or webpages')
       .addStringOption((options) => options
         .setName('domain')
-        .setDescription('lol')
+        .setDescription('Give a domain name or URL link to the Screenshot')
         .setRequired(true)
       )
     ),
   developer: true,
+  /**
+   * 
+   * @param {Client} client 
+   * @param {ChatInputCommandInteraction} interaction 
+   * @returns 
+   */
   execute: async (client, interaction) => {
     switch (interaction.options.getSubcommand()) {
       case 'evaluate':
-        //try {
+        // try {
         let code = interaction.options.getString('code');
         if (!code) return;
         let evaled;
@@ -87,7 +95,7 @@ module.exports = {
             .setTimestamp();
           await interaction.reply({ embeds: [embeds] });
         }
-        /*} catch (error) {
+        /* } catch (error) {
           if (Supplementary(error).length > 1024) {
             const { body } = await post('https://hastebin.com/documents').send(Supplementary(error));
             const embeds = new EmbedBuilder()
@@ -120,12 +128,12 @@ module.exports = {
               .setTimestamp();
             await interaction.reply({ embeds: [embeds] });
           }
-        }*/
+        } */
         break;
       case 'update':
         const folder = interaction.options.getString('folder');
         const commandName = interaction.options.getString('file');
-        const command = interaction.client.commands.get(commandName);
+        const command = client.commands.get(commandName);
 
         if (!command) {
           return interaction.reply(`There is no command with name \`${commandName}\`!`);

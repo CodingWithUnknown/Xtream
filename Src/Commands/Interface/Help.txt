@@ -1,16 +1,18 @@
-const { ApplicationCommandType, ApplicationCommandOptionType, EmbedBuilder, ActionRowBuilder, ButtonBuilder, StringSelectMenuBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, StringSelectMenuBuilder } = require('discord.js');
+const { readFileSync } = require('fs');
 
 module.exports = {
-  name: 'help',
-  description: 'View information about central user',
-  type: ApplicationCommandType.ChatInput,
+  data: new SlashCommandBuilder()
+    .setName('help')
+    .setDescription('View information about central user'),
+  developer: true,
   execute: async (client, interaction) => {
-    const toUpperCase = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+    /* const toUpperCase = (string) => string.charAt(0).toUpperCase() + string.slice(1);
     const commad = (name) => {
       let text = `*To Run Any Command Type*: \`/${name} {Sub Command Name}\``
       let text2 = client.commands.filter(x => x.name == name).map((x) => x.options.map((c) => '`' + c.name + '` - ' + c.description).join("\n"));
       return text2 + `\n\n` + text
-    }
+    } */
 
     let em1 = new EmbedBuilder()
       .setAuthor({ name: `${client.user.username}\'s Help Menu`, iconURL: client.user.displayAvatarURL({ format: "png" }) })
@@ -98,7 +100,7 @@ module.exports = {
         .setEmoji(`1054428519763021904`)
         .setCustomId('end')
 
-    /*const options = [{ label: 'Owerview', value: '0' }]
+    /* const options = [{ label: 'Owerview', value: '0' }]
     const options2 = []
 
     let counter = 0
@@ -118,9 +120,9 @@ module.exports = {
         value: `${counter}`
       }
       options2.push(opt)
-    })*/
+    }) */
 
-    /*let menu = new StringSelectMenuBuilder()
+    /* let menu = new StringSelectMenuBuilder()
       .setPlaceholder('Change page')
       .setCustomId('pagMenu')
       .addOptions(options)
@@ -131,7 +133,7 @@ module.exports = {
         .setCustomId('pagMenu2')
         .addOptions(options2)
         .setMaxValues(1)
-        .setMinValues(1)*/
+        .setMinValues(1) */
 
     const allButtons = [
       startButton.setDisabled(true),
@@ -140,30 +142,30 @@ module.exports = {
       endButton.setDisabled(false)
     ]
 
-    //let group1 = new ActionRowBuilder()
-    //.addComponents(menu)
+    // let group1 = new ActionRowBuilder()
+    // .addComponents(menu)
     let group2 = new ActionRowBuilder()
       .addComponents(allButtons)
-    //let group3 = new ActionRowBuilder()
-    //.addComponents(menu2)
+    // let group3 = new ActionRowBuilder()
+    // .addComponents(menu2)
 
-    const components = [group2] //[group2, group1, group3]
+    const components = [group2] // [group2, group1, group3]
 
     await interaction.reply({ embeds: [em1] });
 
 
-    //await interaction.deferReply();
+    // await interaction.deferReply();
 
-    /*let helpMessage = await interaction.reply({
+    /* let helpMessage = await interaction.reply({
       embeds: [em1],
       components: components
-    });*/
+    }); */
 
     const collector = helpMessage.createMessageComponentCollector((button) => button.user.id === interaction.user.id, { time: 100000 });
 
     var embeds = [em1]
 
-    require("fs").readdirSync(`${process.cwd()}/Src/Commands`).forEach(dirs => {
+    require('fs').readdirSync(`./Src/Commands`).forEach((dirs) => {
       embeds.push(
         new EmbedBuilder()
           .setAuthor({ name: toUpperCase(dirs), iconURL: client.user.displayAvatarURL() })
@@ -243,7 +245,7 @@ module.exports = {
             ])
           b.update({ embeds: [embeds[currentPage]], components: components })
           break;
-        /*case 'pagMenu':
+        /* case 'pagMenu':
           currentPage = parseInt(b.values[0])
           if (currentPage === 0) {
             group2 = new ActionRowBuilder()
@@ -298,7 +300,7 @@ module.exports = {
                 
                 
               date({ embeds: [embeds[currentPage]], components: components })
-          break;*/
+          break; */
         default:
           currentPage = 0
           b.update({ embeds: [embeds[currentPage]], components: null })

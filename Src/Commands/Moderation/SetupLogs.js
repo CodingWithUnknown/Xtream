@@ -1,4 +1,5 @@
-const { SlashCommandBuilder, PermissionFlagsBits, ChannelType, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, Client, ChatInputCommandInteraction, PermissionFlagsBits, ChannelType, EmbedBuilder } = require('discord.js');
+const data = require('../../Models/Schema/Logging');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -9,7 +10,7 @@ module.exports = {
         .setDMPermission(false)
         .addSubcommandGroup((options) => options
             .setName('logs')
-            .setDescription('Configure the logging system for your guild')
+            .setDescription('Configure the logging system for your guild.')
             .addSubcommand((options) => options
                 .setName('members')
                 .setDescription('Configure the members logging system for your guild')
@@ -26,20 +27,41 @@ module.exports = {
                 )
                 .addRoleOption((options) => options
                     .setName('botRole')
-                    .setDescription('Set the roles to be automatically added to new bots.')
+                    .setDescription('Set the role to be automatically added to new bots.')
                     .setRequired(true)
                 )
             )
         ),
-    execute: (client, interaction) => {
+    /**
+     * 
+     * @param {Client} client 
+     * @param {ChatInputCommandInteraction} interaction 
+     */
+    execute: async (client, interaction) => {
         switch (interaction.options.getSubcommandGroup()) {
             case 'logs':
                 switch (interaction.options.getSubcommand()) {
-                    case 'users':
-                        let channel = interaction.options.getChannel('channel');
-                        let memberRole = interaction.options.getRole('memberRole');
-                        let botRole = interaction.options.getRole('botRole');
+                    case 'members':
+                        let channel = interaction.options.getChannel('channel').id;
+                        let memberRole = interaction.options.getRole('memberRole') ? interaction.options.getRole('memberRole').id : null;
+                        let botRole = interaction.options.getRole('botRole') ? interaction.options.getRole('botRole').id : null;
 
+                        await data.findOneAndUpdate({ Guild: interaction.guild.id }, {
+                            Channel: channel,
+                            MemberRole: memberRole,
+                            BotRole: botRole
+                        }, { new: true, upsert: true })
+
+                        const embeds = new EmbedBuilder()
+                            .setDescription([
+                                `- Logging Channel Updated: <@${channel}>`,
+                                `- Member Auto-Role Updated: ${memberRole ? `<@${memberRole}>` : 'Not Spacified.'}`,
+                                `- Bot Auto-Role Updated: ${botRole ? `<@${botRole}>` : 'Not Spacified.'}`
+                            ].join('/n'))
+                            .setColor(0x2d2c31)
+                            .setTimestamp();
+
+                        return await interaction.reply({ embeds: [embeds] });
                 }
         }
     }
