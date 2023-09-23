@@ -1,11 +1,13 @@
-const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilde, Client, ChatInputCommandInteraction } = require('discord.js');
-const { request } = require('axios');
+const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder, AttachmentBuilder, PermissionOverwriteManager } = require('discord.js');
+// const { request } = require('axios');
+const { create } = require('sourcebin');
 const { Supplementary } = require('../../Models/Module');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('developer')
     .setDescription('This ( / ) command was only be execute by the Developer')
+    .setDMPermission(false)
     .addSubcommand((options) => options
       .setName('evaluate')
       .setDescription('This ( / ) command was only be execute by the Developer')
@@ -39,7 +41,17 @@ module.exports = {
         .setDescription('Give a domain name or URL link to the Screenshot')
         .setRequired(true)
       )
-    ),
+    )
+    /* .addSubcommand((options) => options
+      .setName('base64')
+      .setDescription('Takes a base64 encoded or decoded')
+      .addStringOption((options) => options
+        .addChoices(
+          { name: 'encoded', value: 'base64' },
+          { name: 'decoded', value: 'base64' }
+          )
+      )
+    ) */,
   developer: true,
   /**
    * 
@@ -50,68 +62,77 @@ module.exports = {
   execute: async (client, interaction) => {
     switch (interaction.options.getSubcommand()) {
       case 'evaluate':
-        // try {
-        let code = interaction.options.getString('code');
-        if (!code) return;
-        let evaled;
-        if (code.includes('process.env') || code.includes('token') || code.includes('mongodb') || code.includes('key')) {
-          evaled = 'This code is not contents in any Developer code!';
-        } else {
-          evaled = await eval(code);
-        }
-        if (typeof evaled !== 'string') evaled = require('util').inspect(evaled, { depth: 0 });
-        if (Supplementary(evaled).length >= 1024) {
-          let res = request('https://hastebin.com/documents/aeiou')
-            .set('Authorization', `Bearer ${process.env.TOPTAL_KEY}`, 'content-type: text/plain')
-            .send(Supplementary(evaled));
-          console.log(res)
-          const embeds = new EmbedBuilder()
-            .setAuthor(
-              { name: 'Evaluation Completed', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-            )
-            .addFields(
-              { name: 'Input', value: '```js\n' + code + '```' },
-              { name: 'Output', value: `https://hastebin.com/share/${res.key}.js` },
-            )
-            .setFooter(
-              { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-            )
-            .setColor(0x2c2d31)
-            .setTimestamp();
-          await interaction.reply({ embeds: [embeds] });
-        } else {
-          const embeds = new EmbedBuilder()
-            .setAuthor(
-              { name: 'Evaluation Completed', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-            )
-            .addFields(
-              { name: 'Input', value: '```js\n' + code + '```' },
-              { name: 'Output', value: '```js\n' + Supplementary(evaled) + '```' }
-            )
-            .setFooter(
-              { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-            )
-            .setColor(0x2c2d31)
-            .setTimestamp();
-          await interaction.reply({ embeds: [embeds] });
-        }
-        /* } catch (error) {
-          if (Supplementary(error).length > 1024) {
-            const { body } = await post('https://hastebin.com/documents').send(Supplementary(error));
+        try {
+          var code = interaction.options.getString('code');
+          await interaction.deferReply();
+          if (!code) return;
+          let evaled;
+          if (code.includes('process.env') || code.includes('token') || code.includes('mongodb') || code.includes('key') || code.includes('environment') || code.includes('value') || code.includes('env')) {
+            evaled = 'This code is not contents in any Developer codes!';
+          } else {
+            evaled = await eval(code);
+          }
+          if (typeof evaled !== 'string') evaled = require('util').inspect(evaled, { depth: 0 });
+          if (Supplementary(evaled).length >= 1024) {
+            await create({
+              title: 'Evaluation Large Success Codes', description: 'Evaluation are significantly larger than regular expressions and  regular expressions when dealing with complex', files: [
+                { content: Supplementary(evaled), language: 'javascript' }
+              ]
+            }).then(async (res) => {
+              const embeds = new EmbedBuilder()
+                .setAuthor(
+                  { name: 'Evaluation Completed', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+                )
+                .addFields(
+                  { name: 'Input', value: '```js\n' + code + '```' },
+                  { name: 'Output', value: `(Large Success Codes)[${res.shortUrl}]` }
+                )
+                .setFooter(
+                  { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+                )
+                .setColor(0x2c2d31)
+                .setTimestamp();
+              await interaction.editReply({ embeds: [embeds] });
+            });
+          } else {
             const embeds = new EmbedBuilder()
               .setAuthor(
-                { name: 'Evaluation Failure', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+                { name: 'Evaluation Completed', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
               )
               .addFields(
                 { name: 'Input', value: '```js\n' + code + '```' },
-                { name: 'Error', value: `https://hastebin.com/${body.key}.js` },
+                { name: 'Output', value: '```js\n' + Supplementary(evaled) + '```' }
               )
               .setFooter(
                 { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
               )
-              .setColor('0x2c2d31')
+              .setColor(0x2c2d31)
               .setTimestamp();
-            await interaction.reply({ embeds: [embeds] });
+            await interaction.editReply({ embeds: [embeds] });
+          }
+        } catch (error) {
+          if (Supplementary(error).length >= 1024) {
+            await create({
+              title: 'Evaluation Larger Failure Codes', description: 'Evaluation are significantly larger than regular expressions and  regular expressions when dealing with complex', files: [
+                { content: Supplementary(evaled), language: 'javascript' }
+              ]
+            }).then(async (res) => {
+              console.log(res);
+              const embeds = new EmbedBuilder()
+                .setAuthor(
+                  { name: 'Evaluation Failure', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+                )
+                .addFields(
+                  { name: 'Input', value: '```js\n' + code + '```' },
+                  { name: 'Error', value: `(Larger Failure Codes)[${res.shortUrl}]` }
+                )
+                .setFooter(
+                  { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+                )
+                .setColor(0x2c2d31)
+                .setTimestamp();
+              await interaction.editReply({ embeds: [embeds] });
+            });
           } else {
             const embeds = new EmbedBuilder()
               .setAuthor(
@@ -119,26 +140,25 @@ module.exports = {
               )
               .addFields(
                 { name: 'Input', value: '```js\n' + code + '```' },
-                { name: 'Error', value: '```js\n' + Supplementary(error) + '```' },
+                { name: 'Error', value: '```js\n' + Supplementary(error) + '```' }
               )
               .setFooter(
                 { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
               )
-              .setColor('0x2c2d31')
+              .setColor(0x2c2d31)
               .setTimestamp();
-            await interaction.reply({ embeds: [embeds] });
+            await interaction.editReply({ embeds: [embeds] });
           }
-        } */
+        }
         break;
       case 'update':
-        const folder = interaction.options.getString('folder');
-        const commandName = interaction.options.getString('file');
-        const command = client.commands.get(commandName);
+        let folder = interaction.options.getString('folder');
+        let commandName = interaction.options.getString('file');
+        let command = client.commands.get(commandName);
 
         if (!command) {
           return interaction.reply(`There is no command with name \`${commandName}\`!`);
         }
-
 
         try {
           delete require.cache[require.resolve(`../../Commands/${folder}/${command.name}.js`)];
@@ -170,6 +190,8 @@ module.exports = {
           if (err.status === 404) return await interaction.reply('Could not find any results. Invalid URL?');
           return await interaction.reply(`Oh no, an error occurred: \`${err.message}\`. Try again later!`);
         }
+      /* break;
+    case '': */
     }
   }
 };

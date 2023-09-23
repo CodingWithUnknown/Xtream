@@ -30,7 +30,7 @@ module.exports = {
   },
 
   Chunk: function(arr, size) {
-    const temp = [];
+    let temp = [];
     for (let i = 0; i < arr.length; i += size) {
       temp.push(arr.slice(i, i + size));
     }

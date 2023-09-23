@@ -1,15 +1,19 @@
-const { ApplicationCommandType, ApplicationCommandOptionType, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder } = require('discord.js');
 
 module.exports = {
-  name: 'profile',
-  description: 'View information about central user',
-  type: ApplicationCommandType.ChatInput,
-  options: [{
-    name: 'user',
-    description: 'Mention the member you want to check out for',
-    type: ApplicationCommandOptionType.User,
-    required: false,
-  }],
+  data: new SlashCommandBuilder()
+    .setName('profile')
+    .setDescription('View information about central user')
+    .addUserOption((options) => options
+      .setName('user')
+      .setDescription('Mention the member you want to check out for')
+      .setRequired(false)
+    ),
+  /**
+   * 
+   * @param {Client} client 
+   * @param {ChatInputCommandInteraction} interaction 
+   */
   execute: async (client, interaction) => {
     let mention = interaction.options.getMember('user') ?? interaction.member;
 
@@ -68,7 +72,7 @@ module.exports = {
         {
           name: 'Account Information', value: [
             `**Username:** ${mention.user.username} (${mention.nickname ?? 'Nickname Not Found'})`,
-            
+
             `**ID:** \`${mention.user.id}\``,
             `**Join Position:** ${await position}`,
             `**Bots:** ${boolean[mention.user.bot]}`,

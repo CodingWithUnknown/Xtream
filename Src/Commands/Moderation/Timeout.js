@@ -65,7 +65,6 @@ module.exports = {
         .setRequired(false)
       )
     ),
-  developer: false,
   execute: async (client, interaction) => {
     switch (interaction.options.getSubcommand()) {
       case 'add':

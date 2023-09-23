@@ -1,0 +1,8 @@
+const { Events } = require('discord.js');
+
+module.exports = {
+    name: Events.GuildAuditLogEntryCreate,
+    execute: async (client) => {
+        console.log(client);
+    }
+};

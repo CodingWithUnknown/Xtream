@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder } = require('discord.js');
 const { get } = require('superagent');
 const moment = require('moment');
 
@@ -16,16 +16,18 @@ module.exports = {
       )
     ),
   developer: true,
+  /**
+   * 
+   * @param {Client} client 
+   * @param {ChatInputCommandInteraction} interaction 
+   */
   execute: async (client, interaction) => {
     if ('lookup'.includes(interaction.options.getSubcommand())) {
-      let address = interaction.options.getString('query');
-
       await Promise.all([
-        get(`http://ipwho.is/${address}`).then((res) => JSON.parse(res.text)),
-        get(`https://api.ipdata.co/${address}?api-key=${process.env.IPDATA_KEY}`).then((res) => JSON.parse(res.text)),
-        get(`https://api.ip2location.io/?key=${process.env.IPLOCATION_KEY}&ip=${address}&format=json`).then((res) => JSON.parse(res.text))
+        get(`http://ipwho.is/${interaction.options.getString('query')}`).then((res) => JSON.parse(res.text)),
+        get(`https://api.ipdata.co/${interaction.options.getString('query')}?api-key=${process.env.IPDATA_KEY}`).then((res) => JSON.parse(res.text)),
+        get(`https://api.ip2location.io/?key=${process.env.IPLOCATION_KEY}&ip=${interaction.options.getString('query')}&format=json`).then((res) => JSON.parse(res.text))
       ]).then(async (res) => {
-        console.log(res[1]);
         try {
           const embeds = new EmbedBuilder()
             .setAuthor(
@@ -104,9 +106,9 @@ module.exports = {
         } catch {
           const embeds = new EmbedBuilder()
             .setAuthor(
-              { name: 'IP Address Information', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
+              { name: 'IP Information', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
             )
-            .setThumbnail(res[1].flag)
+            .setThumbnail(res[0].flag.img)
             .addFields([
               {
                 name: 'IP Information', value: [
@@ -119,7 +121,6 @@ module.exports = {
                   `City: ${res[0].city} (${res[2].city_name})`,
                   `Borders: ${res[0].borders}`,
                   `Zip Code: ${res[2].zip_code}`,
-                  `Native: ${res[1].languages[0].native}`,
                   `Calling Code: +${res[0].calling_code}`,
                   `Coordinate: ${res[0].latitude}/${res[0].longitude} (Lat/Long)`,
                   `\`\`\``
@@ -146,14 +147,6 @@ module.exports = {
                   `\`\`\``
                 ].join('\n')
               }, {
-                name: 'Currency Information', value: [
-                  `\`\`\``,
-                  `Currency Type: ${res[1].currency.name} (${res[1].currency.code})`,
-                  `Currency Plural: ${res[1].currency.plural}`,
-                  `Currency Symbol: ${res[1].currency.native} (${res[1].currency.symbol})`,
-                  `\`\`\``
-                ].join('\n')
-              }, {
                 name: 'Defending Information', value: [
                   `\`\`\``,
                   `Tor Browsing: ${res[1].threat.is_tor ? 'Yes' : 'No'}`,
@@ -177,7 +170,6 @@ module.exports = {
           return await interaction.reply({ embeds: [embeds] });
         }
       }).catch(async (err) => {
-        console.log(err);
         const embeds = new EmbedBuilder()
           .setAuthor(
             { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
