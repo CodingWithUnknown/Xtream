@@ -1,42 +1,35 @@
-import { Event, Navi, ClientLogger } from "../../structures/index.js";
-import { GuildBan, AuditLogEvent } from "discord.js";
-import { Servers, logType } from "../../database/index.js";
+const { Events, AuditLogEvent, EmbedBuilder } = require('discord.js');
 
-
-export default class GuildBanAdd extends Event {
-    constructor(client: Navi, file: string) {
-        super(client, file, {
-            name: "guildBanAdd",
-        });
-    }
-    public async run(ban: GuildBan): Promise<any> {
+module.exports = {
+    name: Events.GuildBanAdd,
+    execute: async (client, ban) => {
         try {
             if (ban.partial) await ban.fetch();
             if (ban.user.partial) await ban.user.fetch();
-        } catch (err: any) {
+        } catch (err) {
             if (['Missing Permissions', 'Missing Access'].includes(err.message)) return;
-            return this.client.logger.error(`Error fetching ban: ${err.message}`);
+            return client.logger.log(`Error fetching ban: ${err.message}`, 'error');
         }
-        const log = await Servers.getLogger(ban.guild.id, logType.MemberBan);
+        // const log = await Servers.getLogger(ban.guild.id, logType.MemberBan);
         const audit = await ban.guild.fetchAuditLogs({ type: AuditLogEvent.MemberBanAdd, limit: 1 });
         const entry = audit.entries.first();
-        const user = await this.client.users.fetch(entry.executor.id);
+        const user = await client.users.fetch(entry.executor.id);
 
-        const icon = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` as any;
+        const icon = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
 
-        if (!log) return;
-        const embed = this.client.embed()
+        let channel = client.channels.cache.get('990186368237989948');
+
+        // if (!log) return;
+        const embed = new EmbedBuilder()
             .setAuthor({ name: user.tag, iconURL: icon })
-            .setTitle(`${this.client.emo.ban} Member Banned`)
-            .setColor(log.color ? log.color : this.client.color.red)
+            .setTitle(`<:ban:1089791204746592287> Member Banned`)
+            .setColor(0x2d2c31)
             .addFields(
-                { name: "Member", value: `<@${ban.user.id}> (\`${ban.user.id}\`)`, inline: true },
-                { name: "Reason", value: ban.reason ? ban.reason : "No reason provided", inline: true },
+                { name: 'Member', value: `<@${ban.user.id}> (\`${ban.user.id}\`)`, inline: true },
+                { name: 'Reason', value: ban.reason ? ban.reason : 'No reason provided', inline: true },
             )
-            .setFooter({ text: this.client.user.username, iconURL: this.client.user.displayAvatarURL({}) })
+            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL({}) })
             .setTimestamp();
-        await ClientLogger.sendWebhook(this.client, ban.guild.id, log.textId, {
-            embeds: [embed]
-        });
+        await channel.send({ embeds: [embed] });
     }
 }

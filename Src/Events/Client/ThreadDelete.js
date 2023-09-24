@@ -1,20 +1,11 @@
-import { Event, Navi, ClientLogger } from "../../structures/index.js";
-import { Servers, logType } from "../../database/index.js";
-import { ThreadChannel } from "discord.js";
+const { Events, EmbedBuilder } = require('discord.js');
 
-
-
-export default class ThreadDelete extends Event {
-    constructor(client: Navi, file: string) {
-        super(client, file, {
-            name: "threadDelete",
-        });
-    }
-    public async run(thread: ThreadChannel): Promise<any> {
+module.exports = {
+    name: Events.ThreadDelete,
+    execute: async (client, thread) => {
         try {
-            
-            const log = await Servers.getLogger(thread.guild.id, logType.threadDelete);
-            if (!log) return
+            // const log = await Servers.getLogger(thread.guild.id, logType.threadDelete);
+            // if (!log) return
             const cnType = {
                 0: 'Text Channel',
                 2: 'Voice Channel',
@@ -27,23 +18,24 @@ export default class ThreadDelete extends Event {
                 11: 'Public Thread Channel',
                 10: 'News Thread Channel',
             }
-            const user = await this.client.users.fetch(thread.ownerId);
-            const embed = this.client.embed()
-                .setAuthor({ name: thread.guild.name, iconURL: thread.guild.iconURL({}) })
-                .setDescription([`${this.client.emo.delete} **${cnType[thread.type]}** Deleted **${thread.name}**`, '', `**Owner:** ${user.toString()} (\`${user.id}\`)`].join('\n'))
-                .setColor(log.color ? log.color : this.client.color.red)
+            const user = await client.users.fetch(thread.ownerId);
+
+            let channel = client.channels.cache.get('990186368237989948');
+
+            const embed = new EmbedBuilder()
+                .setAuthor({ name: thread.guild.name, iconURL: thread.guild.iconURL() })
+                .setDescription([`<:delete:1088764990938427423> **${cnType[thread.type]}** Deleted **${thread.name}**`, '', `**Owner:** ${user.toString()} (\`${user.id}\`)`].join('\n'))
+                .setColor(0x2d2c31)
                 .addFields(
                     { name: 'Channel', value: `${thread.toString()} (\`${thread.id.toString()}\`)`, inline: true },
                     { name: 'Created Time', value: `<t:${Math.floor(thread.createdTimestamp / 1000)}:R> - (<t:${Math.floor(thread.createdTimestamp / 1000)}>)`, inline: true },
                     { name: 'Deleted Time', value: `<t:${Math.floor(Date.now() / 1000)}:R> - (<t:${Math.floor(Date.now() / 1000)}>)`, inline: false },
                 )
-                .setFooter({ text: this.client.user.username, iconURL: this.client.user.displayAvatarURL({}) })
+                .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
                 .setTimestamp();
-            await ClientLogger.sendWebhook(this.client, thread.guildId, log.textId, {
-                embeds: [embed]
-            });
-        } catch (error) {
-            
+            await channel.send({embeds: [embed] });
+        } catch (err) {
+            console.log(err);
         }
     }
 }

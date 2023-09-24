@@ -1,36 +1,30 @@
-import { Event, Navi, ClientLogger } from "../../structures/index.js";
-import { GuildMember, TextChannel, Role, PartialGuildMember } from "discord.js";
-import { Servers, logType } from "../../database/index.js";
+const { Events, EmbedBuilder } = require('discord.js');
 
-
-export default class GuildMemberRemove extends Event {
-    constructor(client: Navi, file: string) {
-        super(client, file, {
-            name: "guildMemberRemove",
-        });
-    }
-    public async run(member: GuildMember | PartialGuildMember): Promise<any> {
+module.exports = {
+    name: Events.GuildMemberRemove,
+    execute: async (client, member) => {
         if (member.user.id === this.client.user.id) return
         if (member.partial) return;
 
-        const log = await Servers.getLogger(member.guild.id, logType.MemberLeave);
+        // const log = await Servers.getLogger(member.guild.id, logType.MemberLeave);
+
+        let channel = client.channels.cache.get('990186368237989948');
+
         try {
             const ban = await member.guild.bans.fetch(member.id);
             if (ban) return;
         } catch (err) {
-            if (!log) return;
-            const embed = this.client.embed()
-                .setAuthor({ name: member.user.tag, iconURL: member.user.displayAvatarURL({}) })
-                .setTitle(`${this.client.emo.removeUser} Member Left`)
-                .setColor(log.color ? log.color : this.client.color.red)
+            // if (!log) return;
+            const embed = new EmbedBuilder()
+                .setAuthor({ name: member.user.tag, iconURL: member.user.displayAvatarURL() })
+                .setTitle(`<:remove_user:1089772643416285244> Member Left`)
+                .setColor(0x2d2c31)
                 .addFields(
-                    { name: "Member", value: `<@${member.id}> (\`${member.id}\`)`, inline: true },
+                    { name: 'Member', value: `<@${member.id}> (\`${member.id}\`)`, inline: true },
                 )
-                .setFooter({ text: this.client.user.username, iconURL: this.client.user.displayAvatarURL({}) })
+                .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
                 .setTimestamp();
-            await ClientLogger.sendWebhook(this.client, member.guild.id, log.textId, {
-                embeds: [embed]
-            });
+            await channel.send({ embeds: [embed] });
         }
     }
 }

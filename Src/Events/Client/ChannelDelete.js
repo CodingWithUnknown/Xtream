@@ -1,20 +1,14 @@
-import { Event, Navi, ClientLogger } from "../../structures/index.js";
-import { GuildChannel, AuditLogEvent, DMChannel } from "discord.js";
-import { Servers, logType } from "../../database/index.js";
+const { Events, AuditLogEvent, EmbedBuilder } = require('discord.js');
 
-export default class ChannelDelete extends Event {
-    constructor(client: Navi, file: string) {
-        super(client, file, {
-            name: "channelDelete",
-        });
-    }
-    public async run(channel: GuildChannel): Promise<any> {
+module.exports = {
+    name: Events.ChannelDelete,
+    execute: async (client, channel) => {
         try {
-            const log = await Servers.getLogger(channel.guildId, logType.ChannelDelete);
-            if (!log) return;
-            const {type, name } = channel;
+            // const log = await Servers.getLogger(channel.guildId, logType.ChannelDelete);
+            // if (!log) return;
+
             const regEx = /^🟢｜ticket([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?$/i;
-            if (regEx.test(name)) return;
+            if (regEx.test(channel.name)) return;
             const cnType = {
                 0: 'Text Channel',
                 2: 'Voice Channel',
@@ -29,21 +23,25 @@ export default class ChannelDelete extends Event {
             }
             const audit = await channel.guild.fetchAuditLogs({ type: AuditLogEvent.ChannelDelete, limit: 1 });
             const entry = audit.entries.first();
-            const user = await this.client.users.fetch(entry.executor.id);
+            const user = await client.users.fetch(entry.executor.id);
 
-            const icon = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` as any;
+            const icon = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
 
-            const embed = this.client.embed()
-                .setAuthor({ name: `${user.username}#${user.discriminator}`, iconURL: icon })
-                .setDescription(`${this.client.emo.delete} ${cnType[type]} Deleted **${name}**`)
-                .setColor(log.color ? log.color : this.client.color.red)
+            const embed = new EmbedBuilder()
+                .setAuthor(
+                    { name: `${user.username}#${user.discriminator}`, iconURL: icon }
+                )
+                .setDescription(`<:delete:1088764990938427423> ${cnType[channel.type]} Deleted **${channel.name}**`)
                 .addFields(
                     { name: 'Channel', value: `${channel.toString()} \`${channel.id.toString()}\``, inline: true },
                     { name: 'Deleted Time', value: `<t:${Math.floor(Date.now() / 1000)}:R> - (<t:${Math.floor(Date.now() / 1000)}>)`, inline: true },
                 )
-                .setFooter({ text: this.client.user.username, iconURL: this.client.user.displayAvatarURL({}) })
+                .setFooter(
+                    { text: client.user.username, iconURL: client.user.displayAvatarURL() }
+                )
+                .setColor(0x2d2c31)
                 .setTimestamp();
-            await ClientLogger.sendWebhook(this.client, channel.guildId, log.textId, {
+            await ClientLogger.sendWebhook(client, channel.guildId, log.textId, {
                 embeds: [embed]
             });
         } catch (e) {

@@ -1,19 +1,12 @@
-import { Event, Navi, ClientLogger } from "../../structures/index.js";
-import { Servers, logType } from "../../database/index.js";
-import { ThreadChannel, AuditLogEvent } from "discord.js";
+const { Events, EmbedBuilder } = require('discord.js');
 
-
-export default class ThreadCreate extends Event {
-    constructor(client: Navi, file: string) {
-        super(client, file, {
-            name: "threadCreate",
-        });
-    }
-    public async run(thread: ThreadChannel): Promise<any> {
+module.exports = {
+    name: Events.ThreadCreate,
+    execute: async (client, thread) => {
         try {
             await thread.join();
         } catch (err) {
-            this.client.logger.error(err);
+            console.log(err);
         }
         try {
             const cnType = {
@@ -28,26 +21,26 @@ export default class ThreadCreate extends Event {
                 11: 'Public Thread Channel',
                 10: 'News Thread Channel',
             }
-            const log = await Servers.getLogger(thread.guildId, logType.threadCreate);
-            if (!log) return;
+            // const log = await Servers.getLogger(thread.guildId, logType.threadCreate);
+            // if (!log) return;
 
-            const user = await this.client.users.fetch(thread.ownerId);
+            const user = await client.users.fetch(thread.ownerId);
 
-            const embed = this.client.embed()
-                .setAuthor({ name: thread.guild.name, iconURL: thread.guild.iconURL({ }) })
-                .setDescription([`${this.client.emo.create} **${cnType[thread.type]}** Created **${thread.name}**`, '', `**Owner:** ${user.toString()} (\`${user.id}\`)`].join('\n'))
-                .setColor(log.color ? log.color : this.client.color.red)
+            let channel = client.channels.cache.get('990186368237989948');
+
+            const embed = new EmbedBuilder()
+                .setAuthor({ name: thread.guild.name, iconURL: thread.guild.iconURL() })
+                .setDescription([`<:create:1089903750879133736> **${cnType[thread.type]}** Created **${thread.name}**`, '', `**Owner:** ${user.toString()} (\`${user.id}\`)`].join('\n'))
+                .setColor(0x2d2c31)
                 .addFields(
                     { name: 'Channel', value: `${thread.toString()} (\`${thread.id.toString()}\`)`, inline: true },
                     { name: 'Created Time', value: `<t:${Math.floor(thread.createdTimestamp / 1000)}:R> - (<t:${Math.floor(thread.createdTimestamp / 1000)}>)`, inline: true },
             )
-                .setFooter({ text: this.client.user.username, iconURL: this.client.user.displayAvatarURL({}) })
+                .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
                 .setTimestamp();
-            await ClientLogger.sendWebhook(this.client, thread.guildId, log.textId, {
-                embeds: [embed]
-            });
+                await channel.send({embeds: [embed] });
         } catch (error) {
-            
+            console.log(error);
         }
     }
 }

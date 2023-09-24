@@ -3,18 +3,13 @@ const { MergeImages } = require('../../Models/Canvas');
 
 module.exports = {
     name: Events.GuildUpdate,
-    /**
-     * 
-     * @param {Client} client 
-     * @param {oldGuild} oldGuild 
-     * @param {newGuild} newGuild 
-     * @returns 
-     */
     execute: async (client, oldGuild, newGuild) => {
         try {
             // const log = await Servers.getLogger(newGuild.id, logType.ServerUpdate);
+            let test = await newGuild.fetchAuditLogs({ type: AuditLogEvent.GuildUpdate, limit: 1 }).entries.first() // .executor.id
+            console.log(test);
 
-            let user = await client.users.fetch(await newGuild.fetchAuditLogs({ type: AuditLogEvent.GuildUpdate, limit: 1 }).entries.first().executor.id);
+            let user = await client.users.fetch();
 
             // if (!log) return;
             const channel = newGuild.channels.cache.get('990186368237989948');
