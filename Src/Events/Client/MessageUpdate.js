@@ -1,18 +1,17 @@
-const { Events, EmbedBuilder, ChannelType } = require('discord.js');
+const { Events, EmbedBuilder, AuditLogEvent, ChannelType } = require('discord.js');
 
 module.exports = {
     name: Events.MessageUpdate,
     execute: async (client, oldMessage, newMessage) => {
-        try {
+        await oldMessage.guild.fetchAuditLogs({ type: AuditLogEvent.MessageUpdate, limit: 10 }).then(async (audit) => {
             if (oldMessage?.author?.bot) return;
             if (oldMessage.channel.type === ChannelType.DM) return;
-            // const log = await Servers.getLogger(oldMessage.guildId, logType.MessageEdit);
-            // if (!log) return;
+            
             if (oldMessage.content === newMessage.content) return;
-            let channel = client.channels.chche.get('990186368237989948');
+            let channel = await oldMessage.guild.channels.cache.get('990186368237989948');
             const embeds = new EmbedBuilder()
                 .setAuthor(
-                    { name: oldMessage.author?.tag, iconURL: oldMessage.author?.displayAvatarURL() }
+                    { name: oldMessage.author?.displayName, iconURL: oldMessage.author?.displayAvatarURL() }
                 )
                 .setTitle(`<:edit:1089775740255473714> Message Edited`)
                 .setDescription(`**Before:**\n\`\`\`${oldMessage.content.length > 1024 ? oldMessage.content.slice(0, 1024) + '...' : oldMessage.content}\`\`\`\n**After:**\n\`\`\`${newMessage.content.length > 1024 ? newMessage.content.slice(0, 1024) + '...' : newMessage.content}\`\`\``)
@@ -35,13 +34,6 @@ module.exports = {
             }
 
             await channel.send({ embeds: [embeds] });
-
-            /* await ClientLogger.sendWebhook(this.client, oldMessage.guildId, log.textId, {
-                embeds: [embed]
-            }); */
-        } catch (err) {
-            console.log(err)
-        }
-
+        });
     }
 };
