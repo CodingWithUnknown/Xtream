@@ -10,10 +10,10 @@ module.exports = {
             if (oldMessage.content === newMessage.content) return;
             let channel = await oldMessage.guild.channels.cache.get('990186368237989948');
             const embeds = new EmbedBuilder()
-                .setAuthor(
+                /* .setAuthor(
                     { name: oldMessage.author?.displayName, iconURL: oldMessage.author?.displayAvatarURL() }
-                )
-                .setTitle(`<:edit:1089775740255473714> Message Edited`)
+                ) */
+                .setTitle(`Message Edited`)
                 .setDescription(`**Before:**\n\`\`\`${oldMessage.content.length > 1024 ? oldMessage.content.slice(0, 1024) + '...' : oldMessage.content}\`\`\`\n**After:**\n\`\`\`${newMessage.content.length > 1024 ? newMessage.content.slice(0, 1024) + '...' : newMessage.content}\`\`\``)
                 .addFields(
                     { name: 'Member', value: `<@${oldMessage.author.id}> \`(${oldMessage.author.id})\``, inline: true },
