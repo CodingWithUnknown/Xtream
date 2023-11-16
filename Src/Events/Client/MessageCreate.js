@@ -1,8 +1,11 @@
-const { Events, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { Events, EmbedBuilder, PermissionFlagsBits, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 
 module.exports = {
   name: Events.MessageCreate,
   execute: async (client, message) => {
+    if (!message.channel.permissionsFor(message.guild.members.me).has(PermissionFlagsBits.ViewChannel && PermissionFlagsBits.SendMessages)) return;
+    if (!message.channel.permissionsFor(message.guild.members.me).has(PermissionFlagsBits.EmbedLinks)) return await message.reply({ content: `I don't have \`EmbedLinks\` permission to use this command.`, ephemeral: true });
+    if (!message.channel.permissionsFor(message.guild.members.me).has(PermissionFlagsBits.Administrator)) return await message.reply({ content: 'I don\'t have enough permissions to use this command.' });
     if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)`))) {
       const row = new ActionRowBuilder()
         .addComponents(

@@ -3,9 +3,7 @@ const { Events, AuditLogEvent, EmbedBuilder } = require('discord.js');
 module.exports = {
     name: Events.RoleUpdate,
     execute: async (client, oldRole, newRole) => {
-        try {
-            // const log = await Servers.getLogger(oldRole.guild.id, logType.RoleUpdate);
-            // if (!log) return;
+        try {0
             const audit = await oldRole.guild.fetchAuditLogs({ type: AuditLogEvent.RoleUpdate, limit: 1 });
             const entry = audit.entries.first();
             let user = await this.client.users.fetch(entry.executor.id);

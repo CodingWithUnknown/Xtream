@@ -80,32 +80,24 @@ module.exports = {
               ]
             }).then(async (res) => {
               const embeds = new EmbedBuilder()
-                .setAuthor(
-                  { name: 'Evaluation Completed', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-                )
+                .setAuthor({ name: 'Evaluation Completed', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
                 .addFields(
                   { name: 'Input', value: '```js\n' + code + '```' },
-                  { name: 'Output', value: `(Large Success Codes)[${res.shortUrl}]` }
+                  { name: 'Output', value: `[Large Success Codes](${res.shortUrl})` }
                 )
-                .setFooter(
-                  { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-                )
+                .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
                 .setColor(0x2c2d31)
                 .setTimestamp();
               await interaction.editReply({ embeds: [embeds] });
             });
           } else {
             const embeds = new EmbedBuilder()
-              .setAuthor(
-                { name: 'Evaluation Completed', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-              )
+              .setAuthor({ name: 'Evaluation Completed', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
               .addFields(
                 { name: 'Input', value: '```js\n' + code + '```' },
                 { name: 'Output', value: '```js\n' + Supplementary(evaled) + '```' }
               )
-              .setFooter(
-                { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-              )
+              .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
               .setColor(0x2c2d31)
               .setTimestamp();
             await interaction.editReply({ embeds: [embeds] });
@@ -119,32 +111,24 @@ module.exports = {
             }).then(async (res) => {
               console.log(res);
               const embeds = new EmbedBuilder()
-                .setAuthor(
-                  { name: 'Evaluation Failure', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-                )
+                .setAuthor({ name: 'Evaluation Failure', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
                 .addFields(
                   { name: 'Input', value: '```js\n' + code + '```' },
-                  { name: 'Error', value: `(Larger Failure Codes)[${res.shortUrl}]` }
+                  { name: 'Error', value: `[Larger Failure Codes](${res.shortUrl})` }
                 )
-                .setFooter(
-                  { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-                )
+                .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
                 .setColor(0x2c2d31)
                 .setTimestamp();
               await interaction.editReply({ embeds: [embeds] });
             });
           } else {
             const embeds = new EmbedBuilder()
-              .setAuthor(
-                { name: 'Evaluation Failure', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-              )
+              .setAuthor({ name: 'Evaluation Failure', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
               .addFields(
                 { name: 'Input', value: '```js\n' + code + '```' },
                 { name: 'Error', value: '```js\n' + Supplementary(error) + '```' }
               )
-              .setFooter(
-                { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-              )
+              .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
               .setColor(0x2c2d31)
               .setTimestamp();
             await interaction.editReply({ embeds: [embeds] });

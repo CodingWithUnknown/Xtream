@@ -3,7 +3,7 @@ const { Events, EmbedBuilder } = require('discord.js');
 module.exports = {
     name: Events.GuildMemberRemove,
     execute: async (client, member) => {
-        if (member.user.id === this.client.user.id) return
+        if (member.user.id === client.user.id) return
         if (member.partial) return;
 
         // const log = await Servers.getLogger(member.guild.id, logType.MemberLeave);

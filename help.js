@@ -23,7 +23,7 @@ module.exports = {
       let text2 = client.commands.filter(x => x.data.name == name).map((x) => x.data.options.map((c) => '`' + c.name + '` - ' + c.description).join("\n"));
       return text2 + `\n\n` + text
     }
-    
+
     let em1 = new EmbedBuilder()
       .setAuthor({ name: `${client.user.username}\'s Help Menu`, iconURL: client.user.displayAvatarURL({ format: "png" }), url: "https://discord.gg/uoaio" })
       .setImage(`https://i.stack.imgur.com/Fzh0w.png`)
@@ -101,7 +101,7 @@ module.exports = {
 
     const options = [{ label: 'Owerview', value: '0' }]
     const options2 = []
-    
+
     let counter = 0
     let counter2 = 25
     require("fs").readdirSync(`${process.cwd()}/src/commands`).slice(0, 24).forEach(dirs => {
@@ -120,7 +120,7 @@ module.exports = {
       }
       options2.push(opt)
     })
-    
+
     let menu = new StringSelectMenuBuilder().setPlaceholder('Change page').setCustomId('pagMenu').addOptions(options).setMaxValues(1).setMinValues(1),
       menu2 = new StringSelectMenuBuilder().setPlaceholder('Change page').setCustomId('pagMenu2').addOptions(options2).setMaxValues(1).setMinValues(1)
 
@@ -131,18 +131,18 @@ module.exports = {
     let group3 = new ActionRowBuilder().addComponents(menu2)
 
     const components = [group2, group1, group3]
-    
+
     let helpMessage = await interaction.followUp({
       content: `Click on the buttons to change page`,
       embeds: [em1],
       components: components,
     })
-    
+
     const collector = helpMessage.createMessageComponentCollector((button) => button.user.id === interaction.user.id, { time: 60e3 });
 
     var embeds = [em1]
-    
-    require("fs").readdirSync(`${process.cwd()}/src/commands`).forEach(dirs => {embeds.push(new EmbedBuilder().setAuthor({name: toUpperCase(dirs),iconURL: client.user.displayAvatarURL({format:"png"}),url:`h`+`tt`+`ps:`+`//`+`d`+`is`+`cor`+`d.`+`gg`+`/u`+`o`+`a`+`i`+`o`}).setDescription(`${commad(dirs)}`))})
+
+    require("fs").readdirSync(`${process.cwd()}/src/commands`).forEach(dirs => { embeds.push(new EmbedBuilder().setAuthor({ name: toUpperCase(dirs), iconURL: client.user.displayAvatarURL({ format: "png" }), url: `h` + `tt` + `ps:` + `//` + `d` + `is` + `cor` + `d.` + `gg` + `/u` + `o` + `a` + `i` + `o` }).setDescription(`${commad(dirs)}`)) })
 
     let currentPage = 0
 

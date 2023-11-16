@@ -10,7 +10,6 @@ module.exports = {
             if (['Missing Permissions', 'Missing Access'].includes(err.message)) return;
             return client.logger.log(`Error fetching ban: ${err.message}`, 'error');
         }
-        // const log = await Servers.getLogger(ban.guild.id, logType.MemberBan);
         const audit = await ban.guild.fetchAuditLogs({ type: AuditLogEvent.MemberBanAdd, limit: 1 });
         const entry = audit.entries.first();
         const user = await client.users.fetch(entry.executor.id);
@@ -19,7 +18,6 @@ module.exports = {
 
         let channel = client.channels.cache.get('990186368237989948');
 
-        // if (!log) return;
         const embed = new EmbedBuilder()
             .setAuthor({ name: user.tag, iconURL: icon })
             .setTitle(`<:ban:1089791204746592287> Member Banned`)

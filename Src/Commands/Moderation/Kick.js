@@ -4,6 +4,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('kick')
     .setDescription('Kick a member from the guild')
+    .setDMPermission(false)
     .setNSFW(false)
     .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
     .addUserOption((options) => options
@@ -22,13 +23,9 @@ module.exports = {
 
     if (!target) {
       const embeds = new EmbedBuilder()
-        .setAuthor(
-          { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() }
-        )
+        .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
         .setDescription('This user does not exist in the server')
-        .setFooter(
-          { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-        )
+        .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
         .setColor(0x2c2d31)
         .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
@@ -36,13 +33,9 @@ module.exports = {
 
     if (interaction.member.id.includes(target.id)) {
       const embeds = new EmbedBuilder()
-        .setAuthor(
-          { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() }
-        )
+        .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
         .setDescription('You cannot timeout yourself.')
-        .setFooter(
-          { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-        )
+        .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
         .setColor(0x2c2d31)
         .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
@@ -50,13 +43,9 @@ module.exports = {
 
     if (client.user.id.includes(target.id)) {
       const embeds = new EmbedBuilder()
-        .setAuthor(
-          { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() }
-        )
+        .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
         .setDescription('You cannot timeout myself!')
-        .setFooter(
-          { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-        )
+        .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
         .setColor(0x2c2d31)
         .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
@@ -64,13 +53,9 @@ module.exports = {
 
     if (interaction.guild.ownerId.includes(target.id)) {
       const embeds = new EmbedBuilder()
-        .setAuthor(
-          { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() }
-        )
+        .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
         .setDescription('You cannnot timeout the guild owner.')
-        .setFooter(
-          { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-        )
+        .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
         .setColor(0x2c2d31)
         .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
@@ -90,13 +75,9 @@ module.exports = {
       .addComponents(confirm, cancel);
 
     const embeds = new EmbedBuilder()
-      .setAuthor(
-        { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() }
-      )
+      .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
       .setDescription(`Are you sure you want to kick ${target} for reason: **${reason}**?`)
-      .setFooter(
-        { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-      )
+      .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
       .setColor(0x2c2d31)
       .setTimestamp();
 
@@ -109,16 +90,12 @@ module.exports = {
         case 'confirm':
           await target.kick({ reason: reason }).then(async () => {
             const embeds = new EmbedBuilder()
-              .setAuthor(
-                { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-              )
+              .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
               .setDescription([
                 `${target.globalName} have been **Kicked** from this server`,
                 `\nReason: ${reason}`,
               ].join('\n'))
-              .setFooter(
-                { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-              )
+              .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
               .setColor(0x2c2d31)
               .setTimestamp()
             return await confirmation.update({ embeds: [embeds], components: [] });

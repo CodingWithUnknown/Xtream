@@ -30,9 +30,7 @@ module.exports = {
       ]).then(async (res) => {
         try {
           const embeds = new EmbedBuilder()
-            .setAuthor(
-              { name: 'IP Address Information', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
-            )
+            .setAuthor({ name: 'IP Address Information', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) })
             .setThumbnail(res[1].flag)
             .addFields([
               {
@@ -105,9 +103,7 @@ module.exports = {
           return await interaction.reply({ embeds: [embeds] });
         } catch {
           const embeds = new EmbedBuilder()
-            .setAuthor(
-              { name: 'IP Information', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
-            )
+            .setAuthor({ name: 'IP Information', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) })
             .setThumbnail(res[0].flag.img)
             .addFields([
               {
@@ -162,24 +158,18 @@ module.exports = {
                 ].join('\n')
               }
             ])
-            .setFooter(
-              { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
-            )
+            .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) })
             .setColor(0x2c2d31)
             .setTimestamp();
           return await interaction.reply({ embeds: [embeds] });
         }
       }).catch(async (err) => {
         const embeds = new EmbedBuilder()
-          .setAuthor(
-            { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
-          )
+          .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) })
           .setDescription(`${err.response.body.message ? err.response.body.message : err.response.body.error.error_message}`)
-          .setFooter(
-            { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) }
-          )
+          .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 2048 }) })
           .setColor(0x2c2d31)
-          .setTimestamp()
+          .setTimestamp();
         return await interaction.reply({ embeds: [embeds] });
       });
     }

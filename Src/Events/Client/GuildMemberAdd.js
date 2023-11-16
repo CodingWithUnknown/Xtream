@@ -9,7 +9,7 @@ module.exports = {
      * @param {GuildMember} member 
      */
     execute: async (client, member) => {
-        if (member.user.id === this.client.user.id) return
+        if (member.user.id === client.user.id) return
         if (member.partial) return;
         // const welcome = await Servers.getWelcome(member.guild.id);
         /* if (welcome) {
@@ -30,7 +30,7 @@ module.exports = {
         // const log = await Servers.getLogger(member.guild.id, logType.MemberJoin);
         // if (!log) return;
 
-        let channel = client.channels.cache('990186368237989948');
+        let channel = member.guild.channels.cache.get('990186368237989948');
 
         const embed = new EmbedBuilder()
             .setAuthor({ name: member.user.tag, iconURL: member.user.displayAvatarURL({}) })

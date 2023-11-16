@@ -1,21 +1,27 @@
-const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, StringSelectMenuBuilder } = require('discord.js');
-const { readFileSync } = require('fs');
+const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, StringSelectMenuBuilder, Client, ChatInputCommandInteraction } = require('discord.js');
+const { readdirSync, readFileSync } = require('fs');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('help')
     .setDescription('View information about central user'),
   developer: true,
+  /**
+   * 
+   * @param {Client} client 
+   * @param {ChatInputCommandInteraction} interaction 
+   * @returns
+   */
   execute: async (client, interaction) => {
-    /* const toUpperCase = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+    const upcaps = (string) => string;
     const commad = (name) => {
       let text = `*To Run Any Command Type*: \`/${name} {Sub Command Name}\``
-      let text2 = client.commands.filter(x => x.name == name).map((x) => x.options.map((c) => '`' + c.name + '` - ' + c.description).join("\n"));
+      let text2 = client.commands.filter(x => x.name == name).map((x) => x.options.map((c) => '`' + c.name + '` - ' + c.description).join('\n'));
       return text2 + `\n\n` + text
-    } */
+    }
 
     let em1 = new EmbedBuilder()
-      .setAuthor({ name: `${client.user.username}\'s Help Menu`, iconURL: client.user.displayAvatarURL({ format: "png" }) })
+      .setAuthor({ name: `${client.user.username}\'s Help Menu`, iconURL: client.user.displayAvatarURL({ format: 'png' }) })
       .setImage(`https://i.stack.imgur.com/Fzh0w.png`)
       .setColor(0x2c2d31)
       .addFields([
@@ -105,18 +111,18 @@ module.exports = {
 
     let counter = 0
     let counter2 = 25
-    require("fs").readdirSync(`${process.cwd()}/Src/Commands`).slice(0, 24).forEach(dirs => {
+    require('fs').readdirSync(`${process.cwd()}/Src/Commands`).slice(0, 24).forEach(dirs => {
       counter++
       const opt = {
-        label: toUpperCase(dirs.replace("-", " ")),
+        label: toUpperCase(dirs.replace('-', ' ')),
         value: `${counter}`
       }
       options.push(opt)
     })
-    require("fs").readdirSync(`${process.cwd()}/Src/Commands`).slice(25, 37).forEach(dirs => {
+    require('fs').readdirSync(`${process.cwd()}/Src/Commands`).slice(25, 37).forEach(dirs => {
       counter2++
       const opt = {
-        label: toUpperCase(dirs.replace("-", " ")),
+        label: toUpperCase(dirs.replace('-', ' ')),
         value: `${counter}`
       }
       options2.push(opt)
@@ -151,38 +157,34 @@ module.exports = {
 
     const components = [group2] // [group2, group1, group3]
 
-    await interaction.reply({ embeds: [em1] });
+    // await interaction.reply({ embeds: [em1] });
 
 
     // await interaction.deferReply();
 
-    /* let helpMessage = await interaction.reply({
-      embeds: [em1],
-      components: components
-    }); */
+    let helpMessage = await interaction.reply({ embeds: [em1], components: components });
 
     const collector = helpMessage.createMessageComponentCollector((button) => button.user.id === interaction.user.id, { time: 100000 });
 
     var embeds = [em1]
 
-    require('fs').readdirSync(`./Src/Commands`).forEach((dirs) => {
+
+
+    readdirSync(`./Src/Commands`).forEach((dir) => {
       embeds.push(
         new EmbedBuilder()
-          .setAuthor({ name: toUpperCase(dirs), iconURL: client.user.displayAvatarURL() })
-          .setDescription(`${commad(dirs)}`))
-    })
+          .setAuthor({ name: `${dir.charAt(0).toUpperCase() + dir.slice(1)}`, iconURL: client.user.displayAvatarURL() })
+          .setDescription(`${commad(dir)}`)
+      )
+    });
 
-    let currentPage = 0
 
-    collector.on('collect', async (b) => {
-      if (b.user.id !== interaction.user.id)
-        return b.editReply({
-          content: `**You Can't Use it\n**`,
-          ephemeral: true
-        });
-      switch (b.customId) {
+    collector.on('collect', async (x) => {
+      let page = 0
+      if (x.user.id !== interaction.user.id) return await x.editReply({ content: `**You Can't Use it\n**`, ephemeral: true });
+      switch (x.customId) {
         case 'start':
-          currentPage = 0
+          page = 0
           group2 = new ActionRowBuilder()
             .addComponents([
               startButton.setDisabled(true),
@@ -190,11 +192,11 @@ module.exports = {
               forwardButton.setDisabled(false),
               endButton.setDisabled(false)
             ])
-          b.update({ embeds: [embeds[currentPage]], components: components })
+          x.update({ embeds: [embeds[page]], components: components })
           break;
         case 'back':
-          --currentPage;
-          if (currentPage === 0) {
+          --page;
+          if (page === 0) {
             group2 = new ActionRowBuilder()
               .addComponents([
                 startButton.setDisabled(true),
@@ -211,11 +213,11 @@ module.exports = {
                 endButton.setDisabled(false)
               ])
           }
-          b.update({ embeds: [embeds[currentPage]], components: components })
+          x.update({ embeds: [embeds[page]], components: components })
           break;
         case 'forward':
-          currentPage++;
-          if (currentPage === embeds.length - 1) {
+          page++;
+          if (page === embeds.length - 1) {
             group2 = new ActionRowBuilder()
               .addComponents([
                 startButton.setDisabled(false),
@@ -232,10 +234,10 @@ module.exports = {
                 endButton.setDisabled(false)
               ])
           }
-          b.update({ embeds: [embeds[currentPage]], components: components })
+          x.update({ embeds: [embeds[page]], components: components })
           break;
         case 'end':
-          currentPage = embeds.length - 1;
+          page = embeds.length - 1;
           group2 = new ActionRowBuilder()
             .addComponents([
               startButton.setDisabled(false),
@@ -243,7 +245,7 @@ module.exports = {
               forwardButton.setDisabled(true),
               endButton.setDisabled(true)
             ])
-          b.update({ embeds: [embeds[currentPage]], components: components })
+          x.update({ embeds: [embeds[page]], components: components })
           break;
         /* case 'pagMenu':
           currentPage = parseInt(b.values[0])
@@ -302,17 +304,15 @@ module.exports = {
               date({ embeds: [embeds[currentPage]], components: components })
           break; */
         default:
-          currentPage = 0
-          b.update({ embeds: [embeds[currentPage]], components: null })
+          page = 0
+          x.update({ embeds: [embeds[page]], components: null })
           break;
       }
     });
 
-    collector.on('end', b => {
-      b.update({ embeds: [helpMessage.embeds[0]], content: [], components: [] })
+    collector.on('end', async (x) => {
+      await x.update({ embeds: [helpMessage.embeds[0]], content: [], components: [] })
     });
-
-    collector.on('error', (e) => console.log(e));
 
     embeds.map((embed, index) => {
       embed.setColor(0x2c2d31)
