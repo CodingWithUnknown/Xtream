@@ -1,9 +1,16 @@
-const { Events, InteractionType, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
+const { Events, InteractionType, EmbedBuilder, PermissionFlagsBits, Client } = require('discord.js');
 const Ostracize = require('../../Models/Schema/Ostracize');
 
 module.exports = {
   name: Events.InteractionCreate,
+  /**
+   * 
+   * @param {Client} client 
+   * @param {import('discord.js').Interaction} interaction 
+   * @returns 
+   */
   execute: async (client, interaction) => {
+    if (interaction.type === InteractionType.ApplicationCommand) return;
     if (!interaction.isChatInputCommand()) return;
     let Command = await client.commands.get(interaction.commandName);
     if (!Command) {
