@@ -28,7 +28,7 @@
     "node-fetch": "^3.3.2",
     "openai": "^4.19.0",
     "shoukaku": "^3.4.2",
-    "sourcebin": "^4.3.6",
+    "sourcebin": "^5.0.0",
     "superagent": "^8.1.2"
   }
 }
