@@ -1,6 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const { options } = require('node-superfetch');
-const { get } = require('superagent');
+const superagent = require('superagent');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -13,7 +12,7 @@ module.exports = {
       .setRequired(true)
     ),
   execute: async (client, interaction) => {
-    get(`https://eightballapi.com/api/biased?question=${interaction.options.getString('question').replace(/ /g, '+')}`).end(async (err, res) => {
+    superagent.get(`https://eightballapi.com/api/biased?question=${interaction.options.getString('question').replace(/ /g, '+')}`).end(async (err, res) => {
       // if (!err && res.status === 200) {
       /* try {
         await res.body.reading;

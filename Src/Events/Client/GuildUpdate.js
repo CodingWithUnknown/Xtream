@@ -1,5 +1,5 @@
 const { Events, Client, AuditLogEvent, EmbedBuilder } = require('discord.js');
-const { MergeImages } = require('../../Models/Canvas');
+// const { MergeImages } = require('../../Models/Canvas');
 
 module.exports = {
     name: Events.GuildUpdate,
@@ -30,7 +30,7 @@ module.exports = {
                     { name: 'New Name', value: newGuild.name, inline: true },
                 )
             }
-            if (oldGuild.iconURL() !== newGuild.iconURL()) {
+            /* if (oldGuild.iconURL() !== newGuild.iconURL()) {
                 oldIcon = await MergeImages(oldGuild.iconURL(), newGuild.iconURL());
                 embeds.setDescription(`Updated Icon: [Old Icon](${oldGuild.iconURL()}) | [New Icon](${newGuild.iconURL()})`)
                     .setImage(`attachment://image.png`)
@@ -49,7 +49,7 @@ module.exports = {
                 oldIcon = await MergeImages(oldGuild.discoverySplashURL(), newGuild.discoverySplashURL());
                 embeds.setDescription(`Updated Discovery Splash: [Old Icon](${oldGuild.discoverySplashURL()}) | [New Icon](${newGuild.discoverySplashURL()})`)
                     .setImage(`attachment://image.png`)
-            }
+            } */
             if (oldGuild.description !== newGuild.description) {
                 embeds.addFields(
                     { name: 'Old Description', value: oldGuild.description, inline: true },

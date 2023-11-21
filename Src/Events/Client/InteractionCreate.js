@@ -10,7 +10,6 @@ module.exports = {
    * @returns 
    */
   execute: async (client, interaction) => {
-    if (interaction.type === InteractionType.ApplicationCommand) return;
     if (!interaction.isChatInputCommand()) return;
     let Command = await client.commands.get(interaction.commandName);
     if (!Command) {
@@ -34,10 +33,8 @@ module.exports = {
       if (data) {
         const embeds = new EmbedBuilder()
           .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-          .setDescription('You have been restricted from the Xtream Developers')
-          .setFooter({ text: 'Xtream developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-          .setColor(0x2d2c31)
-          .setTimestamp();
+          .setDescription('You have been Suspended from Xtream Developers.')
+          .setColor(0x2d2c31);
         return await interaction.reply({ embeds: [embeds], ephemeral: true });
       }
     });

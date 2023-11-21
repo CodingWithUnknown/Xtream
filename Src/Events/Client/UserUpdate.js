@@ -1,5 +1,5 @@
 const { Events, EmbedBuilder } = require('discord.js');
-const { MergeImages } = require('../../Models/Canvas')
+// const { MergeImages } = require('../../Models/Canvas')
 
 module.exports = {
     name: Events.UserUpdate,
@@ -19,7 +19,7 @@ module.exports = {
 
         let channel = client.channels.cache.get('990186368237989948');
 
-        if (oldUser.avatar !== newUser.avatar) {
+        /* if (oldUser.avatar !== newUser.avatar) {
             let file = await MergeImages(`https://cdn.discordapp.com/avatars/${oldUser.id}/${oldUser.avatar}.png`, `https://cdn.discordapp.com/avatars/${newUser.id}/${newUser.avatar}.png`);
             const embeds = new EmbedBuilder()
                 .setAuthor({ name: newUser.tag, iconURL: newUser.avatarURL() })
@@ -30,7 +30,7 @@ module.exports = {
                 .setColor(0x2d2c31)
                 .setTimestamp()
             await channel.send({ embeds: [embeds], files: [file] });
-        }
+        } */
 
         if (oldUser.username !== newUser.username) {
             const embeds = new EmbedBuilder()
