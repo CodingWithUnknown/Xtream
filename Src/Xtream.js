@@ -148,8 +148,9 @@ class Xtream extends Client {
     }
     let rest = new REST().setToken(process.env.DISCORD_TOKEN);
     this.logger.log('Refreshing Application (/) Commands.', 'system');
-    await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), { body: Data }).catch((err) => this.logger.log(err, 'error'));
-    this.logger.log('Successfully Loaded All Application (/) Commands', 'system');
+    await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), { body: Data }).finally(() => {
+      this.logger.log('Successfully Loaded All Application (/) Commands', 'system')
+    }).catch((err) => this.logger.log(err, 'error'));
   }
   async _connectMongodb() {
     connect(process.env.MONGO_URI, {
@@ -157,9 +158,8 @@ class Xtream extends Client {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
-      useFindAndModify: true,
-    });
-    this.logger.log('Atlas Cluster Clouds Connected', 'ready');
+      useFindAndModify: true
+    }).then(() => this.logger.log('Atlas Cluster Clouds Connected', 'ready')).catch((err) => this.logger.log(err, 'error'));
   }
   /*async _crasher() {
     process.on('unhandledRejection', (reason, promise) => {
