@@ -3,6 +3,7 @@ const { connect } = require('mongoose');
 const { readdirSync } = require('fs');
 const { join } = require('path');
 const { Shoukaku, Connectors } = require('shoukaku');
+const { AuthenticationError } = require('openai');
 
 class Xtream extends Client {
   constructor() {
@@ -48,7 +49,7 @@ class Xtream extends Client {
       ],
     });
     this.commands = new Collection();
-    this.developer = process.env.DEVELOPER_OWNER;
+    this.developer = process.env.AUTHENTICATION_OWNER;
     this.logs = process.env.LOGS;
     this.logger = require('./Models/Logger');
     this._connectMongodb();
@@ -135,13 +136,13 @@ class Xtream extends Client {
       let files = readdirSync(join(join(__dirname, 'Commands'), folder)).filter((file) => file.endsWith('.js'));
       for (let file of files) {
         let command = require(join(join(join(__dirname, 'Commands'), folder), file));
-        if ('data' in command && 'execute' in command) {
+        if ('data' in command && 'execute' in command || 'autocomplete' in command) {
           Data.push(command.data.toJSON());
         } else {
-          this.logger.log(`[SLASH] The command at ${join(join(join(__dirname, 'Commands'), folder), file)} is missing a required "data" or "execute" property.`, 'warn');
+          this.logger.log(`[ / ] The command at ${join(join(join(__dirname, 'Commands'), folder), file)} is missing a required "data" or "execute" property.`, 'warn');
         }
-        if (!command.data.name) return this.logger.log(`[SLASH] ${command.split('.')[0]} application command name is required.`, 'error');
-        if (!command.data.description) return this.logger.log(`[SLASH] ${command.split('.')[0]} application command description is required.`, 'error');
+        if (!command.data.name) return this.logger.log(`[ / ] ${command.split('.')[0]} application command name is required.`, 'error');
+        if (!command.data.description) return this.logger.log(`[ / ] ${command.split('.')[0]} application command description is required.`, 'error');
         this.commands.set(command.data.name, command);
         this.logger.log(`[ / ] Slash Command Loaded: ${command.data.name}`, 'system');
       }
