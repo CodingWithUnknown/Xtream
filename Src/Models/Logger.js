@@ -18,7 +18,10 @@ module.exports = class Logger {
         return console.log(`[${colors.gray(date)}]: [${colors.green(type.charAt(0).toUpperCase() + type.slice(1))}] ${colors.blue(content)}`);
       }
       case 'event': {
-        return console.log(`[${colors.gray(date)}]: [${colors.yellow(type.charAt(0).toUpperCase() + type.slice(1))}] ${colors.blue(content)}`);
+        return console.log(`[${colors.gray(date)}]: [${colors.cyan(type.charAt(0).toUpperCase() + type.slice(1))}] ${colors.blue(content)}`);
+      }
+      case 'cmd': {
+        return console.log(`[${colors.gray(date)}]: [${colors.cyan(type.charAt(0).toUpperCase() + type.slice(1))}] ${colors.blue(content)}`);
       }
       case 'system': {
         return console.log(`[${colors.gray(date)}]: [${colors.magenta(type.charAt(0).toUpperCase() + type.slice(1))}] ${colors.blue(content)}`);
@@ -27,7 +30,7 @@ module.exports = class Logger {
         return console.log(`[${colors.gray(date)}]: [${colors.red(type.charAt(0).toUpperCase() + type.slice(1))}] ${colors.gray(content)}`);
       }
       default:
-        throw new TypeError('Logger type must be either log, warn, debug, ready, event, system or error.');
+        throw new TypeError('Logger type must be either log, warn, debug, ready, event, cmd, system or error.');
     }
   }
 };
