@@ -144,7 +144,7 @@ class Xtream extends Client {
         if (!command.data.name) return this.logger.log(`[ / ] ${command.split('.')[0]} application command name is required.`, 'error');
         if (!command.data.description) return this.logger.log(`[ / ] ${command.split('.')[0]} application command description is required.`, 'error');
         this.commands.set(command.data.name, command);
-        this.logger.log(`[ / ] Slash Command Loaded: ${command.data.name}`, 'system');
+        this.logger.log(`[ / ] Slash Command Loaded: ${command.data.name}`, 'cmd');
       }
     }
     let rest = new REST().setToken(process.env.DISCORD_TOKEN);

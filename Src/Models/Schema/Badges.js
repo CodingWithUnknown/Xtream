@@ -1,8 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 module.export = model('Badges', new Schema({
-  User: String,
-  Badges: {
-    type: Array
-  },
+  _id: Schema.Types.ObjectId,
+  User: { type: String },
+  Badges: { type: Array }
 }));

@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 module.export = model('Logging', new Schema({
+    _id: Schema.Types.ObjectId,
     Guild: { type: String },
     User: { type: String },
     Channel: { type: String },

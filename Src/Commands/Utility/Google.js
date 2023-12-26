@@ -45,7 +45,6 @@ module.exports = {
                             }
                         )
                         .setColor(0x2d2c31);
-
                     return await interaction.editReply({ embeds: [embeds], ephemeral: true });
                 } else {
                     const embeds = new EmbedBuilder()
@@ -54,7 +53,6 @@ module.exports = {
                         .setDescription(res.body.items[0].snippet)
                         .setImage(res.body.items[0].pagemap.cse_image[0].src ?? res.body.items[0].pagemap.cse_thumbnail[0].src)
                         .setColor(0x2d2c31);
-
                     return await interaction.editReply({ embeds: [embeds] });
                 }
         }

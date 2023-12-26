@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
-const { ChatCompletionResponseMessageRoleEnum } = require('openai');
+const { disk } = require('systeminformation');
 
 module.exports = {
   data: new SlashCommandBuilder()
