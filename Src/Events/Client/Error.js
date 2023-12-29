@@ -7,11 +7,11 @@ module.exports = {
     let webhook = new WebhookClient({ id: process.env.WEBHOOK_ID, token: process.env.WEBHOOK_TOKEN })
     const embeds = new EmbedBuilder()
       .setAuthor(
-        { name: 'Xara Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+        { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
       )
       .setDescription(`\`\`\`\n${error}\n\`\`\``)
       .setFooter(
-        { text: 'Xara Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
+        { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
       )
       .setColor(0x2c2d31)
       .setTimestamp();
