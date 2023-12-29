@@ -52,10 +52,10 @@ class Xtream extends Client {
     this.developer = process.env.AUTHENTICATION_OWNER;
     this.logs = process.env.LOGS;
     this.logger = require('./Models/Logger');
-    this._connectMongodb();
-    this._loadClientEvents();
+    this._ConnectMongodb();
+    this._LoadClientEvents();
     //this._loadNodeEvents();
-    this._loadSlashCommands();
+    this._LoadSlashCommands();
     //this._crasher();
     //this.shoukaku;
     this.rest.on('rateLimited', (info) => {
@@ -65,7 +65,7 @@ class Xtream extends Client {
   /**
    * Import All Events
    */
-  async _loadClientEvents() {
+  async _LoadClientEvents() {
     let folders = readdirSync(join(__dirname, 'Events'));
     for (let folder of folders) {
       let files = readdirSync(join(join(__dirname, 'Events'), folder)).filter((file) => file.endsWith('.js'));
@@ -129,7 +129,7 @@ class Xtream extends Client {
   /**
    * Import All SlashCommands
    */
-  async _loadSlashCommands() {
+  async _LoadSlashCommands() {
     let Data = [];
     let folders = readdirSync(join(__dirname, 'Commands'));
     for (let folder of folders) {
@@ -153,7 +153,7 @@ class Xtream extends Client {
       this.logger.log('Successfully Loaded All Application (/) Commands', 'system')
     }).catch((err) => this.logger.log(err, 'error'));
   }
-  async _connectMongodb() {
+  async _ConnectMongodb() {
     connect(process.env.MONGO_URI, {
       autoIndex: true,
       useNewUrlParser: true,
