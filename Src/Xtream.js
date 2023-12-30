@@ -49,7 +49,7 @@ class Xtream extends Client {
       ],
     });
     this.commands = new Collection();
-    this.developer = process.env.AUTHENTICATION_OWNER;
+    this.developer = process.env.AUTHENTICATION_OWNER_ID;
     this.logs = process.env.LOGS;
     this.logger = require('./Models/Logger');
     this._ConnectMongodb();
@@ -144,7 +144,7 @@ class Xtream extends Client {
         if (!command.data.name) return this.logger.log(`[ / ] ${command.split('.')[0]} application command name is required.`, 'error');
         if (!command.data.description) return this.logger.log(`[ / ] ${command.split('.')[0]} application command description is required.`, 'error');
         this.commands.set(command.data.name, command);
-        this.logger.log(`[ / ] Slash Command Loaded: ${command.data.name}`, 'cmd');
+        this.logger.log(`[ / ] Slash Command Loaded: ${command.data.name}`, 'command');
       }
     }
     let rest = new REST().setToken(process.env.DISCORD_TOKEN);

@@ -72,7 +72,7 @@ module.exports = {
       if (commands.developer && !client.developer.includes(interaction.user.id)) {
         const embeds = new EmbedBuilder()
           .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true }) })
-          .setDescription('This command can only be Managed or Executed by the (Developer)[https://discord.com/users/770887288464867338].')
+          .setDescription('This command can only be Managed or Executed by the [Developer](https://discord.com/users/770887288464867338).')
           .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true }) })
           .setColor(0x2d2c31)
           .setTimestamp();

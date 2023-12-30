@@ -20,7 +20,7 @@ module.exports = class Logger {
       case 'event': {
         return console.log(`[${chalk.gray(date)}]: [${chalk.green(type.charAt(0).toUpperCase() + type.slice(1))}] ${chalk.blue(content)}`);
       }
-      case 'cmd': {
+      case 'command': {
         return console.log(`[${chalk.gray(date)}]: [${chalk.green(type.charAt(0).toUpperCase() + type.slice(1))}] ${chalk.blue(content)}`);
       }
       case 'system': {
@@ -30,7 +30,7 @@ module.exports = class Logger {
         return console.log(`[${chalk.gray(date)}]: [${chalk.red(type.charAt(0).toUpperCase() + type.slice(1))}] ${chalk.gray(content)}`);
       }
       default:
-        throw new TypeError('Logger type must be either log, warn, debug, ready, event, cmd, system or error.');
+        throw new TypeError('Logger type must be either log, warn, debug, ready, event, command, system or error.');
     }
   }
 };
