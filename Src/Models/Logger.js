@@ -18,10 +18,7 @@ module.exports = class Logger {
         return console.log(`[${chalk.gray(date)}]: [${chalk.green(type.charAt(0).toUpperCase() + type.slice(1))}] ${chalk.blue(content)}`);
       }
       case 'event': {
-        return console.log(`[${chalk.gray(date)}]: [${chalk.green(type.charAt(0).toUpperCase() + type.slice(1))}] ${chalk.blue(content)}`);
-      }
-      case 'command': {
-        return console.log(`[${chalk.gray(date)}]: [${chalk.green(type.charAt(0).toUpperCase() + type.slice(1))}] ${chalk.blue(content)}`);
+        return console.log(`[${chalk.gray(date)}]: [${chalk.cyan(type.charAt(0).toUpperCase() + type.slice(1))}] ${chalk.blue(content)}`);
       }
       case 'system': {
         return console.log(`[${chalk.gray(date)}]: [${chalk.magenta(type.charAt(0).toUpperCase() + type.slice(1))}] ${chalk.blue(content)}`);
@@ -29,8 +26,11 @@ module.exports = class Logger {
       case 'error': {
         return console.log(`[${chalk.gray(date)}]: [${chalk.red(type.charAt(0).toUpperCase() + type.slice(1))}] ${chalk.gray(content)}`);
       }
+      case '/': {
+        return console.log(`[${chalk.gray(date)}]: [ ${chalk.blue(type.charAt(0).toUpperCase() + type.slice(1))} ] ${chalk.blue(content)}`);
+      }
       default:
-        throw new TypeError('Logger type must be either log, warn, debug, ready, event, command, system or error.');
+        throw new TypeError('Logger type must be either log, warn, debug, ready, event, system or error.');
     }
   }
 };

@@ -3,7 +3,6 @@ const { connect } = require('mongoose');
 const { readdirSync } = require('fs');
 const { join } = require('path');
 const { Shoukaku, Connectors } = require('shoukaku');
-const { AuthenticationError } = require('openai');
 
 class Xtream extends Client {
   constructor() {
@@ -49,14 +48,14 @@ class Xtream extends Client {
       ],
     });
     this.commands = new Collection();
-    this.developer = process.env.AUTHENTICATION_OWNER_ID;
+    this.developer = process.env.AUTH_OWNER_ID;
     this.logs = process.env.LOGS;
     this.logger = require('./Models/Logger');
     this._ConnectMongodb();
     this._LoadClientEvents();
     //this._loadNodeEvents();
     this._LoadSlashCommands();
-    //this._crasher();
+    // this._AntiCrasher();
     //this.shoukaku;
     this.rest.on('rateLimited', (info) => {
       this.logger.log(info, 'log');
@@ -136,15 +135,15 @@ class Xtream extends Client {
       let files = readdirSync(join(join(__dirname, 'Commands'), folder)).filter((file) => file.endsWith('.js'));
       for (let file of files) {
         let command = require(join(join(join(__dirname, 'Commands'), folder), file));
-        if ('data' in command && 'execute' in command || 'autocomplete' in command) {
+        if ('data' in command && 'execute' in command) {
           Data.push(command.data.toJSON());
         } else {
-          this.logger.log(`[ / ] The command at ${join(join(join(__dirname, 'Commands'), folder), file)} is missing a required "data" or "execute" property.`, 'warn');
+          this.logger.log(`The command at ${join(join(join(__dirname, 'Commands'), folder), file)} is missing a required "data" or "execute" property.`, 'warn');
         }
         if (!command.data.name) return this.logger.log(`[ / ] ${command.split('.')[0]} application command name is required.`, 'error');
         if (!command.data.description) return this.logger.log(`[ / ] ${command.split('.')[0]} application command description is required.`, 'error');
         this.commands.set(command.data.name, command);
-        this.logger.log(`[ / ] Slash Command Loaded: ${command.data.name}`, 'command');
+        this.logger.log(`Loading Slash Commands ${command.data.name}`, '/');
       }
     }
     let rest = new REST().setToken(process.env.DISCORD_TOKEN);
@@ -162,7 +161,7 @@ class Xtream extends Client {
       useFindAndModify: true
     }).then(() => this.logger.log('Atlas Cluster Clouds Connected', 'ready')).catch((err) => this.logger.log(err, 'error'));
   }
-  /*async _crasher() {
+  /* async _AntiCrasher() {
     process.on('unhandledRejection', (reason, promise) => {
       console.log('=== Unhandled Rejection ===');
       console.log('Promise:', promise, 'Reason:', reason.stack ? reason.stack : reason);
@@ -198,7 +197,7 @@ class Xtream extends Client {
       console.log('Code:', code);
       console.log('=== Exit ===');
     });
-  }*/
+  } */
 };
 
 let Defender = new Xtream();
