@@ -7,7 +7,7 @@ module.exports = {
     .setDescription('Shows information about The Xtream Defender')
     .addSubcommand((options) => options
       .setName('info')
-      .setDescription('Shows information about The Xtream Defender')
+      .setDescription('Shows information about The Xtream Defender') // add a new stats command for status update
     ),
   /**
    * 
@@ -18,11 +18,27 @@ module.exports = {
   execute: async (client, interaction) => {
     switch (interaction.options.getSubcommand()) {
       case 'info':
+        const button = new ButtonBuilder()
+          .setLabel('About')
+          .setCustomId('about')
+          .setStyle(ButtonStyle.Primary),
+          button2 = new ButtonBuilder()
+            .setLabel('About')
+            .setCustomId('about')
+            .setStyle(ButtonStyle.Primary),
+          button3 = new ButtonBuilder()
+            .setLabel('About')
+            .setCustomId('about')
+            .setStyle(ButtonStyle.Primary);
+
+        const raw = new ActionRowBuilder()
+          .addComponents([button, button2, button3])
+
         const embeds = new EmbedBuilder()
-          .setAuthor({ name: `${client.users.cache.find((x) => x.id == process.env.DEVELOPER_OWNER).globalName}`, iconURL: client.users.cache.find((x) => x.id == process.env.DEVELOPER_OWNER).displayAvatarURL({ size: 4096 }) })
+          .setAuthor({ name: `${client.users.cache.find((x) => x.id == process.env.AUTH_OWNER_ID).globalName}`, iconURL: client.users.cache.find((x) => x.id == process.env.DEVELOPER_OWNER).displayAvatarURL({ size: 4096 }) })
           .setTitle('__Official Bot Server Invite__')
           .setURL('https://discord.gg/VgT9u4PM2w')
-          .setDescription('<:Waves:1055864282614595654> Hey there, I\'m Xtream Defender, the Higher Defense Bot for your Discord Server. I\m a Multi-purpose loaded with Higher Defending of many features like none other.')
+          .setDescription('<:Waves:1055864282614595654> Hey, It\'s Xtream Defender. The Higher Defense Bot for your Discord Server. I\m a Multi-purpose loaded with Higher Defending of many features like none other.')
           .addFields(
             {
               name: 'Xtream Information', value: [
@@ -45,11 +61,17 @@ module.exports = {
               ].join('\n')
             }
           )
-          .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 4096 }) })
+          .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ size: 4096 }) })
           .setColor(0x2c2d31)
           .setTimestamp();
 
-        await interaction.reply({ embeds: [embeds] });
+        let msg = await interaction.reply({ embeds: [embeds], components: [raw] });
+
+        const collector = msg.createMessageComponentCollector({
+          filter: {
+            
+          }
+        })
     }
   }
 };
