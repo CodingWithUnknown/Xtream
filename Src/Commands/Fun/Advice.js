@@ -7,7 +7,7 @@ module.exports = {
     .setDescription('Gives you some advice')
     .setNSFW(false),
   execute: async (client, interaction) => {
-    get('http://api.adviceslip.com/advice').end(async (err, res) => {
+    await get('http://api.adviceslip.com/advice').end(async (err, res) => {
       if (!err && res.status === 200) {
         try {
           await JSON.parse(res.text);

@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
-const { disk } = require('systeminformation');
+const si = require('systeminformation');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -7,7 +7,7 @@ module.exports = {
     .setDescription('Shows information about The Xtream Defender')
     .addSubcommand((options) => options
       .setName('info')
-      .setDescription('Shows information about The Xtream Defender') // add a new stats command for status update
+      .setDescription('Shows information about The Xtream Defender')
     ),
   /**
    * 
@@ -18,21 +18,19 @@ module.exports = {
   execute: async (client, interaction) => {
     switch (interaction.options.getSubcommand()) {
       case 'info':
-        const button = new ButtonBuilder()
-          .setLabel('About')
-          .setCustomId('about')
-          .setStyle(ButtonStyle.Primary),
-          button2 = new ButtonBuilder()
-            .setLabel('About')
-            .setCustomId('about')
-            .setStyle(ButtonStyle.Primary),
-          button3 = new ButtonBuilder()
-            .setLabel('About')
-            .setCustomId('about')
-            .setStyle(ButtonStyle.Primary);
-
         const raw = new ActionRowBuilder()
-          .addComponents([button, button2, button3])
+          .addComponents(
+            new ButtonBuilder()
+            .setLabel('Support')
+            .setCustomId('support')
+            .setStyle(ButtonStyle.Link)
+            .setURL('https://discord.gg/VgT9u4PM2w'),
+            new ButtonBuilder()
+              .setLabel('Invite')
+              .setCustomId('invite')
+              .setStyle(ButtonStyle.Link)
+              .setURL('https://discord.gg/VgT9u4PM2w')
+          )
 
         const embeds = new EmbedBuilder()
           .setAuthor({ name: `${client.users.cache.find((x) => x.id == process.env.AUTH_OWNER_ID).globalName}`, iconURL: client.users.cache.find((x) => x.id == process.env.DEVELOPER_OWNER).displayAvatarURL({ size: 4096 }) })
@@ -65,13 +63,7 @@ module.exports = {
           .setColor(0x2c2d31)
           .setTimestamp();
 
-        let msg = await interaction.reply({ embeds: [embeds], components: [raw] });
-
-        const collector = msg.createMessageComponentCollector({
-          filter: {
-            
-          }
-        })
+        await interaction.reply({ embeds: [embeds], components: [raw] });
     }
   }
 };

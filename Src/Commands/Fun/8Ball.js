@@ -1,5 +1,5 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const superagent = require('superagent');
+const { Client, chatInputApplicationCommandMention, SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { get } = require('superagent');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -11,21 +11,21 @@ module.exports = {
       .setDescription('What you want to ask the magic 8ball?')
       .setRequired(true)
     ),
+  /**
+   * 
+   * @param {Client} client 
+   * @param {chatInputApplicationCommandMention} interaction 
+   */
   execute: async (client, interaction) => {
-    superagent.get(`https://eightballapi.com/api/biased?question=${interaction.options.getString('question').replace(/ /g, '+')}`).end(async (err, res) => {
-      // if (!err && res.status === 200) {
-      /* try {
-        await res.body.reading;
-      } catch {
-        return await interaction.reply({ content: 'An api error occurred.' });
-      } */
-      const embeds = new EmbedBuilder()
-        .setDescription(`**${await res.body.reading}**`)
-        .setColor(0x2c2d31);
-      interaction.reply({ embeds: [embeds] });
-      // } /* else {
-      // return await interaction.reply({ content: `REST call failed: ${err}, status code: ${res.status}` });
-      // } */
+    await get(`https://eightballapi.com/api/biased?question=${interaction.options.getString('question').replace(/ /g, '+')}&lucky=${Boolean(Math.round(Math.random()))}`).then(async (res) => {
+      try {
+        const embeds = new EmbedBuilder()
+          .setDescription(`**${await res.body.reading}**`)
+          .setColor(0x2c2d31);
+        return await interaction.reply({ embeds: [embeds] });
+      } catch (err) {
+        return await interaction.reply({ content: 'An api error occurred.' }).then(() => console.log(err));
+      }
     });
   }
 };

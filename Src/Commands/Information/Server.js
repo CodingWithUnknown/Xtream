@@ -8,7 +8,7 @@ module.exports = {
     .setDescription('Shows information about this server')
     .addSubcommand((options) => options
       .setName('information')
-      .setDescription('Shows information about this server')
+      .setDescription('Shows information about this server') // fixing some bugs and problems with server names that are not supported.
     ),
   /**
    * 

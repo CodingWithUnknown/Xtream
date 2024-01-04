@@ -1,17 +1,22 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { Client, ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { get } = require('superagent');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('joke')
-    .setDescription('testing command')
+    .setDescription(';lkjrghal;kfnqioucvofnqwofh')
     .setNSFW(false),
+  /**
+   * 
+   * @param {Client} client 
+   * @param {ChatInputCommandInteraction} interaction 
+   */
   execute: async (client, interaction) => {
-    get('http://icanhazdadjoke.com').set('Accept', 'application/json').end(async (err, res) => {
+    await get('http://icanhazdadjoke.com').set('Accept', 'application/json').end(async (err, res) => {
       if (!err && res.status === 200) {
         try {
           await res.body.joke;
-        } catch {
+        } catch (err) {
           return await interaction.reply({ content: 'An api error occurred.' });
         }
         const embeds = new EmbedBuilder()
