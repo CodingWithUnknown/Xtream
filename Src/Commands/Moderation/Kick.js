@@ -29,39 +29,28 @@ module.exports = {
 
     if (!target) {
       const embeds = new EmbedBuilder()
-        .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
-        .setDescription('This user does not exist in the server')
-        .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
+        .setDescription('<:Cross:1056294370913026089> This user does not exist in the server')
         .setColor(0x2c2d31)
-        .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }
 
     if (interaction.member.id.includes(target.id)) {
       const embeds = new EmbedBuilder()
-        .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
-        .setDescription('You cannot timeout yourself.')
-        .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
+        .setDescription('<:Cross:1056294370913026089> You cannot timeout yourself.')
         .setColor(0x2c2d31)
-        .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }
 
     if (client.user.id.includes(target.id)) {
       const embeds = new EmbedBuilder()
-        .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
-        .setDescription('You cannot timeout myself!')
-        .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
+        .setDescription('<:Cross:1056294370913026089> You cannot timeout myself!')
         .setColor(0x2c2d31)
-        .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }
 
     if (interaction.guild.ownerId.includes(target.id)) {
       const embeds = new EmbedBuilder()
-        .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
-        .setDescription('You cannnot timeout the guild owner.')
-        .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
+        .setDescription('<:Cross:1056294370913026089> You cannnot timeout the guild owner.')
         .setColor(0x2c2d31)
         .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
@@ -80,40 +69,38 @@ module.exports = {
       );
 
     const embeds = new EmbedBuilder()
-      .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
+      .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
       .setDescription(`Are you sure you want to kick ${target} for reason: **${reason}**?`)
-      .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
-      .setColor(0x2c2d31)
-      .setTimestamp();
+      .setColor(0x2c2d31);
 
     let response = await interaction.reply({ embeds: [embeds], components: [row] });
 
     try {
-      let confirmation = await response.awaitMessageComponent({ filter: (x) => x.user.id === interaction.user.id, time: 60_000 });
+      let confirmation = await response.awaitMessageComponent({
+        filter: (x) => {
+          if (x.user.id === interaction.user.id) return true;
+          else x.reply({ content: `Only **${interaction.user.displayName}** can use this button.`, ephemeral: true });
+          return false;
+        }, time: 60_000
+      });
 
       switch (confirmation.customId) {
         case 'confirm':
-          await target.kick({ reason: reason }).then(async () => {
-            const embeds = new EmbedBuilder()
-              .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
-              .setDescription([
-                `${target.globalName} have been **Kicked** from this server`,
-                `\nReason: ${reason}`,
-              ].join('\n'))
-              .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
-              .setColor(0x2c2d31)
-              .setTimestamp();
-
-            return await confirmation.update({ embeds: [embeds], components: [] });
-          }).catch(async (err) => {
-            return await interaction.reply({ content: 'Could not kick user due to an uncommon error.' });
+          const embeds = new EmbedBuilder()
+            .setDescription([
+              `**${target.displayName}** have been kicked from this server`,
+              `Reason: **${reason}**`,
+            ].join('\n'))
+            .setColor(0x2c2d31);
+          await confirmation.update({ embeds: [embeds], components: [] }).then(async () => await target.kick({ reason: reason })).catch(async () => {
+            return await confirmation.update({ content: '<:Cross:1056294370913026089> Could not kick user due to an uncommon error.', embeds: [], components: [] });
           });
           break;
         case 'cancel':
           return await confirmation.update({ content: 'Action cancelled', embeds: [], components: [] });
       }
-    } catch (err) {
-      return await interaction.editReply({ content: 'Confirmation not received within 1 minute, cancelling', components: [] });
+    } catch {
+      return await interaction.editReply({ content: 'Confirmation not received within 1 minute, cancelling', embeds: [], components: [] });
     }
   }
 };
