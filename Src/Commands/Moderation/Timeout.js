@@ -78,85 +78,65 @@ module.exports = {
         let target = interaction.options.getMember('user'),
           duration = interaction.options.getString('duration'),
           specify = interaction.options.getString('reason') ?? 'None specified';
-        console.log(target)
 
         if (!target) {
           const embeds = new EmbedBuilder()
-            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
+            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
             .setDescription('This user does not exist in the server')
-            .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-            .setColor(0x2c2d31)
-            .setTimestamp();
+            .setColor(0x2c2d31);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
         if (interaction.member.id.includes(target.id)) {
           const embeds = new EmbedBuilder()
-            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
+            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
             .setDescription('You cannot timeout yourself.')
-            .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-            .setColor(0x2c2d31)
-            .setTimestamp();
+            .setColor(0x2c2d31);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
         if (client.user.id.includes(!target.id)) {
           const embeds = new EmbedBuilder()
-            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
+            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
             .setDescription('You cannot timeout myself!')
-            .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-            .setColor(0x2c2d31)
-            .setTimestamp();
+            .setColor(0x2c2d31);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
         if (interaction.guild.ownerId.includes(target.id)) {
           const embeds = new EmbedBuilder()
-            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
+            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
             .setDescription('You cannnot timeout the guild owner.')
-            .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-            .setColor(0x2c2d31)
-            .setTimestamp();
+            .setColor(0x2c2d31);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
-        /*if () {
+        if (!target.manageable && !target.moderatable) {
           const embeds = new EmbedBuilder()
-            .setAuthor(     { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() }   )
+            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
             .setDescription('This user is not moderatable.')
-            .setFooter(    { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }  )
-            .setColor(0x2c2d31)
-            .setTimestamp();
+            .setColor(0x2c2d31);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
-        }*/
+        }
 
         if (target.roles.highest.position > interaction.member.roles.highest.position) {
           const embeds = new EmbedBuilder()
-            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
+            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
             .setDescription('You cannot timeout someone with a superior role than you.')
-            .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-            .setColor(0x2c2d31)
-            .setTimestamp();
+            .setColor(0x2c2d31);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
-        await target.timeout(duration, specify).then(async () => {
+        const add = new EmbedBuilder()
+          .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
+          .setDescription(`<:Timeout:1056289049603756032> | ${target.globalName} has been timeout about \`${duration}\` for Reason: **${specify}**`)
+          .setColor(0x2c2d31);
+        await interaction.reply({ embeds: [add] }).then(async () => await target.timeout(duration, specify)).catch(async () => {
           const embeds = new EmbedBuilder()
-            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
-            .setDescription(`<:Timeout:1056289049603756032> | ${target.user.globalName} has been timeout about \`${duration}\` for Reason: **${specify}**`)
-            .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-            .setColor(0x2c2d31)
-            .setTimestamp();
-          return await interaction.reply({ embeds: [embeds] }).catch(async (err) => {
-            console.log(err);
-            const embeds = new EmbedBuilder()
-              .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
-              .setDescription('Could not timeout user due to an encourage error.')
-              .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-              .setColor(0x2c2d31)
-              .setTimestamp();
-            return await interaction.reply({ embeds: [embeds], ephemeral: true });
-          });
+            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
+            .setDescription('Could not timeout user due to an encourage error.')
+            .setColor(0x2c2d31);
+          return await interaction.reply({ embeds: [embeds], ephemeral: true });
         });
         break;
 
@@ -166,74 +146,55 @@ module.exports = {
 
         if (interaction.member.id.includes(user.id)) {
           const embeds = new EmbedBuilder()
-            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
+            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
             .setDescription('You cannot timeout remove yourself.')
-            .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-            .setColor(0x2c2d31)
-            .setTimestamp();
+            .setColor(0x2c2d31);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
-        /* if (!user.manageable && !user.moderatable) {
+        if (!user.manageable && !user.moderatable) {
           const embeds = new EmbedBuilder()
-            .setAuthor(
-              { name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() }
-            )
+            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
             .setDescription('This user is not moderatable.')
-            .setFooter(
-              { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
-            )
-            .setColor(0x2c2d31)
-            .setTimestamp();
+            .setColor(0x2c2d31);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
-        } */
+        }
 
         if (client.user.id.includes(user.id)) {
           const embeds = new EmbedBuilder()
-            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
+            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
             .setDescription('You cannot timeout **Xtream Defender**!')
-            .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-            .setColor(0x2c2d31)
-            .setTimestamp();
+            .setColor(0x2c2d31);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
         if (interaction.guild.ownerId.includes(user.id)) {
           const embeds = new EmbedBuilder()
-            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
+            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
             .setDescription('You cannnot timeout the guild owner.')
-            .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-            .setColor(0x2c2d31)
-            .setTimestamp();
+            .setColor(0x2c2d31);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
         if (user.roles.highest.position > interaction.member.roles.highest.position) {
           const embeds = new EmbedBuilder()
-            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
+            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
             .setDescription('You cannot timeout remove someone with a superior role than you.')
-            .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-            .setColor(0x2c2d31)
-            .setTimestamp();
+            .setColor(0x2c2d31);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
-        await user.timeout(null, reason).then(async () => {
+
+        const remove = new EmbedBuilder()
+          .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
+          .setDescription(`<:Timeout:1056289049603756032> ${user.tag} timeout has been removed.\n\nReason: **${reason}**`)
+          .setColor(0x2c2d31);
+        await interaction.reply({ embeds: [remove] }).then(async () => await user.timeout(null, reason)).catch(async () => {
           const embeds = new EmbedBuilder()
-            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
-            .setDescription(`<:Timeout:1056289049603756032> ${user.tag} timeout has been removed.\n\nReason: **${reason}**`)
-            .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-            .setColor(0x2c2d31)
-            .setTimestamp();
-          return await interaction.reply({ embeds: [embeds] }).catch(async () => {
-            const embeds = new EmbedBuilder()
-              .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL() })
-              .setDescription('Could not timeout user due to an encourage error.')
-              .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-              .setColor(0x2c2d31)
-              .setTimestamp();
-            return await interaction.reply({ embeds: [embeds], ephemeral: true });
-          });
+            .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
+            .setDescription('Could not timeout user due to an encourage error.')
+            .setColor(0x2c2d31);
+          return await interaction.reply({ embeds: [embeds], ephemeral: true });
         });
         break;
     }

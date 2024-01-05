@@ -97,7 +97,8 @@ module.exports = {
           });
           break;
         case 'cancel':
-          return await confirmation.update({ content: 'Action cancelled', embeds: [], components: [] });
+          await confirmation.update({ content: 'Action cancelled', embeds: [], components: [] });
+          break;
       }
     } catch {
       return await interaction.editReply({ content: 'Confirmation not received within 1 minute, cancelling', embeds: [], components: [] });
