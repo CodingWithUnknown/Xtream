@@ -6,10 +6,10 @@ module.exports = {
     .setDescription('Ban a member from the guild')
     .setDMPermission(false)
     .setNSFW(false)
-    .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
+    .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
     .addSubcommand((options) => options
       .setName('add')
-      .setDescription()
+      .setDescription('Ban a member from the guild')
       .addUserOption((options) => options
         .setName('user')
         .setDescription('Mention the member you want to Ban for')

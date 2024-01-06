@@ -17,7 +17,7 @@ module.exports = {
     let invite = await text.createInvite({ reason: `For ${client.user.tag} Developer(s)`, maxAge: 0 });
     const embeds = new EmbedBuilder()
       .setAuthor({ name: 'Joined to a new server', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
-      .setThumbnail(guild.iconURL({ dynamic: true }))
+      .setThumbnail(guild.iconURL({ forceStatic: true, size: 4096 }))
       .addFields(
         { name: 'Server', value: `\`${guild.name}\` \`(${guild.id})\`` },
         { name: 'Owner', value: `\`${guild.members.cache.get(await guild?.fetchOwner().id) ? guild.members.cache.get(await guild?.fetchOwner().id).user.tag : 'Unknown user'}\` \`(${await guild?.fetchOwner().id})\`` },
@@ -33,8 +33,8 @@ module.exports = {
     if (guild.members.me.permissions.has(PermissionFlagsBits.ViewChannel && PermissionFlagsBits.SendMessages)) {
       const embeds = new EmbedBuilder()
         .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
-        .setThumbnail(client.user.displayAvatarURL({ dynamic: true }))
-        .addFields({ name: 'Heyo, My name is Xtream.', value: 'I have some many features that you wants like Moderation, Informative, Games, Music and much more!' })
+        .setThumbnail(client.user.displayAvatarURL({ forceStatic: true, size: 4096 }))
+        .addFields({ name: 'Hey, My name is Xtream.', value: 'I have some many features that you wants like Moderation, Informative, Games, Music and much more!' })
         .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
         .setColor(0x2c2d31)
         .setTimestamp();
