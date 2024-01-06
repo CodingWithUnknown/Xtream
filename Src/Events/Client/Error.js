@@ -3,7 +3,7 @@ const { Events, EmbedBuilder, WebhookClient } = require('discord.js');
 module.exports = {
   name: Events.Error,
   execute: async (client, error) => {
-    client.logger.log(error, 'error');
+    client.logger.error(error);
     if (error.message.includes('Cannot find module')) {
       console.log(error.message.split('Require')[0].trim() + ` in a file (${reqSterror.message.split('Require stack:')[1].trim().split("\n")[0].trim().replace(/^[-\s]{2}/, '')})`, 'error');
     } else {

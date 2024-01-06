@@ -43,8 +43,8 @@ module.exports = {
 
       try {
         await commands.execute(client, interaction);
-      } catch (error) {
-        client.logger.log(error, 'error');
+      } catch (err) {
+        client.logger.error(err);
         if (interaction.replied || interaction.deferred) {
           if (!interaction.channel.permissionsFor(interaction.guild.members.me).has(PermissionFlagsBits.EmbedLinks)) {
             return await interaction.followUp({ content: 'There was an error executing that command.', ephemeral: true });
