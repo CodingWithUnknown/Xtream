@@ -76,9 +76,9 @@ module.exports = {
         console.log(interaction.guild);
 
         const embeds = new EmbedBuilder()
-          .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 4096 }) })
+          .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
           .setTitle(`${interaction.guild.name} Information`)
-          .setThumbnail(interaction.guild.iconURL({ extension: 'webp', size: 4096 }))
+          .setThumbnail(interaction.guild.iconURL({ forceStatic: true, size: 4096 }))
           .setDescription(interaction.guild.description ? `*${interaction.guild.description}*` : null)
           .addFields(
             {
@@ -157,7 +157,7 @@ module.exports = {
           .addFields(
             { name: '__Server Features__', value: `${'<:Verified:1056288905030283265>: ' + Capitalize(interaction.guild.features.join('\n<:Verified:1056288905030283265>: ').replace(/_/g, ' '))}` }
           )
-          .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ extension: 'webp', size: 4096 }) })
+          .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
           .setColor(0x2c2d31)
           .setTimestamp();
 

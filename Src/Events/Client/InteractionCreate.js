@@ -1,5 +1,5 @@
 const { Client, Events, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
-const Suspention = require('../../Models/Schema/Suspention');
+const Suspension = require('../../Models/Schema/Suspension');
 
 module.exports = {
   name: Events.InteractionCreate,
@@ -19,7 +19,7 @@ module.exports = {
         return await interaction.reply({ embeds: [embeds], ephemeral: true });
       }
 
-      await Suspention.findOne({ User: interaction.user.id }, async (err, data) => {
+      await Suspension.findOne({ User: interaction.user.id }, async (err, data) => {
         if (err) throw err;
         if (data) {
           const embeds = new EmbedBuilder()

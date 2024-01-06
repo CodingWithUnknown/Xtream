@@ -129,7 +129,7 @@ module.exports = {
 
         const add = new EmbedBuilder()
           .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
-          .setDescription(`<:Timeout:1056289049603756032> | **${target.globalName}** has been timeout about \`${duration}\` for Reason: **${specify}**`)
+          .setDescription(`<:Timeout:1056289049603756032> **${target.globalName}** has been timeout about \`${duration}\` for Reason: **${specify}**`)
           .setColor(0x2c2d31);
         await interaction.reply({ embeds: [add] }).then(async () => await target.timeout(duration, specify)).catch(async () => {
           const embeds = new EmbedBuilder()

@@ -80,24 +80,24 @@ module.exports = {
               ]
             }).then(async (res) => {
               const embeds = new EmbedBuilder()
-                .setAuthor({ name: 'Evaluation Completed', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
+                .setAuthor({ name: 'Evaluation Completed', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
                 .addFields(
                   { name: 'Input', value: '```js\n' + code + '```' },
                   { name: 'Output', value: `[Large Success Codes](${res.shortUrl})` }
                 )
-                .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
+                .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
                 .setColor(0x2c2d31)
                 .setTimestamp();
               await interaction.editReply({ embeds: [embeds] });
             });
           } else {
             const embeds = new EmbedBuilder()
-              .setAuthor({ name: 'Evaluation Completed', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
+              .setAuthor({ name: 'Evaluation Completed', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
               .addFields(
                 { name: 'Input', value: '```js\n' + code + '```' },
                 { name: 'Output', value: '```js\n' + Supplementary(evaled) + '```' }
               )
-              .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
+              .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
               .setColor(0x2c2d31)
               .setTimestamp();
             await interaction.editReply({ embeds: [embeds] });
@@ -111,24 +111,24 @@ module.exports = {
             }).then(async (res) => {
               console.log(res);
               const embeds = new EmbedBuilder()
-                .setAuthor({ name: 'Evaluation Failure', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
+                .setAuthor({ name: 'Evaluation Failure', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
                 .addFields(
                   { name: 'Input', value: '```js\n' + code + '```' },
                   { name: 'Error', value: `[Larger Failure Codes](${res.shortUrl})` }
                 )
-                .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
+                .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
                 .setColor(0x2c2d31)
                 .setTimestamp();
               await interaction.editReply({ embeds: [embeds] });
             });
           } else {
             const embeds = new EmbedBuilder()
-              .setAuthor({ name: 'Evaluation Failure', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
+              .setAuthor({ name: 'Evaluation Failure', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
               .addFields(
                 { name: 'Input', value: '```js\n' + code + '```' },
                 { name: 'Error', value: '```js\n' + Supplementary(error) + '```' }
               )
-              .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) })
+              .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
               .setColor(0x2c2d31)
               .setTimestamp();
             await interaction.editReply({ embeds: [embeds] });
@@ -172,10 +172,9 @@ module.exports = {
         } catch (err) {
           console.log(err)
           if (err.status === 404) return await interaction.reply('Could not find any results. Invalid URL?');
-          return await interaction.reply(`Oh no, an error occurred: \`${err.message}\`. Try again later!`);
+          await interaction.reply(`Oh no, an error occurred: \`${err.message}\`. Try again later!`);
         }
-      /* break;
-    case '': */
+        break;
     }
   }
 };
