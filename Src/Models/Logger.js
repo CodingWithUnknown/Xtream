@@ -1,36 +1,62 @@
-const chalk = require('chalk');
-const moment = require('moment');
+const { Signale } = require('signale');
 
-module.exports = class Logger {
-  static log(content, type = 'log') {
-    let date = `${moment().format('DD-MM-YYYY hh:mm:ss')}`;
-    switch (type) {
-      case 'log': {
-        return console.log(`[${chalk.gray(date)}]: [${chalk.blue(type.charAt(0).toUpperCase() + type.slice(1))}] ${chalk.blue(content)}`);
+module.exports = class Logger extends Signale {
+  constructor() {
+    super({
+      disabled: false,
+      interactive: false,
+      scope: 'Xtream Defender',
+      logLevel: 'info',
+      stream: process.stdout,
+      config: {
+        displayDate: true,
+        displayTimestamp: true,
+        displayFilename: true,
+        underlineLabel: false
+      },
+      types: {
+        system: {
+          badge: '/',
+          label: 'System',
+          color: 'magenta'
+        },
+        info: {
+          label: 'Info'
+        },
+        debug: {
+          label: 'Debug'
+        },
+        warn: {
+          label: 'Warn'
+        },
+        error: {
+          label: 'Error'
+        },
+        success: {
+          label: 'Success'
+        },
+        pending: {
+          label: 'Pending'
+        },
+        await: {
+          label: 'Awaiting'
+        },
+        complete: {
+          label: 'Complete'
+        },
+        fatal: {
+          label: 'Fatal'
+        },
+        fav: {
+          label: 'Fav'
+        },
+        note: {
+          label: 'Note'
+        },
+        watch: {
+          label: 'Watch'
+        },
       }
-      case 'warn': {
-        return console.log(`[${chalk.gray(date)}]: [${chalk.yellow(type.charAt(0).toUpperCase() + type.slice(1))}] ${chalk.blue(content)}`);
-      }
-      case 'debug': {
-        return console.log(`[${chalk.gray(date)}]: [${chalk.blue(type.charAt(0).toUpperCase() + type.slice(1))}] ${chalk.blue(content)}`);
-      }
-      case 'ready': {
-        return console.log(`[${chalk.gray(date)}]: [${chalk.green(type.charAt(0).toUpperCase() + type.slice(1))}] ${chalk.blue(content)}`);
-      }
-      case 'event': {
-        return console.log(`[${chalk.gray(date)}]: [${chalk.cyan(type.charAt(0).toUpperCase() + type.slice(1))}] ${chalk.blue(content)}`);
-      }
-      case 'system': {
-        return console.log(`[${chalk.gray(date)}]: [${chalk.magenta(type.charAt(0).toUpperCase() + type.slice(1))}] ${chalk.blue(content)}`);
-      }
-      case 'error': {
-        return console.log(`[${chalk.gray(date)}]: [${chalk.red(type.charAt(0).toUpperCase() + type.slice(1))}] ${chalk.gray(content)}`);
-      }
-      case '/': {
-        return console.log(`[${chalk.gray(date)}]: [ ${chalk.blue(type.charAt(0).toUpperCase() + type.slice(1))} ] ${chalk.blue(content)}`);
-      }
-      default:
-        throw new TypeError('Logger type must be either log, warn, debug, ready, event, system or error.');
-    }
+    });
   }
 };

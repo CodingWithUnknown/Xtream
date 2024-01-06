@@ -3,6 +3,7 @@ const { connect } = require('mongoose');
 const { readdirSync } = require('fs');
 const { join } = require('path');
 const { Shoukaku, Connectors } = require('shoukaku');
+const Logger = require('./Models/Logger');
 
 class Xtream extends Client {
   constructor() {
@@ -48,22 +49,19 @@ class Xtream extends Client {
       ],
     });
     this.commands = new Collection();
+    this.logger = new Logger();
     this.developer = process.env.AUTH_OWNER_ID;
     this.logs = process.env.LOGS;
-    this.logger = require('./Models/Logger');
     this._ConnectMongodb();
     this._LoadClientEvents();
-    //this._loadNodeEvents();
     this._LoadSlashCommands();
-    // this._AntiCrasher();
+    //this._loadNodeEvents();
+    this._AntiCrasher();
     //this.shoukaku;
-    this.rest.on('rateLimited', (info) => {
-      this.logger.log(info, 'log');
+    this.rest.on('rateLimited', (log) => {
+      this.logger.log(log);
     });
   }
-  /**
-   * Import All Events
-   */
   async _LoadClientEvents() {
     let folders = readdirSync(join(__dirname, 'Events'));
     for (let folder of folders) {
@@ -75,7 +73,7 @@ class Xtream extends Client {
         } else {
           this.on(events.name, (...args) => events.execute(this, ...args));
         }
-        this.logger.log(`Loading Events Client ${file.split('.')[0]}`, 'event');
+        this.logger.info(`Loading Events Client ${file.split('.')[0]}`);
       }
     }
   }
@@ -138,19 +136,19 @@ class Xtream extends Client {
         if ('data' in command && 'execute' in command) {
           Data.push(command.data.toJSON());
         } else {
-          this.logger.log(`The command at ${join(join(join(__dirname, 'Commands'), folder), file)} is missing a required "data" or "execute" property.`, 'warn');
+          this.logger.warn(`The command at ${join(join(join(__dirname, 'Commands'), folder), file)} is missing a required "data" or "execute" property.`);
         }
-        if (!command.data.name) return this.logger.log(`[ / ] ${command.split('.')[0]} application command name is required.`, 'error');
-        if (!command.data.description) return this.logger.log(`[ / ] ${command.split('.')[0]} application command description is required.`, 'error');
+        if (!command.data.name) return this.logger.error(`${command.split('.')[0]} application command name is required.`);
+        if (!command.data.description) return this.logger.error(`${command.split('.')[0]} application command description is required.`);
         this.commands.set(command.data.name, command);
-        this.logger.log(`Loading Slash Commands ${command.data.name}`, '/');
+        this.logger.pending(`Loading Slash Commands ${command.data.name}`);
       }
     }
     let rest = new REST().setToken(process.env.DISCORD_TOKEN);
-    this.logger.log('Refreshing Application (/) Commands.', 'system');
+    this.logger.system('Refreshing Application (/) Commands.');
     await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), { body: Data }).finally(() => {
-      this.logger.log('Successfully Loaded All Application (/) Commands', 'system')
-    }).catch((err) => this.logger.log(err, 'error'));
+      this.logger.system('Successfully Loaded All Application (/) Commands');
+    }).catch((err) => this.logger.error(err));
   }
   async _ConnectMongodb() {
     connect(process.env.MONGO_URI, {
@@ -159,46 +157,15 @@ class Xtream extends Client {
       useUnifiedTopology: true,
       useCreateIndex: true,
       useFindAndModify: true
-    }).then(() => this.logger.log('Atlas Cluster Clouds Connected', 'ready')).catch((err) => this.logger.log(err, 'error'));
+    }).then(() => this.logger.success('Atlas Cluster Clouds Connected')).catch((err) => this.logger.error(err));
   }
-  /* async _AntiCrasher() {
-    process.on('unhandledRejection', (reason, promise) => {
-      console.log('=== Unhandled Rejection ===');
-      console.log('Promise:', promise, 'Reason:', reason.stack ? reason.stack : reason);
-      console.log('=== Unhandled Rejection ===');
-    });
-
-    process.on('uncaughtException', (err, origin) => {
-      console.log('=== Uncaught Exception ===');
-      console.log('Origin:', origin, 'Exception:', err.stack ? err.stack : err)
-      console.log('=== Uncaught Exception ===');
-    });
-
-    process.on('uncaughtExceptionMonitor', (err, origin) => {
-      console.log('=== Uncaught Exception Monitor ===');
-      console.log('Origin:', origin, 'Exception:', err.stack ? err.stack : err)
-      console.log('=== Uncaught Exception Monitor ===');
-    });
-
-    process.on('multipleResolves', (type, promise, reason) => {
-      console.log('=== Multiple Resolves ===');
-      console.log(type, promise, reason);
-      console.log('=== Multiple Resolves ===');
-    });
-
-    process.on('beforeExit', (code) => {
-      console.log('=== Before Exit ===');
-      console.log('Code:', code);
-      console.log('=== Before Exit ===');
-    });
-
-    process.on('exit', (code) => {
-      console.log('=== Exit ===');
-      console.log('Code:', code);
-      console.log('=== Exit ===');
-    });
-  } */
+  async _AntiCrasher() {
+    process.on('unhandledRejection', (reason, promise) => this.logger.error(promise, reason.stack ? reason.stack : reason));
+    process.on('uncaughtException', (err, origin) => this.logger.error(origin, err.stack ? err.stack : err));
+    process.on('uncaughtExceptionMonitor', (err, origin) => this.logger.error(origin, err.stack ? err.stack : err));
+    process.on('beforeExit', (code) => this.logger.warn('Process died unexpectedly before. Code:', code));
+    process.on('exit', (code) => this.logger.warn('Process died unexpectedly. Code:', code));
+  }
 };
 
-let Defender = new Xtream();
-Defender.login(process.env.DISCORD_TOKEN);
+new Xtream().login(process.env.DISCORD_TOKEN);
