@@ -119,7 +119,7 @@ module.exports = {
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
-        if (target.roles.highest.position > interaction.member.roles.highest.position) {
+        if (target.roles.highest.rawPosition > interaction.member.roles.highest.rawPosition) {
           const embeds = new EmbedBuilder()
             .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
             .setDescription('You cannot timeout someone with a superior role than you.')

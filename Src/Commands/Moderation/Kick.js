@@ -41,6 +41,22 @@ module.exports = {
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }
 
+    if (!target.manageable && !target.moderatable) {
+      const embeds = new EmbedBuilder()
+        .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
+        .setDescription('This user is not moderatable.')
+        .setColor(0x2c2d31);
+      return await interaction.reply({ embeds: [embeds], ephemeral: true });
+    }
+
+    if (target.roles.highest.position > interaction.member.roles.highest.position) {
+      const embeds = new EmbedBuilder()
+        .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
+        .setDescription('You cannot timeout someone with a superior role than you.')
+        .setColor(0x2c2d31);
+      return await interaction.reply({ embeds: [embeds], ephemeral: true });
+    }
+
     if (client.user.id.includes(target.id)) {
       const embeds = new EmbedBuilder()
         .setDescription('<:Cross:1056294370913026089> You cannot timeout myself!')
@@ -88,7 +104,7 @@ module.exports = {
         case 'confirm':
           const embeds = new EmbedBuilder()
             .setDescription([
-              `**${target.displayName}** have been kicked from this server`,
+              `<:Verified:1056288905030283265> **${target.displayName}** have been kicked from this server`,
               `Reason: **${reason}**`,
             ].join('\n'))
             .setColor(0x2c2d31);
