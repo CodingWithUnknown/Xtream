@@ -24,7 +24,8 @@ module.exports = {
           .setColor(0x2c2d31);
         return await interaction.reply({ embeds: [embeds] });
       } catch (err) {
-        return await interaction.reply({ content: 'An api error occurred.' }).then(() => console.log(err));
+        console.log(err);
+        return await interaction.reply({ content: 'An api error occurred.' });
       }
     });
   }

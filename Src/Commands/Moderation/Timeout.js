@@ -184,7 +184,6 @@ module.exports = {
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
-
         const remove = new EmbedBuilder()
           .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
           .setDescription(`<:Timeout:1056289049603756032> **${user.displayName}** timeout has been removed.\n\nReason: **${reason}**`)
