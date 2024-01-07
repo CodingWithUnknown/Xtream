@@ -36,37 +36,35 @@ module.exports = {
 
     if (interaction.member.id.includes(target.id)) {
       const embeds = new EmbedBuilder()
-        .setDescription('<:Cross:1056294370913026089> You cannot timeout yourself.')
+        .setDescription('<:Cross:1056294370913026089> You cannot kick yourself.')
         .setColor(0x2c2d31)
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }
 
-    if (!target.manageable && !target.moderatable) {
+    if (!target.kickable) {
       const embeds = new EmbedBuilder()
-        .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
-        .setDescription('This user is not moderatable.')
+        .setDescription('<:Cross:1056294370913026089> This user is not kickable.')
         .setColor(0x2c2d31);
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }
 
     if (target.roles.highest.position > interaction.member.roles.highest.position) {
       const embeds = new EmbedBuilder()
-        .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
-        .setDescription('You cannot timeout someone with a superior role than you.')
+        .setDescription('<:Cross:1056294370913026089> You cannot kick someone with a superior role than you.')
         .setColor(0x2c2d31);
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }
 
     if (client.user.id.includes(target.id)) {
       const embeds = new EmbedBuilder()
-        .setDescription('<:Cross:1056294370913026089> You cannot timeout myself!')
+        .setDescription('<:Cross:1056294370913026089> You cannot kick myself!')
         .setColor(0x2c2d31)
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }
 
     if (interaction.guild.ownerId.includes(target.id)) {
       const embeds = new EmbedBuilder()
-        .setDescription('<:Cross:1056294370913026089> You cannnot timeout the guild owner.')
+        .setDescription('<:Cross:1056294370913026089> You cannnot kick the guild owner.')
         .setColor(0x2c2d31)
         .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });

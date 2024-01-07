@@ -68,6 +68,20 @@ module.exports = {
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
+        if (!interaction.member.bannable) {
+          const embeds = new EmbedBuilder()
+            .setDescription('<:Cross:1056294370913026089> This user is not bannable.')
+            .setColor(0x2c2d31);
+          return await interaction.reply({ embeds: [embeds], ephemeral: true });
+        }
+
+        if (target.roles.highest.position > interaction.member.roles.highest.position) {
+          const embeds = new EmbedBuilder()
+            .setDescription('<:Cross:1056294370913026089> You cannot ban someone with a superior role than you.')
+            .setColor(0x2c2d31);
+          return await interaction.reply({ embeds: [embeds], ephemeral: true });
+        }
+
         if (interaction.guild.ownerId.includes(target.id)) {
           const embeds = new EmbedBuilder()
             .setDescription('<:Cross:1056294370913026089> You cannnot timeout the guild owner.')
@@ -147,6 +161,20 @@ module.exports = {
           const embeds = new EmbedBuilder()
             .setDescription('<:Cross:1056294370913026089> You cannot timeout myself!')
             .setColor(0x2c2d31)
+          return await interaction.reply({ embeds: [embeds], ephemeral: true });
+        }
+
+        if (!target.kickable) {
+          const embeds = new EmbedBuilder()
+            .setDescription('<:Cross:1056294370913026089> This user is not kickable.')
+            .setColor(0x2c2d31);
+          return await interaction.reply({ embeds: [embeds], ephemeral: true });
+        }
+
+        if (target.roles.highest.position > interaction.member.roles.highest.position) {
+          const embeds = new EmbedBuilder()
+            .setDescription('<:Cross:1056294370913026089> You cannot kick someone with a superior role than you.')
+            .setColor(0x2c2d31);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 

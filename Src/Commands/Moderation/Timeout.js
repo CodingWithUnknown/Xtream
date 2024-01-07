@@ -139,7 +139,6 @@ module.exports = {
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         });
         break;
-
       case 'remove':
         let user = interaction.options.getMember('user'),
           reason = interaction.options.getString('reason') ?? 'None specified';
