@@ -24,9 +24,9 @@ module.exports = {
   execute: async (client, interaction) => {
     if ('lookup'.includes(interaction.options.getSubcommand())) {
       await Promise.all([
-        get(`http://ipwho.is/${interaction.options.getString('query')}`).then((res) => JSON.parse(res.text)),
-        get(`https://api.ipdata.co/${interaction.options.getString('query')}?api-key=${process.env.IPDATA_KEY}`).then((res) => JSON.parse(res.text)),
-        get(`https://api.ip2location.io/?key=${process.env.IPLOCATION_KEY}&ip=${interaction.options.getString('query')}&format=json`).then((res) => JSON.parse(res.text))
+        await get(`http://ipwho.is/${interaction.options.getString('query')}`).then((res) => JSON.parse(res.text)),
+        await get(`https://api.ipdata.co/${interaction.options.getString('query')}?api-key=${process.env.IPDATA_KEY}`).then((res) => JSON.parse(res.text)),
+        await get(`https://api.ip2location.io/?key=${process.env.IPLOCATION_KEY}&ip=${interaction.options.getString('query')}&format=json`).then((res) => JSON.parse(res.text))
       ]).then(async (res) => {
         try {
           const embeds = new EmbedBuilder()
