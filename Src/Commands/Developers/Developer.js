@@ -1,5 +1,5 @@
-const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder, AttachmentBuilder, PermissionOverwriteManager } = require('discord.js');
-// const { request } = require('axios');
+const { SlashCommandBuilder, Client, ChatInputCommandInteraction, EmbedBuilder, AttachmentBuilder } = require('discord.js');
+const { get } = require('superagent');
 const { create } = require('sourcebin');
 const { Supplementary } = require('../../Models/Module');
 
@@ -161,19 +161,20 @@ module.exports = {
         if (domain.length <= 8) {
           const embeds = new EmbedBuilder()
             .setDescription('https is too short to reach - 8 limit')
+            .setColor(0x2d2c31);
           return await interaction.reply({ embeds: [embeds] });
         }
 
-        try {
-          let { body } = await fetch(`https://image.thum.io/get/width/1920/crop/675/noanimate/${/^(https?:\/\/)/i.test(domain) ? domain : `http://${domain}`}`),
-            file = new AttachmentBuilder(body, { name: 'Screenshot.webp' });
-
-          return await interaction.reply({ files: [file] });
-        } catch (err) {
-          console.log(err)
-          if (err.status === 404) return await interaction.reply('Could not find any results. Invalid URL?');
-          await interaction.reply(`Oh no, an error occurred: \`${err.message}\`. Try again later!`);
-        }
+        await get(`https://image.thum.io/get/width/1920/crop/675/noanimate/${/^(https?:\/\/)/i.test(domain) ? domain : `http://${domain}`}`).end(async (err, res) => {
+          console.log('success', res);
+          console.log('error', err);
+          let file = new AttachmentBuilder(Buffer.from(res.body), { name: 'Screenshot.webp' });
+          if (res.status === 404) {
+            return await interaction.reply({ content: 'Could not find any results. Invalid URL?' })
+          } else {
+            return await interaction.reply({ files: [file] });
+          };
+        });
         break;
     }
   }

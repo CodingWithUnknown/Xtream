@@ -48,9 +48,7 @@ module.exports = {
               ].join('\n')
             }
           )
-          .addFields(
-            { name: 'Allowed Permissions', value: `${role.permissions.toArray().map((x) => `\`${x}\``).join(' | ') ? `${role.permissions.toArray().slice(0, 15).map((x) => `\`${x}\``).join(' | ')} *more then ${role.permissions.toArray().length - 15}*` : 'None'}` }
-          )
+          .addFields({ name: 'Allowed Permissions', value: `${role.permissions.toArray().map((x) => `\`${x}\``).join(' | ') ? `${role.permissions.toArray().slice(0, 15).map((x) => `\`${x}\``).join(' | ')} *more then ${role.permissions.toArray().length - 15}*` : 'None'}` })
           .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
           .setColor(`${role.hexColor ?? 0x2c2d31}`)
           .setTimestamp();
