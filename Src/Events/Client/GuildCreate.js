@@ -38,7 +38,7 @@ module.exports = {
         .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
         .setColor(0x2c2d31)
         .setTimestamp();
-      return await guild.channels.cache.find((x) => x.type === ChannelType.GuildText).send({ content: 'https://discord.gg/VgT9u4PM2w', embeds: [embeds] });
+      return await guild.channels.cache.find((x) => x.type === ChannelType.GuildText).send({ content: '[Glitch Labs HQ](https://discord.gg/VgT9u4PM2w)', embeds: [embeds] });
     }
   }
 };
