@@ -44,7 +44,7 @@ module.exports = {
                                 ].join('\n')
                             }
                         )
-                        .setColor(0x2d2c31);
+                        .setColor(0x141318);
                     return await interaction.editReply({ embeds: [embeds], ephemeral: true });
                 } else {
                     const embeds = new EmbedBuilder()
@@ -52,7 +52,7 @@ module.exports = {
                         .setURL(res.body.items[0].link)
                         .setDescription(res.body.items[0].snippet)
                         .setImage(res.body.items[0].pagemap.cse_image[0].src ?? res.body.items[0].pagemap.cse_thumbnail[0].src)
-                        .setColor(0x2d2c31);
+                        .setColor(0x141318);
                     return await interaction.editReply({ embeds: [embeds] });
                 }
         }

@@ -18,7 +18,7 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setAuthor({ name: member.user.tag, iconURL: member.user.displayAvatarURL() })
                 .setTitle(`<:remove_user:1089772643416285244> Member Left`)
-                .setColor(0x2d2c31)
+                .setColor(0x141318)
                 .addFields(
                     { name: 'Member', value: `<@${member.id}> (\`${member.id}\`)`, inline: true },
                 )

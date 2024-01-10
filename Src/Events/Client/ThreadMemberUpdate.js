@@ -12,7 +12,7 @@ module.exports = {
             if (oldMember.joinedTimestamp != newMember.joinedTimestamp) {
                 const embed = new EmbedBuilder()
                     .setAuthor({ name: oldMember.thread.guild.name, iconURL: oldMember.thread.guild.iconURL({}) })
-                    .setColor(0x2d2c31)
+                    .setColor(0x141318)
                     .setDescription(`<:up_n:1089775058026766377> **Thread member updated in ${oldMember.thread.toString()}**`)
                     .addFields(
                         { name: `Member`, value: `${oldMember}`, inline: true },

@@ -28,7 +28,7 @@ module.exports = {
             .setFooter(
                 { text: client.user.username, iconURL: client.user.displayAvatarURL() }
             )
-            .setColor(0x2d2c31)
+            .setColor(0x141318)
             .setTimestamp();
 
         await channel.send({ embeds: [embed] });

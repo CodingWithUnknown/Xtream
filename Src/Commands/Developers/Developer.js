@@ -161,7 +161,7 @@ module.exports = {
         if (domain.length <= 8) {
           const embeds = new EmbedBuilder()
             .setDescription('https is too short to reach - 8 limit')
-            .setColor(0x2d2c31);
+            .setColor(0x141318);
           return await interaction.reply({ embeds: [embeds] });
         }
 

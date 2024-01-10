@@ -21,7 +21,7 @@ module.exports = {
       try {
         const embeds = new EmbedBuilder()
           .setDescription(`**${await res.body.reading}**`)
-          .setColor(0x2c2d31);
+          .setColor(0x141318);
         return await interaction.reply({ embeds: [embeds] });
       } catch (err) {
         console.log(err);

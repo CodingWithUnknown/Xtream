@@ -27,7 +27,7 @@ module.exports = {
                 .setImage('attachment://image.png')
                 .setDescription(`User avatar changed: [Old Avatar](${`https://cdn.discordapp.com/avatars/${oldUser.id}/${oldUser.avatar}.png`}) | [New Avatar](${`https://cdn.discordapp.com/avatars/${newUser.id}/${newUser.avatar}.png`})`)
                 .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
-                .setColor(0x2d2c31)
+                .setColor(0x141318)
                 .setTimestamp()
             await channel.send({ embeds: [embeds], files: [file] });
         } */
@@ -39,7 +39,7 @@ module.exports = {
                 .setDescription(`User username changed: **${oldUser.username}** | **${newUser.username}**`)
                 .addFields({ name: 'Member', value: `<@${newUser.id}> \`(${newUser.id})\`` })
                 .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
-                .setColor(0x2d2c31)
+                .setColor(0x141318)
                 .setTimestamp()
             await channel.send({ embeds: [embeds] });
         }

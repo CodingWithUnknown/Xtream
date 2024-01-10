@@ -18,7 +18,7 @@ module.exports = {
       .setFooter(
         { text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ dynamic: true }) }
       )
-      .setColor(0x2c2d31)
+      .setColor(0x141318)
       .setTimestamp();
     return await webhook.send({ username: client.user.username, avatar: client.user.displayAvatarURL({ dynamic: true }), embeds: [embeds] }); */
   }

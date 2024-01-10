@@ -16,7 +16,7 @@ module.exports = {
         }
         const embeds = new EmbedBuilder()
           .setDescription(`**${await JSON.parse(res.text).slip.advice}**`)
-          .setColor(0x2c2d31);
+          .setColor(0x141318);
         return await interaction.reply({ embeds: [embeds] });
       } else {
         return await interaction.reply({ content: `REST call failed: ${err}, status code: ${res.status}` });

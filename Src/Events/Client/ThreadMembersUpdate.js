@@ -36,7 +36,7 @@ module.exports = {
                     }
                     const embed = new EmbedBuilder()
                         .setAuthor({ name: thread.guild.name, iconURL: thread.guild.iconURL() })
-                        .setColor(0x2d2c31)
+                        .setColor(0x141318)
                         .setDescription(`<:up_n:1089775058026766377> **${cnType[thread.type]}** Members Updated **${thread.name}**`)
                         .addFields(
                             { name: `Member Added (${memberAdded.size})`, value: memberAddedString.join('\n') || 'None', inline: true },

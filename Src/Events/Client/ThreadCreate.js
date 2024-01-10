@@ -31,7 +31,7 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setAuthor({ name: thread.guild.name, iconURL: thread.guild.iconURL() })
                 .setDescription([`<:create:1089903750879133736> **${cnType[thread.type]}** Created **${thread.name}**`, '', `**Owner:** ${user.toString()} (\`${user.id}\`)`].join('\n'))
-                .setColor(0x2d2c31)
+                .setColor(0x141318)
                 .addFields(
                     { name: 'Channel', value: `${thread.toString()} (\`${thread.id.toString()}\`)`, inline: true },
                     { name: 'Created Time', value: `<t:${Math.floor(thread.createdTimestamp / 1000)}:R> - (<t:${Math.floor(thread.createdTimestamp / 1000)}>)`, inline: true },

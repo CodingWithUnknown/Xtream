@@ -39,7 +39,7 @@ module.exports = {
         if (!target) {
           const embeds = new EmbedBuilder()
             .setDescription('This user does not exist in the server')
-            .setColor(0x2c2d31);
+            .setColor(0x141318);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
@@ -50,7 +50,7 @@ module.exports = {
               .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
               .setDescription(`${target.user.displayName} was been already Suspended!`)
               .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
-              .setColor(0x2c2d31)
+              .setColor(0x141318)
               .setTimestamp();
             return await interaction.reply({ embeds: [embeds] });
           } else {
@@ -64,7 +64,7 @@ module.exports = {
                 .setThumbnail(target.user.displayAvatarURL({ forceStatic: true, size: 4096 }))
                 .setDescription(`**${target.user.displayName}** user has been Suspended.`)
                 .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
-                .setColor(0x2c2d31)
+                .setColor(0x141318)
                 .setTimestamp();
               return await interaction.reply({ embeds: [embeds] });
             });
@@ -78,7 +78,7 @@ module.exports = {
         if (!user) {
           const embeds = new EmbedBuilder()
             .setDescription('This user does not exist in the server')
-            .setColor(0x2c2d31);
+            .setColor(0x141318);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
@@ -91,7 +91,7 @@ module.exports = {
                 .setThumbnail(user.user.displayAvatarURL({ forceStatic: true, size: 4096 }))
                 .setDescription(`**${user.user.displayName}** user has been Reactivated.`)
                 .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
-                .setColor(0x2c2d31)
+                .setColor(0x141318)
                 .setTimestamp();
               return await interaction.reply({ embeds: [embeds] });
             });
@@ -99,7 +99,7 @@ module.exports = {
             const embeds = new EmbedBuilder()
               .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
               .setDescription(`${user.user.displayName} was not suspended!`)
-              .setColor(0x2c2d31);
+              .setColor(0x141318);
             return await interaction.reply({ embeds: [embeds] });
           }
         });

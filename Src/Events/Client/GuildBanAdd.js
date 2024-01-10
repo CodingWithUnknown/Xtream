@@ -25,7 +25,7 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setAuthor({ name: user.tag, iconURL: `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` })
                 .setTitle(`<:ban:1089791204746592287> Member Banned`)
-                .setColor(0x2d2c31)
+                .setColor(0x141318)
                 .addFields(
                     { name: 'Member', value: `<@${target.user.id}> (\`${target.user.id}\`)`, inline: true },
                     { name: 'Reason', value: target.reason ? target.reason : 'No reason provided', inline: true },

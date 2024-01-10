@@ -17,7 +17,7 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setAuthor({ name: user.tag, iconURL: icon })
                 .setTitle(`<:create:1089903750879133736> Role Created`)
-                .setColor(0x2d2c31)
+                .setColor(0x141318)
                 .addFields(
                     { name: 'Role', value: `<@&${role.id}> (\`${role.id}\`)`, inline: true },
                     { name: 'Role Color', value: `\`#${role.color.toString(16)}\``, inline: true },

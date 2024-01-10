@@ -19,7 +19,7 @@ module.exports = {
                         { name: 'Deafen', value: `${newState.serverDeaf ? 'deafen' : 'undeafen'}`, inline: false },
                         { name: 'Time', value: `<t:${Math.floor(Date.now() / 1000)}:R> - (<t:${Math.floor(Date.now() / 1000)}>)`, inline: false },
                     )
-                    .setColor(0x2d2c31)
+                    .setColor(0x141318)
                     .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
 
                 await channels.send({ embeds: [embeds] });
@@ -34,7 +34,7 @@ module.exports = {
                         { name: 'Channel', value: `${newState.channel} (${newState.channelId})`, inline: false },
                         { name: 'Time', value: `<t:${Math.floor(Date.now() / 1000)}:R> - (<t:${Math.floor(Date.now() / 1000)}>)`, inline: false },
                     )
-                    .setColor(0x2d2c31)
+                    .setColor(0x141318)
                     .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
 
                 await channels.send({ embeds: [embeds] });
@@ -49,7 +49,7 @@ module.exports = {
                         { name: 'Channel', value: `${oldState.channel} (${oldState.channelId})`, inline: false },
                         { name: 'Time', value: `<t:${Math.floor(Date.now() / 1000)}:R> - (<t:${Math.floor(Date.now() / 1000)}>)`, inline: false },
                     )
-                    .setColor(0x2d2c31)
+                    .setColor(0x141318)
                     .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
 
                 await channels.send({ embeds: [embeds] });
@@ -66,7 +66,7 @@ module.exports = {
                         { name: 'New Channel', value: `${newState.channel} (${newState.channelId})`, inline: false },
                         { name: 'Time', value: `<t:${Math.floor(Date.now() / 1000)}:R> - (<t:${Math.floor(Date.now() / 1000)}>)`, inline: false },
                     )
-                    .setColor(0x2d2c31)
+                    .setColor(0x141318)
                     .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
 
                 await channels.send({ embeds: [embeds] });
@@ -84,7 +84,7 @@ module.exports = {
                         { name: 'Server Mute', value: `${newState.serverMute ? 'muted' : 'unmuted'}`, inline: false },
                         { name: 'Time', value: `<t:${Math.floor(Date.now() / 1000)}:R> - (<t:${Math.floor(Date.now() / 1000)}>)`, inline: false },
                     )
-                    .setColor(0x2d2c31)
+                    .setColor(0x141318)
                     .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
 
                 await channels.send({ embeds: [embeds] });
@@ -100,7 +100,7 @@ module.exports = {
                         { name: 'Streaming', value: `${newState.streaming ? 'Yes' : 'No'}`, inline: false },
                         { name: 'Time', value: `<t:${Math.floor(Date.now() / 1000)}:R> - (<t:${Math.floor(Date.now() / 1000)}>)`, inline: false },
                     )
-                    .setColor(0x2d2c31)
+                    .setColor(0x141318)
                     .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
 
                 await channels.send({ embeds: [embeds] });

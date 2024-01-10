@@ -20,7 +20,7 @@ module.exports = {
                 .setFooter(
                     { text: client.user.username, iconURL: client.user.displayAvatarURL({ size: 4096 }) }
                 )
-                .setColor(0x2d2c31)
+                .setColor(0x141318)
                 .setTimestamp()
             let oldIcon = null;
 

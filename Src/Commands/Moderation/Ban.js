@@ -50,42 +50,42 @@ module.exports = {
         if (!target) {
           const embeds = new EmbedBuilder()
             .setDescription('<:Cross:1056294370913026089> This user does not exist in the server')
-            .setColor(0x2c2d31)
+            .setColor(0x141318)
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
         if (interaction.member.id.includes(target.id)) {
           const embeds = new EmbedBuilder()
             .setDescription('<:Cross:1056294370913026089> You cannot timeout yourself.')
-            .setColor(0x2c2d31)
+            .setColor(0x141318)
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
         if (client.user.id.includes(target.id)) {
           const embeds = new EmbedBuilder()
             .setDescription('<:Cross:1056294370913026089> You cannot timeout myself!')
-            .setColor(0x2c2d31)
+            .setColor(0x141318)
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
         if (!interaction.member.bannable) {
           const embeds = new EmbedBuilder()
             .setDescription('<:Cross:1056294370913026089> This user is not bannable.')
-            .setColor(0x2c2d31);
+            .setColor(0x141318);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
         if (target.roles.highest.position > interaction.member.roles.highest.position) {
           const embeds = new EmbedBuilder()
             .setDescription('<:Cross:1056294370913026089> You cannot ban someone with a superior role than you.')
-            .setColor(0x2c2d31);
+            .setColor(0x141318);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
         if (interaction.guild.ownerId.includes(target.id)) {
           const embeds = new EmbedBuilder()
             .setDescription('<:Cross:1056294370913026089> You cannnot timeout the guild owner.')
-            .setColor(0x2c2d31)
+            .setColor(0x141318)
             .setTimestamp();
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
@@ -105,7 +105,7 @@ module.exports = {
         const embeds = new EmbedBuilder()
           .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
           .setDescription(`Are you sure you want to kick ${target} for reason: **${reason}**?`)
-          .setColor(0x2c2d31);
+          .setColor(0x141318);
 
         let response = await interaction.reply({ embeds: [embeds], components: [row] });
 
@@ -126,7 +126,7 @@ module.exports = {
                     `<:Verified:1056288905030283265> **${target.displayName}** have been banned from this server`,
                     `Reason: **${reason}**`,
                   ].join('\n'))
-                  .setColor(0x2c2d31);
+                  .setColor(0x141318);
                 return await confirmation.update({ embeds: [embeds], components: [] });
               }).catch(async () => {
                 return await confirmation.update({ content: '<:Cross:1056294370913026089> Could not ban user due to an uncommon error.', embeds: [], components: [] });
@@ -146,42 +146,42 @@ module.exports = {
         if (!user) {
           const embeds = new EmbedBuilder()
             .setDescription('<:Cross:1056294370913026089> This user does not exist in the server')
-            .setColor(0x2c2d31)
+            .setColor(0x141318)
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
         if (interaction.member.id.includes(user.id)) {
           const embeds = new EmbedBuilder()
             .setDescription('<:Cross:1056294370913026089> You cannot timeout yourself.')
-            .setColor(0x2c2d31)
+            .setColor(0x141318)
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
         if (client.user.id.includes(user.id)) {
           const embeds = new EmbedBuilder()
             .setDescription('<:Cross:1056294370913026089> You cannot timeout myself!')
-            .setColor(0x2c2d31)
+            .setColor(0x141318)
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
         if (!target.kickable) {
           const embeds = new EmbedBuilder()
             .setDescription('<:Cross:1056294370913026089> This user is not kickable.')
-            .setColor(0x2c2d31);
+            .setColor(0x141318);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
         if (target.roles.highest.position > interaction.member.roles.highest.position) {
           const embeds = new EmbedBuilder()
             .setDescription('<:Cross:1056294370913026089> You cannot kick someone with a superior role than you.')
-            .setColor(0x2c2d31);
+            .setColor(0x141318);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
 
         if (interaction.guild.ownerId.includes(user.id)) {
           const embeds = new EmbedBuilder()
             .setDescription('<:Cross:1056294370913026089> You cannnot timeout the guild owner.')
-            .setColor(0x2c2d31)
+            .setColor(0x141318)
             .setTimestamp();
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
@@ -201,7 +201,7 @@ module.exports = {
         const remove = new EmbedBuilder()
           .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
           .setDescription(`Are you sure you want to kick ${user} for reason: **${reasons}**?`)
-          .setColor(0x2c2d31);
+          .setColor(0x141318);
 
         let responses = await interaction.reply({ embeds: [remove], components: [rows] });
 
@@ -222,7 +222,7 @@ module.exports = {
                     `<:Verified:1056288905030283265> **${user.displayName}** have been Unbanned from this server`,
                     `Reason: **${reasons}**`,
                   ].join('\n'))
-                  .setColor(0x2c2d31);
+                  .setColor(0x141318);
                 return await confirmation.update({ embeds: [embeds], components: [] });
               }).catch(async () => {
                 return await confirmation.update({ content: '<:Cross:1056294370913026089> Could not ban user due to an uncommon error.', embeds: [], components: [] });

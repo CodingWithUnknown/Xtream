@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits, Partials, Collection, Routes, REST } = require('discord.js');
+const { Client, Options, GatewayIntentBits, Partials, Collection, Routes, REST } = require('discord.js');
 const { connect } = require('mongoose');
 const { readdirSync } = require('fs');
 const { join } = require('path');
@@ -11,6 +11,7 @@ class Xtream extends Client {
       fetchAllMembers: false,
       restTimeOffset: 0,
       shards: 'auto',
+      sweepers: Options.DefaultSweeperSettings,
       allowedMentions: {
         parse: ['users', 'roles'],
         everyone: false,
@@ -59,7 +60,7 @@ class Xtream extends Client {
     this._AntiCrasher();
     //this.shoukaku;
     this.rest.on('rateLimited', (log) => {
-      this.logger.log(log);
+      this.logger.warn(log);
     });
   }
   async _LoadClientEvents() {
@@ -73,7 +74,7 @@ class Xtream extends Client {
         } else {
           this.on(events.name, (...args) => events.execute(this, ...args));
         }
-        this.logger.info(`Loading Events Client ${file.split('.')[0]}`);
+        this.logger.pending(`Loading Events Client ${file.split('.')[0]}`);
       }
     }
   }
@@ -123,9 +124,6 @@ class Xtream extends Client {
       this.kazagumo.on(event.name, (...args) => event.execute(this, ...args));
     });
   };*/
-  /**
-   * Import All SlashCommands
-   */
   async _LoadSlashCommands() {
     let Data = [];
     let folders = readdirSync(join(__dirname, 'Commands'));
@@ -145,9 +143,9 @@ class Xtream extends Client {
       }
     }
     let rest = new REST().setToken(process.env.DISCORD_TOKEN);
-    this.logger.system('Refreshing Application (/) Commands.');
+    this.logger.await('Refreshing Application (/) Commands.');
     await rest.put(Routes.applicationCommands(process.env.CLIENT_ID), { body: Data }).finally(() => {
-      this.logger.system('Successfully Loaded All Application (/) Commands');
+      this.logger.complete('Successfully Refreshed All Application (/) Commands');
     }).catch((err) => this.logger.error(err));
   }
   async _ConnectMongodb() {
@@ -164,7 +162,7 @@ class Xtream extends Client {
     process.on('uncaughtException', (err, origin) => this.logger.error(origin, err.stack ? err.stack : err));
     process.on('uncaughtExceptionMonitor', (err, origin) => this.logger.error(origin, err.stack ? err.stack : err));
     process.on('beforeExit', (code) => this.logger.warn('Process died unexpectedly before. Code:', code));
-    process.on('exit', (code) => this.logger.warn('Process died unexpectedly. Code:', code));
+    process.on('exit', (code) => this.logger.warn('Process died unexpectedly. Code:', code)); 
   }
 };
 

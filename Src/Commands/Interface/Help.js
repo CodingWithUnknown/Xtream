@@ -17,7 +17,7 @@ module.exports = {
       .setAuthor({ name: 'Help Panel', iconURL: client.user.displayAvatarURL() })
       .setDescription('More soons available')
       .setFooter({ text: 'Xtream Developers', iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
-      .setColor(0x2d2c31)
+      .setColor(0x141318)
       .setTimestamp();
 
     const row = new ActionRowBuilder()
@@ -67,7 +67,7 @@ module.exports = {
             .setTitle('Music Commands')
             .setDescription(client.commands.filter((x) => x.category && x.category === 'Information').map((x) => `\`${x.name}\``).join(', '))
             .setFooter({ text: `Total ${client.commands.filter((x) => x.category && x.category === 'Information').map((x) => `\`${x.name}\``).length} Music commands.` })
-            .setColor(0x2d2c31);
+            .setColor(0x141318);
           await init.edit({ embeds: [editEmbed], components: [row] });
       }
     });

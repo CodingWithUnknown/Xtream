@@ -16,7 +16,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setAuthor({ name: user.tag, iconURL: icon })
                     .setTitle(`<:up_n:1089775058026766377> Role Name Updated`)
-                    .setColor(0x2d2c31)
+                    .setColor(0x141318)
                     .addFields(
                         { name: 'Role', value: `<@&${oldRole.id}> (\`${oldRole.id}\`)`, inline: true },
                         { name: 'Old Name', value: `\`${oldRole.name}\``, inline: true },
@@ -31,7 +31,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setAuthor({ name: user.tag, iconURL: icon })
                     .setTitle(`<:up_n:1089775058026766377> Role Color Updated`)
-                    .setColor(0x2d2c31)
+                    .setColor(0x141318)
                     .addFields(
                         { name: 'Role', value: `<@&${oldRole.id}> (\`${oldRole.id}\`)`, inline: true },
                         { name: 'Old Color', value: `\`#${oldRole.color.toString(16)}\``, inline: true },
@@ -46,7 +46,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setAuthor({ name: user.tag, iconURL: icon })
                     .setTitle(`<:up_n:1089775058026766377> Role Hoist Updated`)
-                    .setColor(0x2d2c31)
+                    .setColor(0x141318)
                     .addFields(
                         { name: 'Role', value: `<@&${oldRole.id}> (\`${oldRole.id}\`)`, inline: true },
                         { name: 'Old Hoist', value: `\`${oldRole.hoist}\``, inline: true },
@@ -61,7 +61,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setAuthor({ name: user.tag, iconURL: icon })
                     .setTitle(`<:up_n:1089775058026766377> Role Mentionable Updated`)
-                    .setColor(0x2d2c31)
+                    .setColor(0x141318)
                     .addFields(
                         { name: 'Role', value: `<@&${oldRole.id}> (\`${oldRole.id}\`)`, inline: true },
                         { name: 'Old Mentionable', value: `\`${oldRole.mentionable}\``, inline: true },
@@ -76,7 +76,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setAuthor({ name: user.tag, iconURL: icon })
                     .setTitle(`<:up_n:1089775058026766377> Role Permissions Updated`)
-                    .setColor(0x2d2c31)
+                    .setColor(0x141318)
                     .addFields(
                         { name: 'Role', value: `<@&${oldRole.id}> (\`${oldRole.id}\`)`, inline: true },
                         { name: 'Old Permissions', value: `\`${new PermissionsBitField(oldRole.permissions.bitfield).toArray().join(', ') || 'None'}\``, inline: true },
@@ -91,7 +91,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setAuthor({ name: user.tag, iconURL: icon })
                     .setTitle(`<:up_n:1089775058026766377> Role Position Updated`)
-                    .setColor(0x2d2c31)
+                    .setColor(0x141318)
                     .addFields(
                         { name: 'Role', value: `<@&${oldRole.id}> (\`${oldRole.id}\`)`, inline: true },
                         { name: 'Old Position', value: `\`${oldRole.rawPosition}\``, inline: true },

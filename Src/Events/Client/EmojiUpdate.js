@@ -16,7 +16,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setAuthor({ name: user.tag, iconURL: icon })
             .setTitle(`<:up_n:1089775058026766377> Emoji Updated`)
-            .setColor(0x2d2c31)
+            .setColor(0x141318)
             .addFields(
                 { name: 'Emoji', value: `<:${oldEmoji.name}:${oldEmoji.id}> (\`${oldEmoji.id}\`)`, inline: true },
                 { name: 'Old Name', value: `\`${oldEmoji.name}\``, inline: true },

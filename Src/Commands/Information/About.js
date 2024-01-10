@@ -60,7 +60,7 @@ module.exports = {
             }
           )
           .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ size: 4096 }) })
-          .setColor(0x2c2d31)
+          .setColor(0x141318)
           .setTimestamp();
 
         await interaction.reply({ embeds: [embeds], components: [raw] });

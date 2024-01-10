@@ -15,7 +15,7 @@ module.exports = {
       if (!commands) {
         const embeds = new EmbedBuilder()
           .setDescription('This (/) command is outdated.')
-          .setColor(0x2d2c31);
+          .setColor(0x141318);
         return await interaction.reply({ embeds: [embeds], ephemeral: true });
       }
 
@@ -25,7 +25,7 @@ module.exports = {
           const embeds = new EmbedBuilder()
             .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
             .setDescription('You have been Suspended from Xtream Developers.')
-            .setColor(0x2d2c31);
+            .setColor(0x141318);
           return await interaction.reply({ embeds: [embeds], ephemeral: true });
         }
       });
@@ -37,7 +37,7 @@ module.exports = {
         const embeds = new EmbedBuilder()
           .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
           .setDescription('This command can only be Managed or Executed by the [Developer](https://discord.com/users/770887288464867338).')
-          .setColor(0x2d2c31);
+          .setColor(0x141318);
         return await interaction.reply({ embeds: [embeds], ephemeral: true });
       }
 
@@ -52,7 +52,7 @@ module.exports = {
             const embeds = new EmbedBuilder()
               .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
               .setDescription('There was an error executing that command.')
-              .setColor(0x2d2c31);
+              .setColor(0x141318);
             return await interaction.followUp({ embeds: [embeds], ephemeral: true });
           }
         } else {
@@ -62,7 +62,7 @@ module.exports = {
             const embeds = new EmbedBuilder()
               .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true, size: 4096 }) })
               .setDescription('There was an error executing that command.')
-              .setColor(0x2d2c31);
+              .setColor(0x141318);
             return await interaction.reply({ embeds: [embeds], ephemeral: true });
           }
         }

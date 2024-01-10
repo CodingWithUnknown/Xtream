@@ -29,7 +29,7 @@ module.exports = {
             if (oldThread.name != newThread.name) {
                 const embed = new EmbedBuilder()
                     .setAuthor({ name: user.tag, iconURL: icon })
-                    .setColor(0x2d2c31)
+                    .setColor(0x141318)
                     .setDescription(`<:up_n:1089775058026766377> **${cnType[newThread.type]}** updated in ${newThread.toString()}`)
                     .addFields(
                         { name: `Old Name`, value: oldThread.name, inline: true },
@@ -43,7 +43,7 @@ module.exports = {
             if (oldThread.archived != newThread.archived) {
                 const embed = new EmbedBuilder()
                     .setAuthor({ name: user.tag, iconURL: icon })
-                    .setColor(0x2d2c31)
+                    .setColor(0x141318)
                     .setDescription(`<:up_n:1089775058026766377> **${cnType[newThread.type]}** archived status updated in ${newThread.toString()}`) // ${newThread.archived ? 'Archived' : 'Active
                     .addFields(
                         { name: `Old Status`, value: oldThread.archived ? 'Archived' : 'Active', inline: true },
@@ -57,7 +57,7 @@ module.exports = {
             if (oldThread.locked != newThread.locked) {
                 const embed = new EmbedBuilder()
                     .setAuthor({ name: user.tag, iconURL: icon })
-                    .setColor(0x2d2c31)
+                    .setColor(0x141318)
                     .setDescription(`<:up_n:1089775058026766377> **${cnType[newThread.type]}** locked status updated in ${newThread.toString()}`) // ${newThread.locked ? 'Locked' : 'Unlocked
                     .addFields(
                         { name: `Old Status`, value: oldThread.locked ? 'Locked' : 'Unlocked', inline: true },

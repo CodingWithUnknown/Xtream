@@ -25,7 +25,7 @@ module.exports = {
         .setAuthor({ name: 'Xtream Defender', iconURL: client.user.displayAvatarURL({ forceStatic: true }) })
         .setDescription('This user does not exist in the server')
         .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ forceStatic: true }), })
-        .setColor(0x2c2d31)
+        .setColor(0x141318)
         .setTimestamp();
       return await interaction.reply({ embeds: [embeds], ephemeral: true });
     }
@@ -90,7 +90,7 @@ module.exports = {
           { name: 'Acknowledgements', value: `${interaction.guild.ownerId.includes(mention.user.id) ? 'Our Respectful Server Owner' : 'Our Respectful Server Member'}` }
         )
         .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ size: 4096 }) })
-        .setColor(0x2c2d31)
+        .setColor(0x141318)
         .setTimestamp()
       return await interaction.reply({ embeds: [embeds] });
     } else {
@@ -127,7 +127,7 @@ module.exports = {
           { name: 'Acknowledgements', value: `${interaction.guild.ownerId.includes(mention.user.id) ? 'Our Respectful Server Owner' : 'Our Respectful Server Member'}` }
         )
         .setFooter({ text: 'Xtream Developers', iconURL: client.user.displayAvatarURL({ size: 4096 }) })
-        .setColor(0x2c2d31)
+        .setColor(0x141318)
         .setTimestamp();
 
       return await interaction.reply({ embeds: [embeds] });

@@ -33,7 +33,7 @@ module.exports = {
                     { name: 'Pinned Time', value: `<t:${Math.floor(Date.now() / 1000)}:R> - (<t:${Math.floor(Date.now() / 1000)}>)`, inline: true },
                 )
                 .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
-                .setColor(0x2d2c31)
+                .setColor(0x141318)
 
             await channel.send({ embeds: [embeds] });
         } catch (error) {

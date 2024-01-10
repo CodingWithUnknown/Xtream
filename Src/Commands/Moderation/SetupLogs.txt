@@ -58,7 +58,7 @@ module.exports = {
                                 `- Member Auto-Role Updated: ${memberRole ? `<@${memberRole}>` : 'Not Spacified.'}`,
                                 `- Bot Auto-Role Updated: ${botRole ? `<@${botRole}>` : 'Not Spacified.'}`
                             ].join('/n'))
-                            .setColor(0x2d2c31)
+                            .setColor(0x141318)
                             .setTimestamp();
 
                         return await interaction.reply({ embeds: [embeds] });

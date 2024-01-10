@@ -24,7 +24,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setAuthor({ name: user.tag, iconURL: icon })
             .setTitle(`<:ban:1089791204746592287> Member Unbanned`)
-            .setColor(0x2d2c31)
+            .setColor(0x141318)
             .addFields(
                 { name: 'Member', value: `<@${ban.user.id}> (\`${ban.user.id}\`)`, inline: true },
             )

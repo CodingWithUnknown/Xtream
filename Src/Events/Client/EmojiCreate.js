@@ -17,7 +17,7 @@ module.exports = {
             const embed = client.embed()
                 .setAuthor({ name: user.tag, iconURL: icon })
                 .setTitle(`<:create:1089903750879133736> Emoji Created`)
-                .setColor(0x2d2c31)
+                .setColor(0x141318)
                 .addFields(
                     { name: 'Emoji', value: `<:${emoji.name}:${emoji.id}> (\`${emoji.id}\`)`, inline: true },
                     { name: 'Name', value: `\`${emoji.name}\``, inline: true },
