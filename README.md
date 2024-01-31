@@ -1,40 +1,21 @@
-[![Version][version-shield]](version-url)
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![Apache-2.0 License][license-shield]][license-url]
-
 <div align="center">  
-  <a href="https://github.com/CodingWithUnknown/Xtream">
-    <img align="center" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=200&section=header&text=Xtream&fontSize=70&fontAlignY=35&animation=twinkling&fontColor=gradient" />
-  </a>
-  <br/>
-  <p align="center">
-    <a href="https://github.com/CodingWithUnknown/Xtream">
-      <img src="./Assest/Images/Xtream.jpg" alt="Xtream" width="200" height="200">
-    </a>
-    <h1 align="center">Xtream</h1>
-    <p align="center">The Higher Defense Bot for your Discord Server. This is a Multi-purpose with Higher Defending features like none other.
-      <br/>
-      <br/>
-      <a href="https://discord.com/api/oauth2/authorize?client_id=962092097933021184&permissions=70368744177663&scope=bot%20applications.commands">Invite Xtream</a>
-      -
-      <a href="https://github.com/CodingWithUnknown/Xtream/issues">Report Bug & Request Feature</a>
-    </p>
-    <br/>
-    <p align="center">🔒Distributed under the Apache-2.0 License.</p>
-  </p>
-</div>
+<a href="https://github.com/CodingWithUnknown/Xtream"><img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=200&section=header&text=Xtream&fontSize=70&fontAlignY=35&animation=twinkling&fontColor=gradient" /></a>
 
-[version-shield]: https://img.shields.io/github/package-json/v/CodingWithUnknown/Xtream?style=for-the-badge
-[contributors-shield]: https://img.shields.io/github/contributors/CodingWithUnknown/Xtream.svg?style=for-the-badge
-[contributors-url]: https://github.com/CodingWithUnknown/Xtream/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/CodingWithUnknown/Xtream.svg?style=for-the-badge
-[forks-url]: https://github.com/brblacky/WaveMusic/network/members
-[stars-shield]: https://img.shields.io/github/stars/CodingWithUnknown/Xtream.svg?style=for-the-badge
-[stars-url]: https://github.com/CodingWithUnknown/Xtream/stargazers
-[issues-shield]: https://img.shields.io/github/issues/CodingWithUnknown/Xtream.svg?style=for-the-badge
-[issues-url]: https://github.com/CodingWithUnknown/Xtream/issues
-[license-shield]: https://img.shields.io/github/license/CodingWithUnknown/Xtream.svg?style=for-the-badge
-[license-url]: https://github.com/CodingWithUnknown/Xtream/blob/master/LICENSE
+<a href="https://github.com/CodingWithUnknown/Xtream"><img src="https://cdn.discordapp.com/attachments/919158245661224961/1202187654746079253/20240131_140558.png?ex=65cc8b80&is=65ba1680&hm=08e34c7093d6d45299563d9b01d0311722fb396afd7245606eb598cbb11962e6&" alt="Xtream" height=95 /></a>
+<h1>Xtream</h1>
+<p>The Higher Defense Bot for your Discord Server. This is a Multi-purpose with Higher Defending features like none other.</p>
+
+<div style="display:flex">
+<a href="https://discord.com/api/oauth2/authorize?client_id=962092097933021184&permissions=70368744177663&scope=bot%20applications.commands">Invite Xtream</a>
+<span style="display:inline-block;width:2%;">-</span>
+<a href="https://github.com/CodingWithUnknown/Xtream/issues">Report Bug & Request Feature</a>
+</div>
+</br>
+<p><em>🔒 Xtream Defender Distributed under the Apache-2.0 License.</em></p>
+
+<a href="https://www.github.com/CodingWithUnknown"><img src="https://img.shields.io/github/package-json/v/CodingWithUnknown/Xtream?style=for-the-badge" /></a>
+<a href="https://github.com/CodingWithUnknown/Xtream/graphs/contributors"><img src="https://img.shields.io/github/contributors/CodingWithUnknown/Xtream.svg?style=for-the-badge" /></a>
+<a href="https://github.com/CodingWithUnknown/Xtream/stargazers"><img src="https://img.shields.io/github/stars/CodingWithUnknown/Xtream.svg?style=for-the-badge" /></a>
+<a href="https://github.com/CodingWithUnknown/Xtream/issues"><img src="https://img.shields.io/github/issues/CodingWithUnknown/Xtream.svg?style=for-the-badge" /></a>
+<a href="https://github.com/CodingWithUnknown/Xtream/blob/master/LICENSE"><img src="https://img.shields.io/github/license/CodingWithUnknown/Xtream.svg?style=for-the-badge" /></a>
+</div>
