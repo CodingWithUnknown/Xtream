@@ -5,7 +5,7 @@
 <h1>Xtream</h1>
 <p>The Higher Defense Bot for your Discord Server. This is a Multi-purpose with Higher Defending features like none other.</p>
 
-<div style="display:flex">
+<div style="display:flex;">
 <a href="https://discord.com/api/oauth2/authorize?client_id=962092097933021184&permissions=70368744177663&scope=bot%20applications.commands" alt="Xtream Invite">Invite Me</a>
 <span style="display:inline-block;width:2%;">-</span>
 <a href="https://discord.com/invite/VgT9u4PM2w" alt="Xtream Support Server" >Support Server</a>
