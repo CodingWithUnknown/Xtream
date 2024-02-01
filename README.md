@@ -13,9 +13,9 @@
 </br>
 <p><em>🔒 Xtream Defender Distributed under the Apache-2.0 License.</em></p>
 
-<a href="https://www.github.com/CodingWithUnknown"><img src="https://img.shields.io/github/package-json/v/CodingWithUnknown/Xtream?style=for-the-badge" alt="Xtream Version" /></a>
-<a href="https://github.com/CodingWithUnknown/Xtream/graphs/contributors"><img src="https://img.shields.io/github/contributors/CodingWithUnknown/Xtream.svg?style=for-the-badge" alt="Xtream Contributors" /></a>
-<a href="https://github.com/CodingWithUnknown/Xtream/stargazers"><img src="https://img.shields.io/github/stars/CodingWithUnknown/Xtream.svg?style=for-the-badge" alt="Xtream Stargazers" /></a>
-<a href="https://github.com/CodingWithUnknown/Xtream/issues"><img src="https://img.shields.io/github/issues/CodingWithUnknown/Xtream.svg?style=for-the-badge" alt="Xtream Issues" /></a>
-<a href="https://github.com/CodingWithUnknown/Xtream/blob/master/LICENSE"><img src="https://img.shields.io/github/license/CodingWithUnknown/Xtream.svg?style=for-the-badge" alt="Xtream License" /></a>
+<a href="https://github.com/CodingWithUnknown/Xtream/blob/master/LICENSE"><img src="https://img.shields.io/github/license/CodingWithUnknown/Xtream.svg?style=for-the-badge&amp;logoColor=3c3a52&amp;logo=apache&amp;color=161c1c" alt="Xtream License" /></a>
+<a href="https://www.github.com/CodingWithUnknown"><img src="https://img.shields.io/github/package-json/v/CodingWithUnknown/Xtream?style=for-the-badge&amp;color=161c1c" alt="Xtream Version" /></a>
+<a href="https://github.com/CodingWithUnknown/Xtream/issues"><img src="https://img.shields.io/github/issues/CodingWithUnknown/Xtream.svg?style=for-the-badge&amp;color=161c1c" alt="Xtream Issues" /></a>
+<a href="https://github.com/CodingWithUnknown/Xtream/graphs/contributors"><img src="https://img.shields.io/github/contributors/CodingWithUnknown/Xtream.svg?style=for-the-badge&amp;color=161c1c" alt="Xtream Contributors" /></a>
+<a href="https://github.com/CodingWithUnknown/Xtream/pulls"><img src="https://img.shields.io/github/issues-pr/CodingWithUnknown/Xtream.svg?style=for-the-badge&amp;color=161c1c" alt="Xtream Pull Requests" /></a>
 </div>
