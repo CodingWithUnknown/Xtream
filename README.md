@@ -3,7 +3,7 @@
 
 <a href="https://github.com/CodingWithUnknown/Xtream"><img src="https://cdn.discordapp.com/attachments/919158245661224961/1202187654746079253/20240131_140558.png?ex=65cc8b80&is=65ba1680&hm=08e34c7093d6d45299563d9b01d0311722fb396afd7245606eb598cbb11962e6&" alt="Xtream" height=95 /></a>
 <h1>Xtream</h1>
-<p>The Higher Defense Bot for your Discord Server. This is a Multi-purpose with Higher Defending features like none other.</p>
+<em><p>The Higher Defense Bot for your Discord Server. This is a Multi-purpose with Higher Defending features like none other.</p></em>
 
 <div style="display:flex;">
 <a href="https://discord.com/api/oauth2/authorize?client_id=962092097933021184&permissions=70368744177663&scope=bot%20applications.commands" alt="Xtream Invite"><img src="https://img.shields.io/badge/Invite%20Me-161c1c?style=for-the-badge" /></a>
