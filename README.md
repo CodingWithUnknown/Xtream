@@ -8,11 +8,11 @@
 <em><p>The Higher Defense Bot for your Discord Server. This is a Multi-purpose with Higher Defending features like none other.</p></em>
 
 <div style="display:flex;">
-<a href="https://discord.com/api/oauth2/authorize?client_id=962092097933021184&permissions=70368744177663&scope=bot%20applications.commands" alt="Xtream Invite"><img src="https://img.shields.io/badge/Invite%20Me-161c1c?style=for-the-badge" /></a>
-<a href="https://discord.com/invite/VgT9u4PM2w" alt="Xtream Support Server" ><img src="https://img.shields.io/badge/Support%20Server-161c1c?style=for-the-badge" /></a>
+<a href="https://discord.com/api/oauth2/authorize?client_id=962092097933021184&permissions=70368744177663&scope=bot%20applications.commands"><img src="https://img.shields.io/badge/Invite%20Me-161c1c?style=for-the-badge" alt="Xtream Invite" /></a>
+<a href="https://discord.com/invite/VgT9u4PM2w"><img src="https://img.shields.io/badge/Support%20Server-161c1c?style=for-the-badge" alt="Xtream Support Server" /></a>
 </div>
 </br>
-<a href="https://www.github.com/CodingWithUnknown"><img src="https://readme-typing-svg.demolab.com?font=Poppins&amp;size=20&amp;pause=1000&amp;duration=4000&amp;color=3c3a52&amp;width=600&amp;height=40&amp;repeat=false&amp;lines=Xtream+Defender+Distributed+under+the+Apache-2.0+License." alt="Xtream Apache-2.0 License" height=35 /></a>
+<a href="https://www.github.com/CodingWithUnknown"><img src="https://readme-typing-svg.demolab.com?font=Poppins&amp;size=20&amp;pause=1000&amp;duration=4000&amp;color=3c3a52&amp;width=600&amp;height=40&amp;repeat=false&amp;center=true&amp;lines=Xtream+Defender+Distributed+under+the+Apache-2.0+License." alt="Xtream Apache-2.0 License" height=35 /></a>
 
 <a href="https://github.com/CodingWithUnknown/Xtream/blob/master/LICENSE"><img src="https://img.shields.io/github/license/CodingWithUnknown/Xtream.svg?style=for-the-badge&amp;logoColor=3c3a52&amp;logo=apache&amp;color=161c1c" alt="Xtream License" /></a>
 </br>
