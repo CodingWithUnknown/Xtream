@@ -9,12 +9,10 @@
 
 <div style="display:flex;">
 <a href="https://discord.com/api/oauth2/authorize?client_id=962092097933021184&permissions=70368744177663&scope=bot%20applications.commands" alt="Xtream Invite"><img src="https://img.shields.io/badge/Invite%20Me-161c1c?style=for-the-badge" /></a>
-<!-- <span style="display:inline-block;width:2%;">-</span> -->
 <a href="https://discord.com/invite/VgT9u4PM2w" alt="Xtream Support Server" ><img src="https://img.shields.io/badge/Support%20Server-161c1c?style=for-the-badge" /></a>
 </div>
 </br>
 <a href="https://www.github.com/CodingWithUnknown"><img src="https://readme-typing-svg.demolab.com?font=Poppins&amp;size=20&amp;pause=1000&amp;duration=4000&amp;color=3c3a52&amp;width=600&amp;height=40&amp;repeat=false&amp;lines=Xtream+Defender+Distributed+under+the+Apache-2.0+License." alt="Xtream Apache-2.0 License" height=35 /></a>
-<!-- <p><em>🔒 Xtream Defender Distributed under the Apache-2.0 License.</em></p> -->
 
 <a href="https://github.com/CodingWithUnknown/Xtream/blob/master/LICENSE"><img src="https://img.shields.io/github/license/CodingWithUnknown/Xtream.svg?style=for-the-badge&amp;logoColor=3c3a52&amp;logo=apache&amp;color=161c1c" alt="Xtream License" /></a>
 </br>
